@@ -1,8 +1,8 @@
 <div class="carousel w-full">
 	<div id="item1" class="carousel-item w-full">
 		<img
-			src="https://images.unsplash.com/photo-1591189824978-f02efb41ae13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2516&q=80"
-			class="w-full h-96 object-cover"
+			src="https://img.sbs.co.kr/newimg/news/20230819/201822834_700.jpg"
+			class="w-full h-96 object-cover filter grayscale"
 			alt=""
 		/>
 	</div>

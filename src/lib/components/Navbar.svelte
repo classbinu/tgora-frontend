@@ -1,3 +1,13 @@
+<script>
+	function alertLogin() {
+		return alert('지금은 로그인을 지원하지 않습니다.');
+	}
+
+	function alertSignup() {
+		return alert('지금은 회원가입을 지원하지 않습니다.');
+	}
+</script>
+
 <nav class="container mx-auto">
 	<div class="navbar bg-base-100">
 		<div class="flex-1">
@@ -5,8 +15,8 @@
 		</div>
 		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
-				<li><a>로그인</a></li>
-				<li><a>회원가입</a></li>
+				<li><a on:click={alertLogin}>로그인</a></li>
+				<li><a on:click={alertSignup}>회원가입</a></li>
 				<!-- <li>
 					<details>
 						<summary> Parent </summary>
