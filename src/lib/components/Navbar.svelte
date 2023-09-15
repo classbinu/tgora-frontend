@@ -11,7 +11,7 @@
 <nav class="container mx-auto">
 	<div class="navbar bg-base-100">
 		<div class="flex-1">
-			<a href="/" class="btn btn-ghost normal-case text-xl">T-아고라 :: tgora.kr</a>
+			<a href="/" class="btn btn-ghost normal-case text-xl">T-아고라</a>
 		</div>
 		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
