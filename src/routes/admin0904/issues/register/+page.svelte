@@ -33,7 +33,7 @@
 		};
 		console.log(issue);
 		try {
-			const url = 'http://localhost:3000/issues';
+			const url = 'https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues';
 
 			const options = {
 				method: 'POST',

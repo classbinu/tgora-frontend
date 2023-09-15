@@ -3,6 +3,7 @@
 	import Footer from '../lib/components/Footer.svelte';
 	import IssueCard from '../lib/components/IssueCard.svelte';
 	import Navbar from '../lib/components/Navbar.svelte';
+	import { formatDate } from '$lib/utils/utils.js';
 	export let data;
 
 	const issues = data.issues;
@@ -87,6 +88,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>
@@ -98,6 +100,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>
@@ -109,6 +112,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>
@@ -120,6 +124,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>
@@ -131,6 +136,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>
@@ -142,6 +148,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>
@@ -153,6 +160,7 @@
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
 	</div>

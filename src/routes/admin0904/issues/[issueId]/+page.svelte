@@ -37,7 +37,7 @@
 			adminMemo
 		};
 		try {
-			const url = `http://localhost:3000/issues/${_id}`;
+			const url = `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues/${_id}`;
 
 			const options = {
 				method: 'PUT',
@@ -65,7 +65,7 @@
 		);
 		if (result === '삭제') {
 			try {
-				const url = `http://localhost:3000/issues/${_id}`;
+				const url = `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues/${_id}`;
 
 				const options = {
 					method: 'DELETE'
