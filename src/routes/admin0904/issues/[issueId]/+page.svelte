@@ -104,8 +104,8 @@
 					class="select select-bordered w-full"
 				>
 					<option disabled selected>카테고리를 선택하세요</option>
-					<option value="입법 찬성">✅ 입법 찬성</option>
 					<option value="입법 반대">❌ 입법 반대</option>
+					<option value="입법 찬성">✅ 입법 찬성</option>
 					<option value="국민동의청원">🙆 국민동의청원</option>
 					<option value="설문">🎤 설문</option>
 					<option value="서명">📑 서명</option>
@@ -122,7 +122,7 @@
 					id="title"
 					name="title"
 					bind:value={title}
-					placeholder=""
+					placeholder="이슈 제목을 입력해 주세요."
 					class="input input-bordered w-full"
 				/>
 			</div>
@@ -135,9 +135,10 @@
 					id="link"
 					name="link"
 					bind:value={link}
-					placeholder=""
+					placeholder="https://가 포함되어야 합니다."
 					class="input input-bordered w-full"
 				/>
+				<a href={link} target="_blank" class="text-sm link link-primary text-right">링크 바로가기</a>
 			</div>
 			<div class="form-control w-full">
 				<label class="label" for="dueDate">
@@ -161,7 +162,7 @@
 					name="summary"
 					bind:value={summary}
 					class="textarea textarea-bordered h-24"
-					placeholder=""
+					placeholder="간단한 설명을 적어주세요.(200자 이내 권장)"
 				/>
 			</div>
 			<div class="form-control w-full">
@@ -188,7 +189,7 @@
 					name="adminMemo"
 					bind:value={adminMemo}
 					class="textarea textarea-bordered h-24"
-					placeholder=""
+					placeholder="관리자 메모는 공개되지 않습니다."
 				/>
 			</div>
 			<button class="btn btn-neutral mt-5">수정</button>
