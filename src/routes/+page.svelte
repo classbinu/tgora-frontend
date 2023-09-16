@@ -80,7 +80,19 @@
 			</IssueCard>
 		{/each}
 	</div> -->
-
+	
+	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
+	<div class="flex flex-wrap">
+		{#each issuesDisagree as issue (issue._id)}
+		<IssueCard key={issue._id} bgColor={disagree.bgColor} textColor={disagree.textColor}>
+			<span slot="title">{issue.title}</span>
+			<span slot="summary">{issue.summary}</span>
+			<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+			<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
+		</IssueCard>
+		{/each}
+	</div>
+	
 	<h1 class="text-3xl font-bold mt-20 mx-3">✅ 입법 찬성</h1>
 	<div class="flex flex-wrap">
 		{#each issuesAgree as issue (issue._id)}
@@ -92,19 +104,7 @@
 			</IssueCard>
 		{/each}
 	</div>
-
-	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
-	<div class="flex flex-wrap">
-		{#each issuesDisagree as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={disagree.bgColor} textColor={disagree.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
-		{/each}
-	</div>
-
+	
 	<h1 class="text-3xl font-bold mt-20 mx-3">🙆 국민동의청원</h1>
 	<div class="flex flex-wrap">
 		{#each issuesPetition as issue (issue._id)}

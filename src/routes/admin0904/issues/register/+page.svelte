@@ -74,8 +74,8 @@
 					class="select select-bordered w-full"
 				>
 					<option disabled selected>카테고리를 선택하세요</option>
-					<option value="입법 찬성">✅ 입법 찬성</option>
 					<option value="입법 반대">❌ 입법 반대</option>
+					<option value="입법 찬성">✅ 입법 찬성</option>
 					<option value="국민동의청원">🙆 국민동의청원</option>
 					<option value="설문">🎤 설문</option>
 					<option value="서명">📑 서명</option>
