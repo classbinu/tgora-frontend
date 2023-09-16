@@ -34,35 +34,35 @@
 	}
 
 	const fire = {
-		bgColor: 'bg-yellow-400',
+		bgColor: 'bg-yellow-100',
 		textColor: ''
 	};
 	const agree = {
-		bgColor: 'bg-green-400',
+		bgColor: 'bg-green-100',
 		textColor: ''
 	};
 	const disagree = {
-		bgColor: 'bg-red-400',
+		bgColor: 'bg-red-100',
 		textColor: ''
 	};
 	const petition = {
-		bgColor: 'bg-teal-400',
+		bgColor: 'bg-teal-100',
 		textColor: ''
 	};
 	const survey = {
-		bgColor: 'bg-purple-400',
+		bgColor: 'bg-purple-100',
 		textColor: ''
 	};
 	const signature = {
-		bgColor: 'bg-orange-400',
+		bgColor: 'bg-orange-100',
 		textColor: ''
 	};
 	const press = {
-		bgColor: 'bg-gray-400',
+		bgColor: 'bg-gray-100',
 		textColor: ''
 	};
 	const other = {
-		bgColor: 'bg-white',
+		bgColor: 'bg-indigo-100',
 		textColor: ''
 	};
 </script>
@@ -76,7 +76,7 @@
 			<IssueCard key={issue._id} bgColor={fire.bgColor} textColor={fire.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 			</IssueCard>
 		{/each}
 	</div> -->
@@ -87,7 +87,7 @@
 		<IssueCard key={issue._id} bgColor={disagree.bgColor} textColor={disagree.textColor}>
 			<span slot="title">{issue.title}</span>
 			<span slot="summary">{issue.summary}</span>
-			<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+			<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 			<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 		</IssueCard>
 		{/each}
@@ -99,7 +99,7 @@
 			<IssueCard key={issue._id} bgColor={agree.bgColor} textColor={agree.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
@@ -111,7 +111,7 @@
 			<IssueCard key={issue._id} bgColor={petition.bgColor} textColor={petition.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
@@ -123,7 +123,7 @@
 			<IssueCard key={issue._id} bgColor={survey.bgColor} textColor={survey.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
@@ -135,7 +135,7 @@
 			<IssueCard key={issue._id} bgColor={signature.bgColor} textColor={signature.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
@@ -147,7 +147,7 @@
 			<IssueCard key={issue._id} bgColor={press.bgColor} textColor={press.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
@@ -159,7 +159,7 @@
 			<IssueCard key={issue._id} bgColor={other.bgColor} textColor={other.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn">참여하기</a>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
 				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}

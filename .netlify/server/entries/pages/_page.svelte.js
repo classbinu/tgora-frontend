@@ -41,40 +41,16 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       issuesOther.push(issue);
     }
   }
-  const agree = { bgColor: "bg-green-400", textColor: "" };
-  const disagree = { bgColor: "bg-red-400", textColor: "" };
-  const petition = { bgColor: "bg-teal-400", textColor: "" };
-  const survey = { bgColor: "bg-purple-400", textColor: "" };
-  const signature = { bgColor: "bg-orange-400", textColor: "" };
-  const press = { bgColor: "bg-gray-400", textColor: "" };
-  const other = { bgColor: "bg-white", textColor: "" };
+  const agree = { bgColor: "bg-green-100", textColor: "" };
+  const disagree = { bgColor: "bg-red-100", textColor: "" };
+  const petition = { bgColor: "bg-teal-100", textColor: "" };
+  const survey = { bgColor: "bg-purple-100", textColor: "" };
+  const signature = { bgColor: "bg-orange-100", textColor: "" };
+  const press = { bgColor: "bg-gray-100", textColor: "" };
+  const other = { bgColor: "bg-indigo-100", textColor: "" };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-1r7m58w">✅ 입법 찬성</h1> <div class="flex flex-wrap">${each(issuesAgree, (issue) => {
-    return `${validate_component(IssueCard, "IssueCard").$$render(
-      $$result,
-      {
-        key: issue._id,
-        bgColor: agree.bgColor,
-        textColor: agree.textColor
-      },
-      {},
-      {
-        dueDate: () => {
-          return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
-        },
-        button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
-        },
-        summary: () => {
-          return `<span slot="summary">${escape(issue.summary)}</span>`;
-        },
-        title: () => {
-          return `<span slot="title">${escape(issue.title)}</span>`;
-        }
-      }
-    )}`;
-  })}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-66v49s">❌ 입법 반대</h1> <div class="flex flex-wrap">${each(issuesDisagree, (issue) => {
+  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-66v49s">❌ 입법 반대</h1> <div class="flex flex-wrap">${each(issuesDisagree, (issue) => {
     return `${validate_component(IssueCard, "IssueCard").$$render(
       $$result,
       {
@@ -88,7 +64,31 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
         },
         button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
+        },
+        summary: () => {
+          return `<span slot="summary">${escape(issue.summary)}</span>`;
+        },
+        title: () => {
+          return `<span slot="title">${escape(issue.title)}</span>`;
+        }
+      }
+    )}`;
+  })}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-1r7m58w">✅ 입법 찬성</h1> <div class="flex flex-wrap">${each(issuesAgree, (issue) => {
+    return `${validate_component(IssueCard, "IssueCard").$$render(
+      $$result,
+      {
+        key: issue._id,
+        bgColor: agree.bgColor,
+        textColor: agree.textColor
+      },
+      {},
+      {
+        dueDate: () => {
+          return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
+        },
+        button: () => {
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
         },
         summary: () => {
           return `<span slot="summary">${escape(issue.summary)}</span>`;
@@ -112,7 +112,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
         },
         button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
         },
         summary: () => {
           return `<span slot="summary">${escape(issue.summary)}</span>`;
@@ -136,7 +136,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
         },
         button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
         },
         summary: () => {
           return `<span slot="summary">${escape(issue.summary)}</span>`;
@@ -160,7 +160,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
         },
         button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
         },
         summary: () => {
           return `<span slot="summary">${escape(issue.summary)}</span>`;
@@ -184,7 +184,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
         },
         button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
         },
         summary: () => {
           return `<span slot="summary">${escape(issue.summary)}</span>`;
@@ -208,7 +208,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
         },
         button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn">참여하기</a>`;
+          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
         },
         summary: () => {
           return `<span slot="summary">${escape(issue.summary)}</span>`;
@@ -218,7 +218,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         }
       }
     )}`;
-  })}</div></main> ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
+  })}</div> </main> ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
 });
 export {
   Page as default
