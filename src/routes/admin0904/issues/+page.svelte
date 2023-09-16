@@ -13,7 +13,6 @@
 	</div>
 	<div class="overflow-x-auto m-3">
 		<table class="table table-zebra text-center">
-			<!-- head -->
 			<thead>
 				<tr>
 					<th>_id</th>
@@ -26,20 +25,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- row 1 -->
 				{#each data.issues as issue (issue._id)}
 					<tr>
 						<td>{issue._id}</td>
 						<td>{issue.category}</td>
-						<td><a href={issue.link} target="_blank" class="link link-primary">{issue.title}</a></td
-						>
+						<td>
+							<a href={issue.link} target="_blank" class="link link-primary">{issue.title}</a>
+						</td>
 						<td>{formatDate(issue.dueDate)}</td>
 						<td>{issue.adminMemo}</td>
 						<td>{issue.createdAt}</td>
 						<td><a href="issues/{issue._id}" class="btn btn-primary btn-xs">수정</a></td>
 					</tr>
 				{/each}
-				<!-- row 2 -->
 			</tbody>
 		</table>
 	</div>

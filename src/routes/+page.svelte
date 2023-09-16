@@ -1,8 +1,8 @@
 <script>
-	import Carousel from '../lib/components/Carousel.svelte';
-	import Footer from '../lib/components/Footer.svelte';
-	import IssueCard from '../lib/components/IssueCard.svelte';
-	import Navbar from '../lib/components/Navbar.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import IssueCard from '$lib/components/IssueCard.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import { formatDate } from '$lib/utils/utils.js';
 	export let data;
 
@@ -92,7 +92,7 @@
 		</IssueCard>
 		{/each}
 	</div>
-	
+
 	<h1 class="text-3xl font-bold mt-20 mx-3">✅ 입법 찬성</h1>
 	<div class="flex flex-wrap">
 		{#each issuesAgree as issue (issue._id)}
@@ -164,5 +164,8 @@
 			</IssueCard>
 		{/each}
 	</div>
+	<!-- <div class="text-center mt-20">
+		<a href="#" class="link link-error">마감된 이슈 보기</a>
+	</div> -->
 </main>
 <Footer />

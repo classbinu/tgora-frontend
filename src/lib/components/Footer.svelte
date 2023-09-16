@@ -1,11 +1,20 @@
 <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-60">
 	<nav class="grid grid-flow-col gap-4">
-		<a class="link link-hover">About us</a>
-		<a class="link link-hover">Contact</a>
-		<a class="link link-hover">Jobs</a>
-		<a class="link link-hover">Press kit</a>
+		<a class="link link-hover" onclick="my_modal_1.showModal()">Contact</a>
+		<dialog id="my_modal_1" class="modal">
+			<div class="modal-box">
+				<h3 class="font-bold text-lg text-left">Contact</h3>
+				<p class="py-4 text-left">classbinu@gmail.com</p>
+				<div class="modal-action">
+					<form method="dialog">
+						<!-- if there is a button in form, it will close the modal -->
+						<button class="btn">Close</button>
+					</form>
+				</div>
+			</div>
+		</dialog>
 	</nav>
-	<nav>
+	<!-- <nav>
 		<div class="grid grid-flow-col gap-4">
 			<a
 				><svg
@@ -44,8 +53,9 @@
 				></a
 			>
 		</div>
-	</nav>
+	</nav> -->
 	<aside>
+		<p>Developed by Classbinu</p>
 		<p>Copyright © 2023 - All right reserved by KOREAN TEACHERS</p>
 	</aside>
 </footer>
