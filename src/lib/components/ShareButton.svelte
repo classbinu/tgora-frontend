@@ -12,7 +12,7 @@
 				alert('T-아고라 주소(tgora.kr)가 복사되었어요.');
 			}
 		} catch (error) {
-			alert('뭔가 문제가 있어요. 브라우저 공유 기능을 활용해 주세요.');
+			console.log(error);
 		}
 	};
 </script>
