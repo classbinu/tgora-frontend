@@ -1,7 +1,7 @@
 <div class="carousel w-full">
 	<div id="item1" class="carousel-item w-full">
 		<img
-			src="https://img.sbs.co.kr/newimg/news/20230819/201822834_700.jpg"
+			src="https://cdn.theyoungtimes.com/news/photo/202308/1637_3666_5847.jpg"
 			class="w-full h-96 object-cover filter grayscale"
 			alt=""
 		/>

@@ -85,7 +85,7 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<h1 class="text-2xl font-bold my-5 text-center text-success m-3">
+	<h1 class="text-xl font-bold my-5 text-center text-success m-3">
 		권리 위에 잠자는 자는 보호받지 못합니다.<br>T-아고라를 주변 선생님에게 공유해 주세요.🙇
 	</h1>
 	<div class="text-center">
