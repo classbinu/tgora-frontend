@@ -70,17 +70,10 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<!-- <h1 class="text-3xl font-bold mt-20 mx-3">🔥 화력집중</h1>
-	<div class="flex flex-wrap">
-		{#each data.issues as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={fire.bgColor} textColor={fire.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-			</IssueCard>
-		{/each}
-	</div> -->
-	
+	<h1 class="text-3xl font-bold my-10 text-center text-error">마감된 이슈입니다 🙇</h1>
+		<div class="text-center">
+		<a href="/" class="link link-success">진행 중인 이슈 보기</a>
+	</div>
 	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
 	<div class="flex flex-wrap">
 		{#each issuesDisagree as issue (issue._id)}

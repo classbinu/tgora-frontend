@@ -1,12 +1,10 @@
-import { c as create_ssr_component, v as validate_component, d as each, e as escape, f as add_attribute } from "../../chunks/ssr.js";
-import { C as Carousel, I as IssueCard } from "../../chunks/IssueCard.js";
-import { N as Navbar, F as Footer } from "../../chunks/Navbar.js";
-import { f as formatDate } from "../../chunks/utils.js";
-const DAYS = 1;
+import { c as create_ssr_component, v as validate_component, d as each, e as escape, f as add_attribute } from "../../../../chunks/ssr.js";
+import { C as Carousel, I as IssueCard } from "../../../../chunks/IssueCard.js";
+import { N as Navbar, F as Footer } from "../../../../chunks/Navbar.js";
+import { f as formatDate } from "../../../../chunks/utils.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   const issues = data.issues;
-  const issuesRecently = [];
   const issuesAgree = [];
   const issuesDisagree = [];
   const issuesPetition = [];
@@ -31,15 +29,6 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       issuesOther.push(issue);
     }
   }
-  const recentIssuesBaselineDate = /* @__PURE__ */ new Date();
-  recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
-  for (const issue of issues) {
-    const createdAtDate = new Date(issue.createdAt);
-    if (createdAtDate >= recentIssuesBaselineDate) {
-      issuesRecently.push(issue);
-    }
-  }
-  const fire = { bgColor: "bg-yellow-100", textColor: "" };
   const agree = { bgColor: "bg-green-100", textColor: "" };
   const disagree = { bgColor: "bg-red-100", textColor: "" };
   const petition = { bgColor: "bg-teal-100", textColor: "" };
@@ -49,31 +38,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const other = { bgColor: "bg-indigo-100", textColor: "" };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"><h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-rbg1qc">🔥 화력집중 (최근 등록 이슈)</h1> <div class="flex flex-wrap">${each(issuesRecently, (issue) => {
-    return `${validate_component(IssueCard, "IssueCard").$$render(
-      $$result,
-      {
-        key: issue._id,
-        bgColor: fire.bgColor,
-        textColor: fire.textColor
-      },
-      {},
-      {
-        dueDate: () => {
-          return `<span slot="dueDate" class="text-xs">${escape(formatDate(issue.dueDate))}</span>`;
-        },
-        button: () => {
-          return `<a slot="button"${add_attribute("href", issue.link, 0)} target="_blank" class="btn bg-white">참여하기</a>`;
-        },
-        summary: () => {
-          return `<span slot="summary">${escape(issue.summary)}</span>`;
-        },
-        title: () => {
-          return `<span slot="title">${escape(issue.title)}</span>`;
-        }
-      }
-    )}`;
-  })}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-66v49s">❌ 입법 반대</h1> <div class="flex flex-wrap">${each(issuesDisagree, (issue) => {
+  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-66v49s">❌ 입법 반대</h1> <div class="flex flex-wrap">${each(issuesDisagree, (issue) => {
     return `${validate_component(IssueCard, "IssueCard").$$render(
       $$result,
       {
@@ -241,7 +206,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         }
       }
     )}`;
-  })}</div> <div class="text-center mt-20" data-svelte-h="svelte-vb1u60"><a href="/issues/closed" class="link link-error">마감된 이슈 보기</a></div></main> ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
+  })}</div> <div class="text-center mt-20" data-svelte-h="svelte-1nn2jdi"><a href="/" class="link link-success">진행 중인 이슈 보기</a></div></main> ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
 });
 export {
   Page as default

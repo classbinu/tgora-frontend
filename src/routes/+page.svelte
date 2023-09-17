@@ -3,10 +3,13 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import IssueCard from '$lib/components/IssueCard.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import ShareButton from '$lib/components/ShareButton.svelte';
 	import { formatDate } from '$lib/utils/utils.js';
+	import { onMount } from 'svelte';
 	export let data;
 
 	const issues = data.issues;
+	const issuesRecently = [];
 	const issuesAgree = [];
 	const issuesDisagree = [];
 	const issuesPetition = [];
@@ -30,6 +33,18 @@
 			issuesPress.push(issue);
 		} else if (issue.category === '기타') {
 			issuesOther.push(issue);
+		}
+	}
+
+	const DAYS = 1;
+	const recentIssuesBaselineDate = new Date();
+	recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
+
+	for (const issue of issues) {
+		const createdAtDate = new Date(issue.createdAt);
+
+		if (createdAtDate >= recentIssuesBaselineDate) {
+			issuesRecently.push(issue);
 		}
 	}
 
@@ -70,26 +85,33 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<!-- <h1 class="text-3xl font-bold mt-20 mx-3">🔥 화력집중</h1>
+	<h1 class="text-2xl font-bold my-5 text-center text-success m-3">
+		공교육 정상화를 위해 T-아고라를 주변 선생님에게 공유해 주세요 🙏
+	</h1>
+	<div class="text-center">
+		<ShareButton />
+	</div>
+	<h1 class="text-3xl font-bold mt-20 mx-3">🔥 화력집중 (최근 등록 이슈)</h1>
 	<div class="flex flex-wrap">
-		{#each data.issues as issue (issue._id)}
+		{#each issuesRecently as issue (issue._id)}
 			<IssueCard key={issue._id} bgColor={fire.bgColor} textColor={fire.textColor}>
 				<span slot="title">{issue.title}</span>
 				<span slot="summary">{issue.summary}</span>
 				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
 			</IssueCard>
 		{/each}
-	</div> -->
-	
+	</div>
+
 	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
 	<div class="flex flex-wrap">
 		{#each issuesDisagree as issue (issue._id)}
-		<IssueCard key={issue._id} bgColor={disagree.bgColor} textColor={disagree.textColor}>
-			<span slot="title">{issue.title}</span>
-			<span slot="summary">{issue.summary}</span>
-			<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-			<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-		</IssueCard>
+			<IssueCard key={issue._id} bgColor={disagree.bgColor} textColor={disagree.textColor}>
+				<span slot="title">{issue.title}</span>
+				<span slot="summary">{issue.summary}</span>
+				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
+			</IssueCard>
 		{/each}
 	</div>
 
@@ -104,7 +126,7 @@
 			</IssueCard>
 		{/each}
 	</div>
-	
+
 	<h1 class="text-3xl font-bold mt-20 mx-3">🙆 국민동의청원</h1>
 	<div class="flex flex-wrap">
 		{#each issuesPetition as issue (issue._id)}
