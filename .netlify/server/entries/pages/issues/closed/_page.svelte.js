@@ -38,7 +38,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const other = { bgColor: "bg-indigo-100", textColor: "" };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-66v49s">❌ 입법 반대</h1> <div class="flex flex-wrap">${each(issuesDisagree, (issue) => {
+  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"><h1 class="text-3xl font-bold my-10 text-center text-error" data-svelte-h="svelte-1jxr1ej">마감된 이슈입니다 🙇</h1> <div class="text-center" data-svelte-h="svelte-f92ye8"><a href="/" class="link link-success">진행 중인 이슈 보기</a></div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-66v49s">❌ 입법 반대</h1> <div class="flex flex-wrap">${each(issuesDisagree, (issue) => {
     return `${validate_component(IssueCard, "IssueCard").$$render(
       $$result,
       {

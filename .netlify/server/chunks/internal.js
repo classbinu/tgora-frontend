@@ -112,6 +112,10 @@ const options = {
 			type="text/css"
 		/>
 		<script src="https://cdn.tailwindcss.com"><\/script>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+		/>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7P8NSCZ21"><\/script>
 		<script>
@@ -185,7 +189,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "y7nekc"
+  version_hash: "1ijt8c8"
 };
 function get_hooks() {
   return {};
