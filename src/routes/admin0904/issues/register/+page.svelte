@@ -33,7 +33,7 @@
 		};
 		console.log(issue);
 		try {
-			const url = `${import.meta.env.VITE_API_URL}/issues`;
+			const url = `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues`;
 
 			const options = {
 				method: 'POST',

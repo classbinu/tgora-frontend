@@ -65,7 +65,7 @@
 		);
 		if (result === '삭제') {
 			try {
-				const url = `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues/${_id}`;
+				const url = `$https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues/${_id}`;
 
 				const options = {
 					method: 'DELETE'
@@ -138,7 +138,8 @@
 					placeholder="https://가 포함되어야 합니다."
 					class="input input-bordered w-full"
 				/>
-				<a href={link} target="_blank" class="text-sm link link-primary text-right">링크 바로가기</a>
+				<a href={link} target="_blank" class="text-sm link link-primary text-right">링크 바로가기</a
+				>
 			</div>
 			<div class="form-control w-full">
 				<label class="label" for="dueDate">
