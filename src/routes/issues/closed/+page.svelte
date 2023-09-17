@@ -165,7 +165,7 @@
 		{/each}
 	</div>
 	<div class="text-center mt-20">
-		<a href="/issues/closed" class="link link-error">마감된 이슈 보기</a>
+		<a href="/" class="link link-success">진행 중인 이슈 보기</a>
 	</div>
 </main>
 <Footer />
