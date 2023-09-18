@@ -1,9 +1,12 @@
-import { c as create_ssr_component, v as validate_component, f as add_attribute, e as escape } from "../../../../../chunks/ssr.js";
+import { c as create_ssr_component, v as validate_component, b as add_attribute, e as escape } from "../../../../../chunks/ssr.js";
 import { N as Navbar, F as Footer } from "../../../../../chunks/Navbar.js";
 import { f as formatDate } from "../../../../../chunks/utils.js";
+import { A as API_URL } from "../../../../../chunks/store.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   const issue = data.issue;
+  API_URL.subscribe((value) => {
+  });
   let { title } = issue;
   let { link } = issue;
   let dueDate = formatDate(issue.dueDate);

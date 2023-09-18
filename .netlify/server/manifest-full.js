@@ -7,10 +7,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png"]),
+	assets: new Set(["favicon.png","og_img.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.efd2df29.js","app":"_app/immutable/entry/app.ff1d8b3c.js","imports":["_app/immutable/entry/start.efd2df29.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.75ed3072.js","_app/immutable/entry/app.ff1d8b3c.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.3afafd8f.js","app":"_app/immutable/entry/app.6d616bab.js","imports":["_app/immutable/entry/start.3afafd8f.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.084e799a.js","_app/immutable/entry/app.6d616bab.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -19,7 +19,10 @@ return {
 			__memo(() => import('./nodes/4.js')),
 			__memo(() => import('./nodes/5.js')),
 			__memo(() => import('./nodes/6.js')),
-			__memo(() => import('./nodes/7.js'))
+			__memo(() => import('./nodes/7.js')),
+			__memo(() => import('./nodes/8.js')),
+			__memo(() => import('./nodes/9.js')),
+			__memo(() => import('./nodes/10.js'))
 		],
 		routes: [
 			{
@@ -62,6 +65,27 @@ return {
 				pattern: /^\/login\/?$/,
 				params: [],
 				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				endpoint: null
+			},
+			{
+				id: "/mypage",
+				pattern: /^\/mypage\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				endpoint: null
+			},
+			{
+				id: "/mypage/profile",
+				pattern: /^\/mypage\/profile\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				endpoint: null
+			},
+			{
+				id: "/signup",
+				pattern: /^\/signup\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			}
 		],

@@ -1,7 +1,10 @@
+import { A as API_URL } from "../../../../chunks/store.js";
 const load = async () => {
-  const issues = await fetch(
-    `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues?state=all&isPublic=all`
-  );
+  let API;
+  API_URL.subscribe((value) => {
+    API = value;
+  });
+  const issues = await fetch(`${API}/issues?state=all&isPublic=all`);
   return { issues: await issues.json() };
 };
 export {

@@ -1,11 +1,11 @@
-import { c as create_ssr_component, v as validate_component, d as each, e as escape, f as add_attribute } from "../../chunks/ssr.js";
+import { c as create_ssr_component, v as validate_component, a as each, e as escape, b as add_attribute } from "../../chunks/ssr.js";
 import { C as Carousel, I as IssueCard } from "../../chunks/IssueCard.js";
 import { N as Navbar, F as Footer } from "../../chunks/Navbar.js";
 import { f as formatDate } from "../../chunks/utils.js";
 const ShareButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<button id="shareButton" class="btn bg-yellow-300 hover:bg-yellow-400" data-svelte-h="svelte-lbvgwk"><span class="material-symbols-outlined">share</span></button>`;
+  return `<button id="shareButton" class="btn btn-circle bg-yellow-300 hover:bg-yellow-400" data-svelte-h="svelte-jwasfv"><span class="material-symbols-outlined">share</span></button>`;
 });
-const DAYS = 1;
+const DAYS = 2;
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   const issues = data.issues;
@@ -52,7 +52,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const other = { bgColor: "bg-indigo-100", textColor: "" };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"><h1 class="text-2xl font-bold my-5 text-center text-success m-3" data-svelte-h="svelte-i3szjd">공교육 정상화를 위해 T-아고라를 주변 선생님에게 공유해 주세요 🙏</h1> <div class="text-center">${validate_component(ShareButton, "ShareButton").$$render($$result, {}, {}, {})}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-rbg1qc">🔥 화력집중 (최근 등록 이슈)</h1> <div class="flex flex-wrap">${each(issuesRecently, (issue) => {
+  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"><h1 class="text-xl font-bold my-5 text-center text-success m-3" data-svelte-h="svelte-1x0x1fe">권리 위에 잠자는 자는 보호받지 못합니다<br>T-아고라를 주변 선생님에게 공유해 주세요 🙇</h1> <div class="text-center">${validate_component(ShareButton, "ShareButton").$$render($$result, {}, {}, {})}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-rbg1qc">🔥 화력집중 (최근 등록 이슈)</h1> <div class="flex flex-wrap">${each(issuesRecently, (issue) => {
     return `${validate_component(IssueCard, "IssueCard").$$render(
       $$result,
       {

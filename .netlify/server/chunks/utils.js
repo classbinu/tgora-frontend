@@ -1,3 +1,6 @@
+import { A as API_URL } from "./store.js";
+API_URL.subscribe((value) => {
+});
 function formatDate(isoDate) {
   const date = new Date(isoDate);
   const year = date.getFullYear();

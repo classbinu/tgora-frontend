@@ -1,6 +1,6 @@
-import { c as create_ssr_component, f as add_attribute } from "./ssr.js";
+import { c as create_ssr_component, b as add_attribute } from "./ssr.js";
 const Carousel = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="carousel w-full" data-svelte-h="svelte-cndsr6"><div id="item1" class="carousel-item w-full"><img src="https://img.sbs.co.kr/newimg/news/20230819/201822834_700.jpg" class="w-full h-96 object-cover filter grayscale" alt=""></div> </div> `;
+  return `<div class="carousel w-full" data-svelte-h="svelte-1gfd0ig"><div id="item1" class="carousel-item w-full"><img src="https://cdn.theyoungtimes.com/news/photo/202308/1637_3666_5847.jpg" class="w-full h-96 object-cover filter grayscale" alt=""></div> </div> `;
 });
 const IssueCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { bgColor = "" } = $$props;

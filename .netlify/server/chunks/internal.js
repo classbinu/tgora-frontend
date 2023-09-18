@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as setContext, v as validate_component, m as missing_component } from "./ssr.js";
+import { c as create_ssr_component, s as setContext, v as validate_component, m as missing_component } from "./ssr.js";
 let base = "";
 let assets = base;
 const initial = { base, assets };
@@ -104,18 +104,9 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="ko">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + `/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css"
-			rel="stylesheet"
-			type="text/css"
-		/>
-		<script src="https://cdn.tailwindcss.com"><\/script>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-		/>
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="ko">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		<link\n			href="https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css"\n			rel="stylesheet"\n			type="text/css"\n		/>\n		<script src="https://cdn.tailwindcss.com"><\/script>\n		<link\n			rel="stylesheet"\n			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"\n		/>\n		<!-- OG -->\n		<meta property="og:url" content="https://tgora.kr" />\n		<meta property="og:type" content="website" />\n		<meta property="og:image" content="' + assets2 + `/og_image.png" />
+		<meta property="og:title" content="T-아고라" />
+		<meta property="og:description" content="공교육 정상화를 위한 이슈 모음" />
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7P8NSCZ21"><\/script>
 		<script>
@@ -189,7 +180,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1g85zlm"
+  version_hash: "1y46yfq"
 };
 function get_hooks() {
   return {};

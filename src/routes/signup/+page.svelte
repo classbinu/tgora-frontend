@@ -1,9 +1,10 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { isLoggedIn, API_URL } from '$lib/store';
-
+	import { API_URL } from '$lib/store';
 	let username = '';
 	let password = '';
+	let password2 = '';
+	let mentor = '';
 	let API;
 	API_URL.subscribe((value) => {
 		API = value;
@@ -12,11 +13,12 @@
 	const handleSubmit = async () => {
 		const user = {
 			username,
-			password
+			password,
+			mentor
 		};
 
 		try {
-			const url = `${API}/auth/signin`;
+			const url = `${API}/auth/signup`;
 			const options = {
 				method: 'POST',
 				headers: {
@@ -30,10 +32,9 @@
 			if (response.ok) {
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
-				isLoggedIn.set(true);
 				goto('/');
 			} else {
-				// 로그인 불가 팝업 렌더링 구현 필요
+				// 회원가입 불가 팝업 렌더링 구현 필요
 				alert(data.message);
 			}
 		} catch (error) {
@@ -47,11 +48,10 @@
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
 		<h1 class="text-3xl font-semibold text-center text-purple-700">T-Agora</h1>
 		<div class="text-center">
-			<a href="#" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
-				>회원이 아니신가요?</a
+			<a href="/login" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
+				>이미 회원이신가요?</a
 			>
 		</div>
-
 		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 			<div class="form-control w-full">
 				<label class="label" for="username">
@@ -62,7 +62,7 @@
 					id="username"
 					name="username"
 					bind:value={username}
-					placeholder="아이디(6-12자 이내, 영문/숫자)"
+					placeholder="아이디(6-12자 이내, 영문/숫자 사용 가능)"
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
@@ -75,15 +75,36 @@
 					id="password"
 					name="password"
 					bind:value={password}
-					placeholder="비밀번호(8자 이상, 문자/숫자/기호)"
+					placeholder="비밀번호(8자 이상, 문자/숫자/기호 사용 가능)"
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
-			<a href="#" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
-				>비밀번호를 잊으셨나요?</a
-			>
+			<div class="form-control w-full">
+				<label class="label" for="password2">
+					<span class="text-base label-text">비밀번호 확인</span>
+				</label>
+				<input
+					type="password"
+					id="password2"
+					bind:value={password2}
+					placeholder="비밀번호를 다시 입력해 주세요"
+					class="w-full input input-bordered input-primary"
+				/>
+			</div>
+			<div class="form-control w-full">
+				<label class="label" for="mentor">
+					<span class="text-base label-text">추천인</span>
+				</label>
+				<input
+					type="text"
+					id="mentor"
+					name="mentor"
+					bind:value={mentor}
+					class="w-full input input-bordered input-primary"
+				/>
+			</div>
 			<div>
-				<button class="btn btn-primary">로그인</button>
+				<button class="btn btn-primary">회원가입</button>
 			</div>
 		</form>
 	</div>

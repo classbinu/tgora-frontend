@@ -3,9 +3,15 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { goto } from '$app/navigation';
 	import { formatDate } from '$lib/utils/utils.js';
+	import { API_URL } from '$lib/store';
 
 	export let data;
 	const issue = data.issue;
+
+	let API;
+	API_URL.subscribe((value) => {
+		API = value;
+	});
 
 	let { _id } = issue;
 	let { category } = issue;
@@ -37,7 +43,7 @@
 			adminMemo
 		};
 		try {
-			const url = `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues/${_id}`;
+			const url = `${API}/issues/${_id}`;
 
 			const options = {
 				method: 'PUT',
@@ -65,7 +71,7 @@
 		);
 		if (result === '삭제') {
 			try {
-				const url = `$https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues/${_id}`;
+				const url = `${API}/issues/${_id}`;
 
 				const options = {
 					method: 'DELETE'

@@ -2,6 +2,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { goto } from '$app/navigation';
+	import { API_URL } from '$lib/store';
 
 	let category = '카테고리를 선택하세요';
 	let title = '';
@@ -10,6 +11,11 @@
 	let summary = '';
 	let isPublic = '공개';
 	let adminMemo = '';
+
+	let API;
+	API_URL.subscribe((value) => {
+		API = value;
+	});
 
 	const handleCategoryChange = (event) => {
 		category = event.target.value;
@@ -31,10 +37,8 @@
 			isPublic,
 			adminMemo
 		};
-		console.log(issue);
 		try {
-			const url = `https://port-0-tgora-backend-iciy2almkcvdm5.sel5.cloudtype.app/issues`;
-
+			const url = `${API}/issues`;
 			const options = {
 				method: 'POST',
 				headers: {
