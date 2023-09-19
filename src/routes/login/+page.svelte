@@ -10,6 +10,14 @@
 		API = value;
 	});
 
+	function signupAlert() {
+		return alert('지금은 회원가입 기간이 아닙니다.');
+	}
+
+	function forgetPasswordAlert() {
+		return alert('비밀번호 찾기 기능은 추후 구현됩니다.');
+	}
+
 	const handleSubmit = async () => {
 		const user = {
 			username,
@@ -55,8 +63,10 @@
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
 		<h1 class="text-3xl font-semibold text-center text-purple-700">T-Agora</h1>
 		<div class="text-center">
-			<a href="#" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
-				>회원이 아니신가요?</a
+			<a
+				href="#"
+				on:click={signupAlert}
+				class="text-xs text-gray-600 hover:underline hover:text-blue-600">회원이 아니신가요?</a
 			>
 		</div>
 
@@ -87,8 +97,10 @@
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
-			<a href="#" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
-				>비밀번호를 잊으셨나요?</a
+			<a
+				href="#"
+				on:click={forgetPasswordAlert}
+				class="text-xs text-gray-600 hover:underline hover:text-blue-600">비밀번호를 잊으셨나요?</a
 			>
 			<div>
 				<button class="btn btn-primary">로그인</button>

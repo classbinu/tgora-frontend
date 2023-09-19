@@ -1,10 +1,10 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { getProfile } from '$lib/utils/utils';
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
 	import { API_URL } from '$lib/store';
+	import { passwordValidator } from '$lib/utils/utils';
+
 	let oldPassword = '';
 	let newPassword = '';
 	let newPassword2 = '';
@@ -17,10 +17,6 @@
 	const handleSubmit = async () => {
 		if (!oldPassword || !newPassword || !newPassword2) {
 			return alert('누락된 항목이 있어요.');
-		}
-
-		if (usernameValidator(username)) {
-			return;
 		}
 
 		if (passwordValidator(oldPassword)) {

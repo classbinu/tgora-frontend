@@ -1,15 +1,27 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import { userDelete } from '$lib/utils/utils.js';
+
+	async function confirmDelete() {
+		const password = prompt(
+			'회원탈퇴 후 작성글에 접근할 수 없으며 재가입이 불가능합니다. 탈퇴를 희망하시면 비밀번호를 입력해주세요.'
+		);
+		if (password.length >= 8) {
+			return await userDelete(password);
+		} else {
+			return alert('취소되었습니다.');
+		}
+	}
 </script>
 
 <Navbar />
-<div class="flex justify-center h-screen">
+<div class="flex justify-center h-screen mt-20">
 	<div>
 		<a href="/mypage/password" class="btn btn-info m-3">비밀번호 변경</a>
 		<a href="/mypage/profile" class="btn btn-success m-3">회원정보 변경</a>
 		<a href="/mypage/invite" class="btn btn-warning m-3">초대하기</a>
-		<a href="/mypage/delete" class="btn btn-error m-3">회원탈퇴</a>
+		<button on:click={confirmDelete} class="btn btn-error m-3">회원탈퇴</button>
 	</div>
 </div>
 <Footer />

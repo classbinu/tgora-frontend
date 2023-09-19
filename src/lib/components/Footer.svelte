@@ -4,7 +4,7 @@
 		<dialog id="my_modal_1" class="modal">
 			<div class="modal-box">
 				<h3 class="font-bold text-lg text-left">Contact</h3>
-				<p class="py-4 text-left">classbinu@gmail.com</p>
+				<p class="py-4 text-left">tgoraofficial@gmail.com</p>
 				<div class="modal-action">
 					<form method="dialog">
 						<!-- if there is a button in form, it will close the modal -->
@@ -55,7 +55,6 @@
 		</div>
 	</nav> -->
 	<aside>
-		<p>Developed by Classbinu</p>
-		<p>Copyright © 2023 - All right reserved by KOREAN TEACHERS</p>
+		<p>Copyright © 2023 - All right reserved by T-Agora</p>
 	</aside>
 </footer>

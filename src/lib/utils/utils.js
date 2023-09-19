@@ -1,4 +1,5 @@
-import { API_URL } from '$lib/store';
+import { API_URL, USER_ID, isLoggedIn } from '$lib/store';
+
 import { goto } from '$app/navigation';
 
 let API;
@@ -26,11 +27,23 @@ export function isAccessTokenValid() {
 		const currentTime = Date.now() / 1000;
 
 		if (tokenData.exp > currentTime) {
+			USER_ID.set(getSubFromAccessToken(accessToken));
 			return true;
 		}
 	}
 
 	return false;
+}
+
+function getSubFromAccessToken(accessToken) {
+	try {
+		const decodedToken = JSON.parse(atob(accessToken.split('.')[1]));
+
+		return decodedToken.sub;
+	} catch (error) {
+		console.error('토큰 디코딩 오류:', error);
+		return null;
+	}
 }
 
 function parseAccessToken(accessToken) {
@@ -114,9 +127,92 @@ export function usernameValidator(username) {
 }
 
 export function passwordValidator(password) {
-	const isValid = password.length > 8;
+	const isValid = password.length >= 8;
 	if (!isValid) {
 		alert('비밀번호는 8자 이상 문자/숫자/기호입니다.');
 		return !isValid;
+	}
+}
+
+export async function userDelete(oldPassword) {
+	const password = {
+		oldPassword,
+		newPassword: '99999999'
+	};
+	try {
+		const accessToken = localStorage.getItem('accessToken');
+
+		if (!accessToken) {
+			alert('로그인된 상태가 아닙니다.');
+			return false;
+		}
+		const url = `${API}/auth/password`;
+		const options = {
+			method: 'PATCH',
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(password)
+		};
+
+		const response = await fetch(url, options);
+		const data = await response.json();
+		if (response.ok) {
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
+			isLoggedIn.set(false);
+			alert('탈퇴 처리가 완료되었습니다.');
+			goto('/');
+			return true;
+		} else {
+			// 탈퇴 불가 팝업 렌더링 구현 필요
+			alert(data.message);
+			return false;
+		}
+	} catch (error) {
+		alert(`뭔가 문제가 생겼어요. 관리자에게 문의해 주세요. error: ${error}`);
+		return false;
+	}
+}
+
+export function generateRandomNickname(length) {
+	const characters = 'Ii';
+	let result = '';
+
+	for (let i = 0; i < length; i++) {
+		const randomIndex = Math.floor(Math.random() * characters.length);
+		result += characters[randomIndex];
+	}
+
+	return result;
+}
+
+export async function getMentees() {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/users/mentees`;
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('로그아웃 중 오류 발생:', error);
 	}
 }

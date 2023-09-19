@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { API_URL } from '$lib/store';
+	import { isLoggedIn, API_URL } from '$lib/store';
+	import { page } from '$app/stores';
 	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
 
 	let username = '';
@@ -11,6 +12,9 @@
 	API_URL.subscribe((value) => {
 		API = value;
 	});
+
+	const inviteCode = $page.url.searchParams.get('invite');
+	mentor = inviteCode;
 
 	const handleSubmit = async () => {
 		if (!username || !password || !password2 || !mentor) {
@@ -46,6 +50,7 @@
 			if (response.ok) {
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
+				isLoggedIn.set(true);
 				goto('/');
 			} else {
 				// 회원가입 불가 팝업 렌더링 구현 필요
@@ -110,15 +115,22 @@
 					<span class="text-base label-text">추천인</span>
 				</label>
 				<input
-					type="text"
+					type="password"
 					id="mentor"
 					name="mentor"
 					bind:value={mentor}
 					class="w-full input input-bordered input-primary"
+					readonly
 				/>
 			</div>
 			<div>
 				<button class="btn btn-primary">회원가입</button>
+			</div>
+			<div class="text-right">
+				<!-- 초대장 만료 공지로 이동 해야 함. -->
+				<a href="/" class="text-xs text-error hover:underline hover:text-blue-600"
+					>초대장이 만료되었나요?</a
+				>
 			</div>
 		</form>
 	</div>

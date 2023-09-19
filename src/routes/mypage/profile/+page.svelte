@@ -1,7 +1,7 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { getProfile } from '$lib/utils/utils';
+	import { getProfile, generateRandomNickname } from '$lib/utils/utils';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { API_URL } from '$lib/store';
@@ -21,6 +21,11 @@
 		email = profile.email;
 		phone = profile.phone;
 	});
+
+	function randomNickname() {
+		const randomIiString = generateRandomNickname(32);
+		nickname = randomIiString;
+	}
 
 	const handleSubmit = async () => {
 		const profile = {
@@ -73,15 +78,20 @@
 				<label class="label" for="nickname">
 					<span class="text-base label-text">닉네임</span>
 				</label>
-				<input
-					type="text"
-					id="nickname"
-					bind:value={nickname}
-					placeholder=""
-					class="w-full input input-bordered input-primary"
-				/>
+				<div class="flex">
+					<input
+						type="text"
+						id="nickname"
+						bind:value={nickname}
+						class="w-full input input-bordered input-primary"
+						required
+						maxlength="24"
+					/>
+					<a class="btn btn-success" on:click={randomNickname}>랜덤 닉네임 생성🚀</a>
+				</div>
+				<p class="text-xs text-gray-600 mt-1">익명화를 위해 랜덤 닉네임 사용을 권장합니다.</p>
 			</div>
-			<div class="form-control w-full">
+			<div class="form-control w-full hidden">
 				<label class="label" for="email">
 					<span class="text-base label-text">이메일</span>
 				</label>
@@ -90,10 +100,12 @@
 					id="email"
 					bind:value={email}
 					placeholder=""
+					maxlength="100"
 					class="w-full input input-bordered input-primary"
+					readonly
 				/>
 			</div>
-			<div class="form-control w-full">
+			<div class="form-control w-full hidden">
 				<label class="label" for="phone">
 					<span class="text-base label-text">연락처</span>
 				</label>
@@ -102,6 +114,7 @@
 					id="phone"
 					bind:value={phone}
 					placeholder=""
+					maxlength="100"
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
