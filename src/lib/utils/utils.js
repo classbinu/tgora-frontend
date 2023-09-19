@@ -104,3 +104,19 @@ export async function getProfile() {
 		console.error('로그아웃 중 오류 발생:', error);
 	}
 }
+
+export function usernameValidator(username) {
+	const isValid = /^[a-z0-9]{3,15}$/.test(username);
+	if (!isValid) {
+		alert('아이디는 3-15자 이내, 영문소문자/숫자입니다.');
+		return !isValid;
+	}
+}
+
+export function passwordValidator(password) {
+	const isValid = password.length > 8;
+	if (!isValid) {
+		alert('비밀번호는 8자 이상 문자/숫자/기호입니다.');
+		return !isValid;
+	}
+}

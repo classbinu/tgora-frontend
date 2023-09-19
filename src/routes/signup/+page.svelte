@@ -1,6 +1,8 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { API_URL } from '$lib/store';
+	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
+
 	let username = '';
 	let password = '';
 	let password2 = '';
@@ -11,6 +13,18 @@
 	});
 
 	const handleSubmit = async () => {
+		if (!username || !password || !password2 || !mentor) {
+			return alert('누락된 항목이 있어요.');
+		}
+
+		if (usernameValidator(username)) {
+			return;
+		}
+
+		if (passwordValidator(password)) {
+			return;
+		}
+
 		const user = {
 			username,
 			password,
@@ -62,7 +76,7 @@
 					id="username"
 					name="username"
 					bind:value={username}
-					placeholder="아이디(6-12자 이내, 영문/숫자 사용 가능)"
+					placeholder="아이디(3-15자 이내, 영문소문자/숫자 사용 가능)"
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>

@@ -5,28 +5,49 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { API_URL } from '$lib/store';
-	let userId = '';
-	let nickname = '';
-	let email = '';
-	let phone = '';
+	let oldPassword = '';
+	let newPassword = '';
+	let newPassword2 = '';
+
 	let API;
 	API_URL.subscribe((value) => {
 		API = value;
 	});
 
-	onMount(async () => {
-		const profile = await getProfile();
-		userId = profile._id;
-		nickname = profile.nickname;
-		email = profile.email;
-		phone = profile.phone;
-	});
-
 	const handleSubmit = async () => {
-		const profile = {
-			nickname,
-			email,
-			phone
+		if (!oldPassword || !newPassword || !newPassword2) {
+			return alert('누락된 항목이 있어요.');
+		}
+
+		if (usernameValidator(username)) {
+			return;
+		}
+
+		if (passwordValidator(oldPassword)) {
+			return;
+		}
+
+		if (passwordValidator(newPassword)) {
+			return;
+		}
+
+		if (oldPassword === newPassword) {
+			oldPassword = '';
+			newPassword = '';
+			newPassword2 = '';
+			return alert('새로운 비밀번호가 기존 비밀번호와 동일합니다.');
+		}
+
+		if (newPassword !== newPassword2) {
+			oldPassword = '';
+			newPassword = '';
+			newPassword2 = '';
+			return alert('새로운 비밀번호 확인이 일치하지 않습니다.');
+		}
+
+		const password = {
+			oldPassword,
+			newPassword
 		};
 
 		try {
@@ -37,24 +58,23 @@
 				goto('/login');
 				return;
 			}
-			const url = `${API}/users/${userId}`;
+			const url = `${API}/auth/password`;
 			const options = {
 				method: 'PATCH',
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(profile)
+				body: JSON.stringify(password)
 			};
 
 			const response = await fetch(url, options);
-			const data = response;
-			console.log(data);
+			const data = await response.json();
 			if (response.ok) {
-				alert('프로필 정보가 수정되었어요.');
+				alert('비밀번호가 변경되었어요.');
 				goto('/mypage');
 			} else {
-				// 프로필 수정 불가 팝업 렌더링 구현 필요
+				// 비밀번호 변경 불가 팝업 렌더링 구현 필요
 				alert(data.message);
 			}
 		} catch (error) {
@@ -67,40 +87,40 @@
 <Navbar />
 <div class="relative flex flex-col justify-center h-screen overflow-hidden">
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
-		<h1 class="text-3xl font-semibold text-center text-purple-700">회원정보 변경</h1>
+		<h1 class="text-3xl font-semibold text-center text-purple-700">비밀번호 변경</h1>
 		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 			<div class="form-control w-full">
-				<label class="label" for="nickname">
-					<span class="text-base label-text">닉네임</span>
+				<label class="label" for="oldPassword">
+					<span class="text-base label-text">기존 비밀번호</span>
 				</label>
 				<input
-					type="text"
-					id="nickname"
-					bind:value={nickname}
+					type="password"
+					id="oldPassword"
+					bind:value={oldPassword}
 					placeholder=""
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
 			<div class="form-control w-full">
-				<label class="label" for="email">
-					<span class="text-base label-text">이메일</span>
+				<label class="label" for="newPassword">
+					<span class="text-base label-text">새로운 비밀번호</span>
 				</label>
 				<input
-					type="email"
-					id="email"
-					bind:value={email}
+					type="password"
+					id="newPassword"
+					bind:value={newPassword}
 					placeholder=""
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
 			<div class="form-control w-full">
-				<label class="label" for="phone">
-					<span class="text-base label-text">연락처</span>
+				<label class="label" for="newPassword2">
+					<span class="text-base label-text">새로운 비밀번호 확인</span>
 				</label>
 				<input
-					type="phone"
-					id="phone"
-					bind:value={phone}
+					type="password"
+					id="newPassword2"
+					bind:value={newPassword2}
 					placeholder=""
 					class="w-full input input-bordered input-primary"
 				/>

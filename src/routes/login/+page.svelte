@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { isLoggedIn, API_URL } from '$lib/store';
+	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
 
 	let username = '';
 	let password = '';
@@ -14,6 +15,13 @@
 			username,
 			password
 		};
+
+		if (usernameValidator(username)) {
+			return;
+		}
+		if (passwordValidator(password)) {
+			return;
+		}
 
 		try {
 			const url = `${API}/auth/signin`;
@@ -43,7 +51,7 @@
 	};
 </script>
 
-<div class="relative flex flex-col justify-center h-screen overflow-hidden m-3">
+<div class="relative flex flex-col justify-center h-screen overflow-hidden">
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
 		<h1 class="text-3xl font-semibold text-center text-purple-700">T-Agora</h1>
 		<div class="text-center">
@@ -62,7 +70,7 @@
 					id="username"
 					name="username"
 					bind:value={username}
-					placeholder="아이디(6-12자 이내, 영문/숫자)"
+					placeholder="아이디(3-15자 이내, 영문소문자/숫자)"
 					class="w-full input input-bordered input-primary"
 				/>
 			</div>
