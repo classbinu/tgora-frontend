@@ -358,7 +358,7 @@ export async function deleteFeed(id) {
 			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
 		}
 	} catch (error) {
-		console.error('로그아웃 중 오류 발생:', error);
+		console.error('피드삭제 중 오류 발생:', error);
 	}
 }
 
@@ -387,6 +387,66 @@ export async function deleteComment(id) {
 			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
 		}
 	} catch (error) {
-		console.error('로그아웃 중 오류 발생:', error);
+		console.error('댓글 삭제 중 오류 발생:', error);
+	}
+}
+
+// 좋아요
+export async function clickFeedLike(feedId) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/feeds/${feedId}/likes`;
+	const requestOptions = {
+		method: 'PATCH',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('좋아요 오류 발생:', error);
+	}
+}
+
+// 피드 조회수
+export async function countFeedViews(feedId) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/feeds/${feedId}/views`;
+	const requestOptions = {
+		method: 'PATCH',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('좋아요 오류 발생:', error);
 	}
 }

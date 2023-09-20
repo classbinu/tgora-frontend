@@ -1,7 +1,13 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getFeed, getComments } from '$lib/utils/utils.js';
+	import {
+		formatDate,
+		getFeed,
+		getComments,
+		clickFeedLike,
+		countFeedViews
+	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -20,16 +26,30 @@
 	let comments = [];
 	let content = '';
 
+	let likesCount = 0;
+	let commentsCount = 0;
+	let viewsCount = 0;
+
+	let likesArray = [];
+
 	onMount(async () => {
+		countFeedViews($page.params.feedId);
 		getPage();
 	});
 
 	async function getPage() {
 		feed = await getFeed($page.params.feedId);
 		comments = await getComments($page.params.feedId);
-		feed['likes'] = feed.likes.length;
-		feed['comments'] = feed.comments.length;
-		feed['views'] = feed.views.length;
+		likesCount = feed.likes.length;
+		commentsCount = feed.comments.length;
+		viewsCount = feed.views.length;
+		likesArray = feed.likes;
+		return console.log('getPage');
+	}
+
+	async function clickLike() {
+		await clickFeedLike($page.params.feedId);
+		await getPage();
 	}
 
 	function isDeveloping() {
@@ -92,17 +112,23 @@
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
 		<p>{feed.content}</p>
 		<div class="join mt-20 mb-10">
+			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
+				{#if likesArray.includes(userId)}
+					<span class="material-symbols-outlined text-error"> favorite </span><span>
+						{likesCount}
+					</span>
+				{:else}
+					<span class="material-symbols-outlined"> favorite </span><span>
+						{likesCount}
+					</span>
+				{/if}
+			</button>
 			<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-				><span class="material-symbols-outlined"> favorite </span><span>
-					{feed.likes}
-				</span></button
-			>
-			<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-				><span class="material-symbols-outlined"> chat_bubble </span><span>{feed.comments}</span
+				><span class="material-symbols-outlined"> chat_bubble </span><span>{commentsCount}</span
 				></button
 			>
 			<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-				><span class="material-symbols-outlined"> visibility </span><span>{feed.views}</span
+				><span class="material-symbols-outlined"> visibility </span><span>{viewsCount}</span
 				></button
 			>
 		</div>

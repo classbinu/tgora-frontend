@@ -36,7 +36,7 @@
 		}
 	}
 
-	const DAYS = 2;
+	const DAYS = 3;
 	const recentIssuesBaselineDate = new Date();
 	recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
 
