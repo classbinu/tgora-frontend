@@ -1,9 +1,10 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getAllFeeds } from '$lib/utils/utils.js';
+	import { formatDate, getAllFeeds, clickFeedLike } from '$lib/utils/utils.js';
 	import { USER_ID } from '$lib/store';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -13,11 +14,24 @@
 	let feeds = [];
 
 	onMount(async () => {
-		feeds = await getAllFeeds();
+		getPage();
 	});
+
+	async function getPage() {
+		feeds = await getAllFeeds();
+	}
 
 	function isDeveloping() {
 		return alert('개발 중인 기능입니다.');
+	}
+
+	async function clickLike(feedId) {
+		await clickFeedLike(feedId);
+		getPage();
+	}
+
+	function goToFeed(feedId) {
+		goto(`/agora/${feedId}`);
 	}
 </script>
 
@@ -43,16 +57,23 @@
 					</div>
 				</a>
 				<div class="join my-3">
-					<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-						><span class="material-symbols-outlined"> favorite </span><span>
-							{feed.likes.length}
-						</span></button
-					>
-					<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-						><span class="material-symbols-outlined"> chat_bubble </span><span>{feed.comments.length}</span
+					<button class="w-1/3 join-item text-gray-400" on:click={() => clickLike(feed._id)}>
+						{#if feed['likes'].includes(userId)}
+							<span class="material-symbols-outlined text-error"> favorite </span><span>
+								{feed.likes.length}
+							</span>
+						{:else}
+							<span class="material-symbols-outlined"> favorite </span><span>
+								{feed.likes.length}
+							</span>
+						{/if}
+					</button>
+					<button class="w-1/3 join-item text-gray-400" on:click={() => goToFeed(feed._id)}
+						><span class="material-symbols-outlined"> chat_bubble </span><span
+							>{feed.comments.length}</span
 						></button
 					>
-					<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
+					<button class="w-1/3 join-item text-gray-400" on:click={() => goToFeed(feed._id)}
 						><span class="material-symbols-outlined"> visibility </span><span
 							>{feed.views.length}</span
 						></button
