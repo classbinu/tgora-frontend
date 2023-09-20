@@ -21,9 +21,16 @@
 	let content = '';
 
 	onMount(async () => {
+		getPage();
+	});
+
+	async function getPage() {
 		feed = await getFeed($page.params.feedId);
 		comments = await getComments($page.params.feedId);
-	});
+		feed['likes'] = feed.likes.length;
+		feed['comments'] = feed.comments.length;
+		feed['views'] = feed.views.length;
+	}
 
 	function isDeveloping() {
 		return alert('개발 중인 기능입니다.');
@@ -55,7 +62,7 @@
 			const response = await fetch(url, options);
 			if (response.ok) {
 				content = '';
-				comments = await getComments(feed._id);
+				await getPage();
 			} else {
 				alert('피드 등록에 실패했어요. 개발자에게 문의해 주세요.');
 			}

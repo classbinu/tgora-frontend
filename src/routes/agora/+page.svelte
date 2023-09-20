@@ -45,15 +45,16 @@
 				<div class="join my-3">
 					<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
 						><span class="material-symbols-outlined"> favorite </span><span>
-							{feed.likes}
+							{feed.likes.length}
 						</span></button
 					>
 					<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-						><span class="material-symbols-outlined"> chat_bubble </span><span>{feed.comments}</span
+						><span class="material-symbols-outlined"> chat_bubble </span><span>{feed.comments.length}</span
 						></button
 					>
 					<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
-						><span class="material-symbols-outlined"> visibility </span><span>{feed.views}</span
+						><span class="material-symbols-outlined"> visibility </span><span
+							>{feed.views.length}</span
 						></button
 					>
 				</div>
