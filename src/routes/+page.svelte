@@ -9,7 +9,7 @@
 	export let data;
 
 	const issues = data.issues;
-	const issuesRecently = [];
+	let issuesRecently = [];
 	const issuesAgree = [];
 	const issuesDisagree = [];
 	const issuesPetition = [];
@@ -36,17 +36,19 @@
 		}
 	}
 
-	const DAYS = 3;
-	const recentIssuesBaselineDate = new Date();
-	recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
+	// const DAYS = 3;
+	// const recentIssuesBaselineDate = new Date();
+	// recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
 
-	for (const issue of issues) {
-		const createdAtDate = new Date(issue.createdAt);
+	// for (const issue of issues) {
+	// 	const createdAtDate = new Date(issue.createdAt);
 
-		if (createdAtDate >= recentIssuesBaselineDate) {
-			issuesRecently.push(issue);
-		}
-	}
+	// 	if (createdAtDate >= recentIssuesBaselineDate) {
+	// 		issuesRecently.push(issue);
+	// 	}
+	// }
+
+	issuesRecently = issues.slice(0, 4);
 
 	const fire = {
 		bgColor: 'bg-yellow-100',
@@ -86,7 +88,7 @@
 <Carousel />
 <main class="container mx-auto">
 	<h1 class="text-xl font-bold my-5 text-center text-success m-3">
-		권리 위에 잠자는 자는 보호받지 못합니다<br>T-아고라를 주변 선생님에게 공유해 주세요 🙇
+		권리 위에 잠자는 자는 보호받지 못합니다<br />T-아고라를 주변 선생님에게 공유해 주세요 🙇
 	</h1>
 	<div class="text-center">
 		<ShareButton />
