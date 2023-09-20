@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { isLoggedIn, API_URL } from '$lib/store';
 	import { page } from '$app/stores';
-	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
+	import { usernameValidator, passwordValidator, isAccessTokenValid } from '$lib/utils/utils';
 
 	let username = '';
 	let password = '';

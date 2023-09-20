@@ -48,7 +48,8 @@
 	// 	}
 	// }
 
-	issuesRecently = issues.slice(0, 4);
+	const sortedIssues = data.issues.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+	issuesRecently = sortedIssues.slice(0, 4);
 
 	const fire = {
 		bgColor: 'bg-yellow-100',
