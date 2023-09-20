@@ -17,7 +17,7 @@
 	onMount(async () => {
 		const profile = await getProfile();
 		userId = profile._id;
-		nickname = profile.nickname;
+		nickname = profile.nickname.pop();
 		email = profile.email;
 		phone = profile.phone;
 	});
