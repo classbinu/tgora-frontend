@@ -78,9 +78,14 @@ export function logout() {
 				console.log('로그아웃되었습니다.');
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
+				const result = isAccessTokenValid();
+				isLoggedIn.set(result);
 			} else {
+				console.log('로그아웃되었습니다.');
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
+				const result = isAccessTokenValid();
+				isLoggedIn.set(result);
 			}
 		})
 		.catch((error) => {
@@ -422,7 +427,7 @@ export async function clickFeedLike(feedId) {
 }
 
 // 피드 조회수
-export async function countFeedViews(feedId) {
+export async function updateFeedViews(feedId) {
 	const accessToken = localStorage.getItem('accessToken');
 
 	if (!accessToken) {
@@ -448,5 +453,35 @@ export async function countFeedViews(feedId) {
 		}
 	} catch (error) {
 		console.error('좋아요 오류 발생:', error);
+	}
+}
+
+// 피드 신고
+export async function updateFeedFlags(feedId) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/feeds/${feedId}/flags`;
+	const requestOptions = {
+		method: 'PATCH',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('신고 오류 발생:', error);
 	}
 }

@@ -6,7 +6,8 @@
 		getFeed,
 		getComments,
 		clickFeedLike,
-		countFeedViews
+		updateFeedViews,
+		updateFeedFlags
 	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL } from '$lib/store';
 	import { onMount } from 'svelte';
@@ -31,9 +32,10 @@
 	let viewsCount = 0;
 
 	let likesArray = [];
+	let flagsArray = [];
 
 	onMount(async () => {
-		countFeedViews($page.params.feedId);
+		updateFeedViews($page.params.feedId);
 		getPage();
 	});
 
@@ -44,12 +46,31 @@
 		commentsCount = feed.comments.length;
 		viewsCount = feed.views.length;
 		likesArray = feed.likes;
+		flagsArray = feed.flags;
 		return console.log('getPage');
 	}
 
 	async function clickLike() {
 		await clickFeedLike($page.params.feedId);
 		await getPage();
+	}
+
+	async function clickFlag() {
+		if (flagsArray.includes(userId)) {
+			return alert('이미 신고한 피드입니다.');
+		}
+
+		const result = confirm(
+			'신고가 누적된 피드는 비공개 처리됩니다. 신고는 취소할 수 없어요. 정말 이 피드를 신고하시겠어요?'
+		);
+
+		if (result) {
+			await updateFeedFlags($page.params.feedId);
+			await getPage();
+			return alert('신고가 완료되었습니다.');
+		} else {
+			return alert('취소되었습니다.');
+		}
 	}
 
 	function isDeveloping() {
@@ -101,8 +122,8 @@
 				><span class="material-symbols-outlined"> edit </span></a
 			>
 		{:else}
-			<button class="text-error text-right"
-				><span class="material-symbols-outlined" on:click={isDeveloping}> flag </span></button
+			<button class="text-right {flagsArray.includes(userId) ? 'text-error' : ''}"
+				><span class="material-symbols-outlined" on:click={clickFlag}> flag </span></button
 			>
 		{/if}
 		<div>
@@ -113,15 +134,11 @@
 		<p>{feed.content}</p>
 		<div class="join mt-20 mb-10">
 			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
-				{#if likesArray.includes(userId)}
-					<span class="material-symbols-outlined text-error"> favorite </span><span>
-						{likesCount}
-					</span>
-				{:else}
-					<span class="material-symbols-outlined"> favorite </span><span>
-						{likesCount}
-					</span>
-				{/if}
+				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
+					favorite
+				</span><span>
+					{likesCount}
+				</span>
 			</button>
 			<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
 				><span class="material-symbols-outlined"> chat_bubble </span><span>{commentsCount}</span

@@ -58,15 +58,12 @@
 				</a>
 				<div class="join my-3">
 					<button class="w-1/3 join-item text-gray-400" on:click={() => clickLike(feed._id)}>
-						{#if feed['likes'].includes(userId)}
-							<span class="material-symbols-outlined text-error"> favorite </span><span>
-								{feed.likes.length}
-							</span>
-						{:else}
-							<span class="material-symbols-outlined"> favorite </span><span>
-								{feed.likes.length}
-							</span>
-						{/if}
+						<span
+							class="material-symbols-outlined {feed['likes'].includes(userId) ? 'text-error' : ''}"
+							>favorite</span
+						><span>
+							{feed.likes.length}
+						</span>
 					</button>
 					<button class="w-1/3 join-item text-gray-400" on:click={() => goToFeed(feed._id)}
 						><span class="material-symbols-outlined"> chat_bubble </span><span

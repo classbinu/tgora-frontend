@@ -46,7 +46,8 @@
 			if (response.ok) {
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
-				isLoggedIn.set(true);
+				const result = isAccessTokenValid();
+				isLoggedIn.set(result);
 				goto('/');
 			} else {
 				// 로그인 불가 팝업 렌더링 구현 필요
