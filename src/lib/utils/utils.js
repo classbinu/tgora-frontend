@@ -216,3 +216,90 @@ export async function getMentees() {
 		console.error('로그아웃 중 오류 발생:', error);
 	}
 }
+
+export async function getAllFeeds() {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/feeds`;
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('로그아웃 중 오류 발생:', error);
+	}
+}
+
+export async function getFeed(id) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/feeds/${id}`;
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('로그아웃 중 오류 발생:', error);
+	}
+}
+
+export async function deleteFeed(id) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/feeds/${id}`;
+	const requestOptions = {
+		method: 'DELETE',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('로그아웃 중 오류 발생:', error);
+	}
+}

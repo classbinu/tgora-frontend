@@ -12,7 +12,7 @@ return {
 	assets: new Set(["favicon.png","og_img.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.929a0ea2.js","app":"_app/immutable/entry/app.03b68a2d.js","imports":["_app/immutable/entry/start.929a0ea2.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.feb888e3.js","_app/immutable/entry/app.03b68a2d.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.3c0c5e49.js","app":"_app/immutable/entry/app.44337f8f.js","imports":["_app/immutable/entry/start.3c0c5e49.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.4c48aacb.js","_app/immutable/entry/app.44337f8f.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			__memo(() => import('../server/nodes/0.js')),
 			__memo(() => import('../server/nodes/1.js')),
@@ -25,7 +25,10 @@ return {
 			__memo(() => import('../server/nodes/8.js')),
 			__memo(() => import('../server/nodes/9.js')),
 			__memo(() => import('../server/nodes/10.js')),
-			__memo(() => import('../server/nodes/11.js'))
+			__memo(() => import('../server/nodes/11.js')),
+			__memo(() => import('../server/nodes/12.js')),
+			__memo(() => import('../server/nodes/13.js')),
+			__memo(() => import('../server/nodes/14.js'))
 		],
 		routes: [
 			{
@@ -57,45 +60,66 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/agora",
+				pattern: /^\/agora\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				endpoint: null
+			},
+			{
 				id: "/issues/closed",
 				pattern: /^\/issues\/closed\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
 				endpoint: null
 			},
 			{
 				id: "/login",
 				pattern: /^\/login\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/mypage",
 				pattern: /^\/mypage\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				endpoint: null
+			},
+			{
+				id: "/mypage/invite",
+				pattern: /^\/mypage\/invite\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			},
 			{
 				id: "/mypage/password",
 				pattern: /^\/mypage\/password\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				page: { layouts: [0,], errors: [1,], leaf: 11 },
 				endpoint: null
 			},
 			{
 				id: "/mypage/profile",
 				pattern: /^\/mypage\/profile\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 10 },
+				page: { layouts: [0,], errors: [1,], leaf: 12 },
+				endpoint: null
+			},
+			{
+				id: "/notice",
+				pattern: /^\/notice\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 13 },
 				endpoint: null
 			},
 			{
 				id: "/signup",
 				pattern: /^\/signup\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 11 },
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			}
 		],

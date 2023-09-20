@@ -61,12 +61,11 @@
 
 <div class="relative flex flex-col justify-center h-screen overflow-hidden">
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
+		<h6 class="text-center text-success font-bold mb-3">교사 전용 익명 커뮤니티</h6>
 		<h1 class="text-3xl font-semibold text-center text-purple-700">T-Agora</h1>
 		<div class="text-center">
-			<a
-				href="#"
-				on:click={signupAlert}
-				class="text-xs text-gray-600 hover:underline hover:text-blue-600">회원이 아니신가요?</a
+			<a href="/notice" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
+				>회원이 아니신가요?</a
 			>
 		</div>
 

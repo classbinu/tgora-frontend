@@ -53,12 +53,16 @@
 	<p class="my-3">
 		1️⃣ 현직 교사만 가입할 수 있습니다. 초대장은 반드시 가입 대상에게 보내주세요.
 		<br />
-		* 현재는 유치원, 초등, 중등, 특수 등 <span class="font-bold">교과 교사</span>에 한하여 가입을
-		받고 있습니다.
-		<br />(비교과 교사, 교감, 교장, 교육전문직 가입 가능 여부 검토 중)
+		* 유치원, 초등, 중등, 특수 등 <span class="font-bold">교과 교사</span>에 한하여 가입을 받고
+		있습니다.
+		<br /><span class="text-gray-400 text-sm">(비교과 교사, 교감, 교장, 교육전문직 가입 가능 여부 검토 중)</span>
 	</p>
 	<p class="my-3">
-		2️⃣ 초대장은 회원당 2장만 지급됩니다. 내 초대 코드로 2명의 회원이 가입하면 초대장은 만료됩니다.
+		2️⃣ 초대장은 회원당 5장만 지급됩니다. 내 초대 코드로 5명의 회원이 가입하면 초대장은 만료됩니다.
+		<br />
+		<span class="text-gray-400 text-sm"
+			>(한시적으로 5장의 초대장을 지급하며 추후 2장으로 축소 예정)</span
+		>
 	</p>
 	<p class="my-3">
 		3️⃣ 내 초대 코드로 누가 가입했는지 알 수 없습니다. 마찬가지로 초대 코드로 회원을 유추할 수
@@ -69,8 +73,8 @@
 </div>
 
 <div class="text-center mt-20">
-	{#if countMentees < 2}
-		<p class="text-sm text-success font-bold mb-3">남은 초대장은 {2 - countMentees}장입니다.</p>
+	{#if countMentees < 5}
+		<p class="text-sm text-success font-bold mb-3">남은 초대장은 {5 - countMentees}장입니다.</p>
 		<button id="shareButton" class="btn btn-lg bg-yellow-300 hover:bg-yellow-400" on:click={invite}
 			>초대장 공유하기 🚀</button
 		>

@@ -17,8 +17,12 @@
 	mentor = inviteCode;
 
 	const handleSubmit = async () => {
-		if (!username || !password || !password2 || !mentor) {
+		if (!username || !password || !password2) {
 			return alert('누락된 항목이 있어요.');
+		}
+
+		if (!mentor) {
+			return alert('회원가입은 초대장이 필요합니다.');
 		}
 
 		if (usernameValidator(username)) {
@@ -65,6 +69,7 @@
 
 <div class="relative flex flex-col justify-center h-screen overflow-hidden m-3">
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
+		<h6 class="text-center text-success font-bold mb-3">교사 전용 익명 커뮤니티</h6>
 		<h1 class="text-3xl font-semibold text-center text-purple-700">T-Agora</h1>
 		<div class="text-center">
 			<a href="/login" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
@@ -128,7 +133,7 @@
 			</div>
 			<div class="text-right">
 				<!-- 초대장 만료 공지로 이동 해야 함. -->
-				<a href="/" class="text-xs text-error hover:underline hover:text-blue-600"
+				<a href="/notice" class="text-xs text-error hover:underline hover:text-blue-600"
 					>초대장이 만료되었나요?</a
 				>
 			</div>
