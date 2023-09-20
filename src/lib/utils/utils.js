@@ -271,7 +271,65 @@ export async function getFeed(id) {
 			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
 		}
 	} catch (error) {
-		console.error('로그아웃 중 오류 발생:', error);
+		console.error('오류 발생:', error);
+	}
+}
+
+export async function getComments(feedId) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/comments/feed?feedId=${feedId}`;
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('오류 발생:', error);
+	}
+}
+
+export async function getComment(commentId) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/comments/${commentId}`;
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('오류 발생:', error);
 	}
 }
 
@@ -285,6 +343,35 @@ export async function deleteFeed(id) {
 	}
 
 	const requestUrl = `${API}/feeds/${id}`;
+	const requestOptions = {
+		method: 'DELETE',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('로그아웃 중 오류 발생:', error);
+	}
+}
+
+export async function deleteComment(id) {
+	const accessToken = localStorage.getItem('accessToken');
+
+	if (!accessToken) {
+		console.log('토큰이 존재하지 않습니다.');
+		goto('/login');
+		return;
+	}
+
+	const requestUrl = `${API}/comments/${id}`;
 	const requestOptions = {
 		method: 'DELETE',
 		headers: {

@@ -1,8 +1,8 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getFeed } from '$lib/utils/utils.js';
-	import { USER_ID } from '$lib/store';
+	import { formatDate, getFeed, getComments } from '$lib/utils/utils.js';
+	import { USER_ID, API_URL } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 
@@ -11,15 +11,59 @@
 		userId = value;
 	});
 
+	let API;
+	API_URL.subscribe((value) => {
+		API = value;
+	});
+
 	let feed = {};
+	let comments = [];
+	let content = '';
 
 	onMount(async () => {
 		feed = await getFeed($page.params.feedId);
+		comments = await getComments($page.params.feedId);
 	});
 
 	function isDeveloping() {
 		return alert('개발 중인 기능입니다.');
 	}
+
+	const handleSubmit = async () => {
+		const comment = {
+			feedId: feed._id,
+			content
+		};
+		try {
+			const accessToken = localStorage.getItem('accessToken');
+
+			if (!accessToken) {
+				console.log('토큰이 존재하지 않습니다.');
+				goto('/login');
+				return;
+			}
+			const url = `${API}/comments`;
+			const options = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${accessToken}`
+				},
+				body: JSON.stringify(comment)
+			};
+
+			const response = await fetch(url, options);
+			if (response.ok) {
+				content = '';
+				comments = await getComments(feed._id);
+			} else {
+				alert('피드 등록에 실패했어요. 개발자에게 문의해 주세요.');
+			}
+		} catch (error) {
+			alert(`뭔가 문제가 생겼어요. 개발자에게 문의해 주세요. error: ${error}`);
+			goto('/agora');
+		}
+	};
 </script>
 
 <Navbar />
@@ -55,10 +99,11 @@
 				></button
 			>
 		</div>
-		<form>
+		<form on:submit|preventDefault={handleSubmit}>
 			<div class="flex">
 				<textarea
 					type="text"
+					bind:value={content}
 					placeholder="착한 댓글을 달아 주세요."
 					class="textarea textarea-bordered w-full"
 					rows="1"
@@ -66,29 +111,28 @@
 				<button class="btn btn-success">작성</button>
 			</div>
 		</form>
-		<div class="mt-3">
-			<div>
-				<span class="text-sm">{feed.author}</span>
-				<span class="text-xs text-gray-300">{feed.createdAt}</span>
+
+		{#each comments as comment (comment._id)}
+			<div class="mt-3">
+				<div>
+					<span class="text-sm">{comment.nickname}</span>
+					<span class="text-xs text-gray-300">{comment.createdAt}</span>
+				</div>
+				<div class="mt-1 flex">
+					<p>{comment.content}</p>
+					{#if comment.userId === userId}
+						<a href="/agora/{comment.feedId}/{comment._id}/edit" class="text-success text-right"
+							><span class="material-symbols-outlined"> edit </span></a
+						>
+					{:else}
+						<button class="text-error text-right"
+							><span class="material-symbols-outlined" on:click={isDeveloping}> flag </span></button
+						>
+					{/if}
+				</div>
+				<div class="divider" />
 			</div>
-			<div class="mt-1 flex">
-				<p>
-					휴지 없을 수도 있어요. 조심하세요 ㅠ 휴지 없을 수도 있어요. 조심하세요 ㅠ 휴지 없을 수도
-					있어요. 조심하세요 ㅠ 휴지 없을 수도 있어요. 조심하세요 ㅠ 휴지 없을 수도 있어요.
-					조심하세요 ㅠ 댓글 기능 구현해야 함
-				</p>
-				<button class="text-error"><span class="material-symbols-outlined"> flag </span></button>
-			</div>
-			<div class="divider" />
-			<div>
-				<span class="text-sm">{feed.author}</span>
-				<span class="text-xs text-gray-300">{feed.createdAt}</span>
-			</div>
-			<div class="mt-1">
-				<p>휴지 없을 수도 있어요. 조심하세요 ㅠ 댓글 기능 구현해야 함</p>
-			</div>
-			<div class="divider" />
-		</div>
+		{/each}
 	</div>
 </main>
 <Footer />
