@@ -93,6 +93,6 @@
 			</div>
 		</div>
 	{/each}
-	<div class="my-20"></div>
+	<div class="my-40"></div>
 </main>
 <!-- <footer /> -->
