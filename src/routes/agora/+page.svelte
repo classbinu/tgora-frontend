@@ -42,10 +42,12 @@
 	}
 
 	function scrollToElement(feedId) {
-		const element = document.getElementById(feedId);
-		if (element) {
-			element.scrollIntoView({ behavior: 'auto' });
+		const el = document.getElementById(feedId);
+		if (el) {
+			el.scrollIntoView({ behavior: 'auto' });
+			el.querySelector('div').classList.add('border-2', 'border-purple-400');
 		}
+		BEFORE_FEED_ID.set(undefined);
 	}
 </script>
 
@@ -85,14 +87,12 @@
 						></button
 					>
 					<button class="w-1/3 join-item text-gray-400" on:click={() => goToFeed(feed._id)}
-						><span class="material-symbols-outlined"> visibility </span><span
-							></span
-						>
+						><span class="material-symbols-outlined"> visibility </span><span />
 					</button>
 				</div>
 			</div>
 		</div>
 	{/each}
-	<div class="my-40"></div>
+	<div class="my-40" />
 </main>
 <!-- <footer /> -->
