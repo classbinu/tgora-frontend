@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { isLoggedIn, API_URL } from '$lib/store';
-	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
+	import { isLoggedIn, API_URL, USER_ID } from '$lib/store';
+	import { usernameValidator, passwordValidator, getSubFromAccessToken } from '$lib/utils/utils';
 
 	let username = '';
 	let password = '';
@@ -69,6 +69,7 @@
 			if (response.ok) {
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
+				USER_ID.set(getSubFromAccessToken(data.accessToken));
 				isLoggedIn.set(true);
 				goto('/');
 			} else {

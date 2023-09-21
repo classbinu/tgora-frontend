@@ -46,7 +46,6 @@ export async function returnValidAccessToken() {
 				localStorage.setItem('accessToken', tokens.accessToken);
 				localStorage.setItem('refreshToken', tokens.refreshToken);
 				isLoggedIn.set(true);
-				console.log(tokens);
 				return tokens.accessToken;
 			}
 		}
@@ -98,7 +97,7 @@ export function isLoggedInByAccessToken() {
 	return false;
 }
 
-function getSubFromAccessToken(accessToken) {
+export function getSubFromAccessToken(accessToken) {
 	try {
 		const decodedToken = JSON.parse(atob(accessToken.split('.')[1]));
 
@@ -482,5 +481,48 @@ export async function updateFeedFlags(feedId) {
 		}
 	} catch (error) {
 		console.error('신고 오류 발생:', error);
+	}
+}
+
+// 이슈 참여 여부 체크
+export async function checkIssueDone(issueId) {
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
+
+	const requestUrl = `${API}/issues/${issueId}/participants`;
+	const requestOptions = {
+		method: 'PATCH',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('좋아요 오류 발생:', error);
+	}
+}
+
+export async function getAllIssues() {
+	const requestUrl = `${API}/issues`;
+	const requestOptions = {
+		method: 'GET'
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+		}
+	} catch (error) {
+		console.error('이슈 로드 중 오류 발생:', error);
 	}
 }
