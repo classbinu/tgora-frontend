@@ -3,7 +3,7 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { goto } from '$app/navigation';
 	import { API_URL } from '$lib/store';
-	import { passwordValidator } from '$lib/utils/utils';
+	import { passwordValidator, returnValidAccessToken } from '$lib/utils/utils';
 
 	let oldPassword = '';
 	let newPassword = '';
@@ -47,13 +47,9 @@
 		};
 
 		try {
-			const accessToken = localStorage.getItem('accessToken');
+			const accessToken = await returnValidAccessToken();
+			if (!accessToken) return;
 
-			if (!accessToken) {
-				console.log('토큰이 존재하지 않습니다.');
-				goto('/login');
-				return;
-			}
 			const url = `${API}/auth/password`;
 			const options = {
 				method: 'PATCH',

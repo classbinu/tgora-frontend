@@ -3,6 +3,7 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { API_URL } from '$lib/store';
 	import { goto } from '$app/navigation';
+	import { returnValidAccessToken } from '$lib/utils/utils';
 
 	let title = '';
 	let content = '';
@@ -18,13 +19,9 @@
 			content
 		};
 		try {
-			const accessToken = localStorage.getItem('accessToken');
+			const accessToken = await returnValidAccessToken();
+			if (!accessToken) return;
 
-			if (!accessToken) {
-				console.log('토큰이 존재하지 않습니다.');
-				goto('/login');
-				return;
-			}
 			const url = `${API}/feeds`;
 			const options = {
 				method: 'POST',
@@ -60,6 +57,7 @@
 				placeholder="제목을 입력해주세요."
 				class="input input-bordered w-full"
 				bind:value={title}
+				required
 			/>
 			<div class="form-control">
 				<label class="label" for="content">
@@ -70,6 +68,7 @@
 					class="textarea textarea-bordered h-96"
 					bind:value={content}
 					placeholder="다른 선생님을 존중해 주세요."
+					required
 				/>
 			</div>
 			<button class="btn btn-success mt-5 w-full">저장</button>

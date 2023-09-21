@@ -7,7 +7,8 @@
 		getComments,
 		clickFeedLike,
 		updateFeedViews,
-		updateFeedFlags
+		updateFeedFlags,
+		returnValidAccessToken
 	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL } from '$lib/store';
 	import { onMount } from 'svelte';
@@ -35,16 +36,18 @@
 	let flagsArray = [];
 
 	onMount(async () => {
-		updateFeedViews($page.params.feedId);
+		// updateFeedViews($page.params.feedId);
 		getPage();
 	});
 
 	async function getPage() {
 		feed = await getFeed($page.params.feedId);
 		comments = await getComments($page.params.feedId);
+		
 		likesCount = feed.likes.length;
 		commentsCount = feed.comments.length;
 		viewsCount = feed.views.length;
+
 		likesArray = feed.likes;
 		flagsArray = feed.flags;
 		return console.log('getPage');
@@ -83,13 +86,9 @@
 			content
 		};
 		try {
-			const accessToken = localStorage.getItem('accessToken');
+			const accessToken = await returnValidAccessToken();
+			if (!accessToken) return;
 
-			if (!accessToken) {
-				console.log('토큰이 존재하지 않습니다.');
-				goto('/login');
-				return;
-			}
 			const url = `${API}/comments`;
 			const options = {
 				method: 'POST',
@@ -105,10 +104,10 @@
 				content = '';
 				await getPage();
 			} else {
-				alert('피드 등록에 실패했어요. 개발자에게 문의해 주세요.');
+				alert('댓글 등록에 실패했어요. 관리자에게 문의해 주세요.');
 			}
 		} catch (error) {
-			alert(`뭔가 문제가 생겼어요. 개발자에게 문의해 주세요. error: ${error}`);
+			alert(`뭔가 문제가 생겼어요. 관리자에게 문의해 주세요. error: ${error}`);
 			goto('/agora');
 		}
 	};
@@ -185,4 +184,4 @@
 		{/each}
 	</div>
 </main>
-<Footer />
+<!-- <Footer /> -->

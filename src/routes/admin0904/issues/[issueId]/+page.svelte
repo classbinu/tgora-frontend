@@ -130,6 +130,7 @@
 					bind:value={title}
 					placeholder="이슈 제목을 입력해 주세요."
 					class="input input-bordered w-full"
+					required
 				/>
 			</div>
 			<div class="form-control w-full">
@@ -143,6 +144,7 @@
 					bind:value={link}
 					placeholder="https://가 포함되어야 합니다."
 					class="input input-bordered w-full"
+					required
 				/>
 				<a href={link} target="_blank" class="text-sm link link-primary text-right">링크 바로가기</a
 				>
@@ -158,6 +160,7 @@
 					bind:value={dueDate}
 					placeholder=""
 					class="input input-bordered w-full"
+					required
 				/>
 			</div>
 			<div class="form-control w-full">

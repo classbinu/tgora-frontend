@@ -1,7 +1,12 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getComment, deleteComment } from '$lib/utils/utils.js';
+	import {
+		formatDate,
+		getComment,
+		deleteComment,
+		returnValidAccessToken
+	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -35,13 +40,9 @@
 			content
 		};
 		try {
-			const accessToken = localStorage.getItem('accessToken');
+			const accessToken = await returnValidAccessToken();
+			if (!accessToken) return;
 
-			if (!accessToken) {
-				console.log('토큰이 존재하지 않습니다.');
-				goto('/login');
-				return;
-			}
 			const url = `${API}/comments/${$page.params.commentId}`;
 			const options = {
 				method: 'PUT',

@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { isLoggedIn, API_URL } from '$lib/store';
 	import { page } from '$app/stores';
-	import { usernameValidator, passwordValidator, isAccessTokenValid } from '$lib/utils/utils';
+	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
 
 	let username = '';
 	let password = '';
@@ -54,8 +54,7 @@
 			if (response.ok) {
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
-				const result = isAccessTokenValid();
-				isLoggedIn.set(result);
+				isLoggedIn.set(true);
 				goto('/');
 			} else {
 				// 회원가입 불가 팝업 렌더링 구현 필요
@@ -133,8 +132,7 @@
 				<button class="btn btn-primary">회원가입</button>
 			</div>
 			<div class="text-right">
-				<!-- 초대장 만료 공지로 이동 해야 함. -->
-				<a href="/notice" class="text-xs text-error hover:underline hover:text-blue-600"
+				<a href="/notice/signup" class="text-xs text-error hover:underline hover:text-blue-600"
 					>초대장이 만료되었나요?</a
 				>
 			</div>

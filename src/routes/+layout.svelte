@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import { isAccessTokenValid } from '$lib/utils/utils';
+	import { isLoggedInByAccessToken } from '$lib/utils/utils';
 	import { isLoggedIn } from '$lib/store';
 
 	onMount(() => {
-		const result = isAccessTokenValid();
+		const result = isLoggedInByAccessToken();
 		isLoggedIn.set(result);
 	});
 </script>

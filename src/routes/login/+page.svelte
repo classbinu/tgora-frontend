@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { isLoggedIn, API_URL } from '$lib/store';
-	import { usernameValidator, passwordValidator, isAccessTokenValid } from '$lib/utils/utils';
+	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
 
 	let username = '';
 	let password = '';
@@ -10,12 +10,8 @@
 		API = value;
 	});
 
-	function signupAlert() {
-		return alert('지금은 회원가입 기간이 아닙니다.');
-	}
-
 	function forgetPasswordAlert() {
-		return alert('비밀번호 찾기 기능은 추후 구현됩니다.');
+		return alert('입력하신 개인정보가 없어 비밀번호를 찾을 수 없습니다.');
 	}
 
 	const handleSubmit = async () => {
@@ -46,8 +42,7 @@
 			if (response.ok) {
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
-				const result = isAccessTokenValid();
-				isLoggedIn.set(result);
+				isLoggedIn.set(true);
 				goto('/');
 			} else {
 				// 로그인 불가 팝업 렌더링 구현 필요
@@ -65,7 +60,7 @@
 		<h6 class="text-center text-success font-bold mb-3">교사 전용 익명 커뮤니티</h6>
 		<h1 class="text-3xl font-semibold text-center text-purple-700">T-Agora</h1>
 		<div class="text-center">
-			<a href="/notice" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
+			<a href="/notice/signup" class="text-xs text-gray-600 hover:underline hover:text-blue-600"
 				>회원이 아니신가요?</a
 			>
 		</div>

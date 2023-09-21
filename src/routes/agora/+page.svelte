@@ -1,7 +1,12 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getAllFeeds, clickFeedLike } from '$lib/utils/utils.js';
+	import {
+		formatDate,
+		getAllFeeds,
+		clickFeedLike,
+		returnValidAccessToken
+	} from '$lib/utils/utils.js';
 	import { USER_ID } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
@@ -80,4 +85,4 @@
 		</div>
 	{/each}
 </main>
-<Footer />
+<!-- <footer /> -->

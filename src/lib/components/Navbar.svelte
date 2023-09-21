@@ -29,8 +29,7 @@
 		</div>
 		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
-				<!-- <li><a on:click={isDeveloping}>이슈관리</a></li>
-				<li><a href="/agora">속닥속닥</a></li> -->
+				<!-- <li><a on:click={isDeveloping}>이슈관리</a></li> -->
 				<!-- <li>
 					<details>
 						<summary> 교사 공간 </summary>
@@ -41,11 +40,13 @@
 					</details>
 				</li> -->
 				{#if $isLoggedIn}
+					<li><a href="/agora">속닥속닥</a></li>
 					<li><a href="/mypage">마이페이지</a></li>
 					<li><a on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}
-					<!-- <li><a href="/notice">회원가입</a></li>
-					<li><a href="/login">로그인</a></li> -->
+					<li><a href="/login">속닥속닥</a></li>
+					<li><a href="/notice/signup">회원가입</a></li>
+					<li><a href="/login">로그인</a></li>
 				{/if}
 			</ul>
 		</div>

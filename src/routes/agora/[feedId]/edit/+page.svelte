@@ -1,7 +1,7 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getFeed, deleteFeed } from '$lib/utils/utils.js';
+	import { formatDate, getFeed, deleteFeed, returnValidAccessToken } from '$lib/utils/utils.js';
 	import { USER_ID, API_URL } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -40,14 +40,11 @@
 			title,
 			content
 		};
-		try {
-			const accessToken = localStorage.getItem('accessToken');
 
-			if (!accessToken) {
-				console.log('토큰이 존재하지 않습니다.');
-				goto('/login');
-				return;
-			}
+		try {
+			const accessToken = await returnValidAccessToken();
+			if (!accessToken) return;
+
 			const url = `${API}/feeds/${feed._id}`;
 			const options = {
 				method: 'PUT',
@@ -93,6 +90,7 @@
 				bind:value={title}
 				placeholder="제목을 입력해주세요."
 				class="input input-bordered w-full"
+				required
 			/>
 			<div class="form-control">
 				<label class="label" for="content">
@@ -103,6 +101,7 @@
 					bind:value={content}
 					class="textarea textarea-bordered h-96"
 					placeholder="다른 선생님을 존중해 주세요."
+					required
 				/>
 			</div>
 			<button class="btn btn-success mt-5 w-full">수정</button>

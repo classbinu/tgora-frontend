@@ -17,8 +17,62 @@ export function formatDate(isoDate) {
 	return `${year}-${month}-${day}`;
 }
 
-// Access Token이 있는지 확인하는 함수
-export function isAccessTokenValid() {
+// 토큰 유효성 검증 후 새로운 토큰 발급
+export async function returnValidAccessToken() {
+	const accessToken = localStorage.getItem('accessToken');
+	const refreshToken = localStorage.getItem('refreshToken');
+
+	if (accessToken && refreshToken) {
+		// 서버 통신으로 토큰 유효성 검증 체크 필요?
+		const tokenData = parseAccessToken(accessToken);
+		const currentTime = Date.now() / 1000;
+
+		if (tokenData.exp > currentTime) {
+			USER_ID.set(getSubFromAccessToken(accessToken));
+			return accessToken;
+		} else {
+			const tokens = await issueTokensWithRefreshToken();
+			if (tokens) {
+				localStorage.setItem('accessToken', tokens.accessToken);
+				localStorage.setItem('refreshToken', tokens.refreshToken);
+				isLoggedIn.set(true);
+				console.log(tokens);
+				return tokens.accessToken;
+			}
+		}
+	}
+
+	localStorage.removeItem('accessToken');
+	localStorage.removeItem('refreshToken');
+	location.href = '/login';
+	return false;
+}
+
+async function issueTokensWithRefreshToken() {
+	const refreshToken = localStorage.getItem('refreshToken');
+	if (refreshToken) {
+		const requestUrl = `${API}/auth/refresh`;
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${refreshToken}`
+			}
+		};
+
+		try {
+			const response = await fetch(requestUrl, requestOptions);
+			if (response.ok) {
+				return await response.json();
+			}
+		} catch (error) {
+			console.error('오류 발생:', error);
+		}
+	}
+	return false;
+}
+
+// 단순 로그인 여부만 체크
+export function isLoggedInByAccessToken() {
 	const accessToken = localStorage.getItem('accessToken');
 
 	if (accessToken) {
@@ -31,7 +85,6 @@ export function isAccessTokenValid() {
 			return true;
 		}
 	}
-
 	return false;
 }
 
@@ -56,13 +109,9 @@ function parseAccessToken(accessToken) {
 	}
 }
 
-export function logout() {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('이미 로그아웃 되었습니다.');
-		return;
-	}
+export async function logout() {
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/auth/logout`;
 	const requestOptions = {
@@ -78,14 +127,12 @@ export function logout() {
 				console.log('로그아웃되었습니다.');
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
-				const result = isAccessTokenValid();
-				isLoggedIn.set(result);
+				isLoggedIn.set(false);
 			} else {
 				console.log('로그아웃되었습니다.');
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
-				const result = isAccessTokenValid();
-				isLoggedIn.set(result);
+				isLoggedIn.set(false);
 			}
 		})
 		.catch((error) => {
@@ -94,13 +141,8 @@ export function logout() {
 }
 
 export async function getProfile() {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/users/profile`;
 	const requestOptions = {
@@ -119,7 +161,7 @@ export async function getProfile() {
 			goto('/');
 		}
 	} catch (error) {
-		console.error('로그아웃 중 오류 발생:', error);
+		console.error('프로필 로드 중 오류 발생:', error);
 	}
 }
 
@@ -145,12 +187,9 @@ export async function userDelete(oldPassword) {
 		newPassword: '99999999'
 	};
 	try {
-		const accessToken = localStorage.getItem('accessToken');
+		const accessToken = await returnValidAccessToken();
+		if (!accessToken) return;
 
-		if (!accessToken) {
-			alert('로그인된 상태가 아닙니다.');
-			return false;
-		}
 		const url = `${API}/auth/password`;
 		const options = {
 			method: 'PATCH',
@@ -194,13 +233,8 @@ export function generateRandomNickname(length) {
 }
 
 export async function getMentees() {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/users/mentees`;
 	const requestOptions = {
@@ -223,13 +257,8 @@ export async function getMentees() {
 }
 
 export async function getAllFeeds() {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds`;
 	const requestOptions = {
@@ -252,13 +281,8 @@ export async function getAllFeeds() {
 }
 
 export async function getFeed(id) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds/${id}`;
 	const requestOptions = {
@@ -281,13 +305,8 @@ export async function getFeed(id) {
 }
 
 export async function getComments(feedId) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/comments/feed?feedId=${feedId}`;
 	const requestOptions = {
@@ -310,13 +329,8 @@ export async function getComments(feedId) {
 }
 
 export async function getComment(commentId) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/comments/${commentId}`;
 	const requestOptions = {
@@ -339,13 +353,8 @@ export async function getComment(commentId) {
 }
 
 export async function deleteFeed(id) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds/${id}`;
 	const requestOptions = {
@@ -368,13 +377,8 @@ export async function deleteFeed(id) {
 }
 
 export async function deleteComment(id) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/comments/${id}`;
 	const requestOptions = {
@@ -398,13 +402,8 @@ export async function deleteComment(id) {
 
 // 좋아요
 export async function clickFeedLike(feedId) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds/${feedId}/likes`;
 	const requestOptions = {
@@ -428,13 +427,8 @@ export async function clickFeedLike(feedId) {
 
 // 피드 조회수
 export async function updateFeedViews(feedId) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds/${feedId}/views`;
 	const requestOptions = {
@@ -458,13 +452,8 @@ export async function updateFeedViews(feedId) {
 
 // 피드 신고
 export async function updateFeedFlags(feedId) {
-	const accessToken = localStorage.getItem('accessToken');
-
-	if (!accessToken) {
-		console.log('토큰이 존재하지 않습니다.');
-		goto('/login');
-		return;
-	}
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds/${feedId}/flags`;
 	const requestOptions = {

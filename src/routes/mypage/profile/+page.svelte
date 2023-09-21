@@ -1,7 +1,7 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { getProfile, generateRandomNickname } from '$lib/utils/utils';
+	import { getProfile, generateRandomNickname, returnValidAccessToken } from '$lib/utils/utils';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { API_URL } from '$lib/store';
@@ -35,13 +35,9 @@
 		};
 
 		try {
-			const accessToken = localStorage.getItem('accessToken');
+			const accessToken = await returnValidAccessToken();
+			if (!accessToken) return;
 
-			if (!accessToken) {
-				console.log('토큰이 존재하지 않습니다.');
-				goto('/login');
-				return;
-			}
 			const url = `${API}/users/${userId}`;
 			const options = {
 				method: 'PATCH',
@@ -90,6 +86,9 @@
 					<a class="btn btn-success" on:click={randomNickname}>랜덤 닉네임 생성🚀</a>
 				</div>
 				<p class="text-xs text-gray-600 mt-1">익명화를 위해 랜덤 닉네임 사용을 권장합니다.</p>
+				<p class="text-xs text-gray-600 mt-1">
+					변경 전 닉네임은 공개되지 않지만 누적해서 관리됩니다.
+				</p>
 			</div>
 			<div class="form-control w-full hidden">
 				<label class="label" for="email">
