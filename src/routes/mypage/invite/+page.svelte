@@ -75,7 +75,7 @@
 <div class="text-center mt-20">
 	{#if countMentees < 5}
 		<p class="text-sm text-success font-bold mb-3">남은 초대장은 {5 - countMentees}장입니다.</p>
-		<button id="shareButton" class="btn btn-lg bg-yellow-300 hover:bg-yellow-400" on:click={invite}
+		<button id="shareButton" class="btn btn-lg bg-yellow-300 hover:bg-yellow-400 mb-10" on:click={invite}
 			>초대장 공유하기 🚀</button
 		>
 	{:else}

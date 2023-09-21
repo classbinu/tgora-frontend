@@ -25,7 +25,7 @@
 
 	onMount(async () => {
 		getPage();
-		setTimeout(() => scrollToElement(feedId), 1000);
+		setTimeout(() => scrollToElement(feedId), 200);
 	});
 
 	async function getPage() {
