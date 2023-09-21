@@ -19,6 +19,9 @@ export function formatDate(isoDate) {
 
 // UTC+9로 변경
 export function convertUTCtoUTC9(utcDateString) {
+	if (!utcDateString) {
+		return utcDateString;
+	}
 	const date = new Date(utcDateString);
 	date.setHours(date.getHours() + 9);
 	return date.toISOString();

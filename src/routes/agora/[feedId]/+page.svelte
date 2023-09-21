@@ -8,7 +8,8 @@
 		clickFeedLike,
 		updateFeedViews,
 		updateFeedFlags,
-		returnValidAccessToken
+		returnValidAccessToken,
+		convertUTCtoUTC9
 	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount } from 'svelte';
@@ -134,10 +135,10 @@
 		{/if}
 		<div>
 			<span class="text-sm">{feed.nickname}</span>
-			<span class="text-xs text-gray-300">{feed.createdAt}</span>
+			<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
 		</div>
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
-		<p>{feed.content}</p>
+		<p class="whitespace-pre-line">{feed.content}</p>
 		<div class="join mt-20 mb-10">
 			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
 				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
@@ -151,8 +152,7 @@
 				></button
 			>
 			<button class="w-1/3 join-item text-gray-400"
-				><span class="material-symbols-outlined"> visibility </span><span>{viewsCount}</span
-				></button
+				><span class="material-symbols-outlined"> visibility </span><span /></button
 			>
 		</div>
 		<form on:submit|preventDefault={handleSubmit}>

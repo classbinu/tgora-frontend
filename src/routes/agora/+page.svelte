@@ -67,7 +67,7 @@
 							<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
 						</div>
 						<h2 class="text-lg font-bold my-5">{feed.title}</h2>
-						<p>{feed.content}</p>
+						<p class="truncate">{feed.content}</p>
 					</div>
 				</a>
 				<div class="join my-3">
@@ -86,7 +86,7 @@
 					>
 					<button class="w-1/3 join-item text-gray-400" on:click={() => goToFeed(feed._id)}
 						><span class="material-symbols-outlined"> visibility </span><span
-							>{feed.views.length}</span
+							></span
 						>
 					</button>
 				</div>
