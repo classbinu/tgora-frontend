@@ -44,7 +44,7 @@
 
 <Navbar />
 <div class="container mx-auto mx-auto p-3">
-	<h1 class="text-center text-3xl font-bold my-20 text-success">
+	<h1 class="text-center text-3xl font-bold mb-10 text-success">
 		T-아고라에서 함께 하고 싶은 선생님을 초대해 주세요 💌
 	</h1>
 	<h2 class="text-2xl font-bold text-error">🔥 꼭 읽어주세요</h2>
@@ -85,4 +85,4 @@
 	{/if}
 </div>
 
-<Footer />
+<!-- <Footer /> -->

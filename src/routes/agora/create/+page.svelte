@@ -67,7 +67,7 @@
 					id="content"
 					class="textarea textarea-bordered h-96"
 					bind:value={content}
-					placeholder="다른 선생님을 존중해 주세요."
+					placeholder="보이지 않아도 모두 같은 동료 교사입니다. 상대방을 존중해 주세요."
 					required
 				/>
 			</div>

@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 	import { API_URL } from '$lib/store';
 	let userId = '';
+	let username = '';
 	let nickname = '';
 	let email = '';
 	let phone = '';
@@ -17,6 +18,7 @@
 	onMount(async () => {
 		const profile = await getProfile();
 		userId = profile._id;
+		username = profile.username;
 		nickname = profile.nickname.pop();
 		email = profile.email;
 		phone = profile.phone;
@@ -50,9 +52,8 @@
 
 			const response = await fetch(url, options);
 			const data = response;
-			console.log(data);
 			if (response.ok) {
-				alert('프로필 정보가 수정되었어요.');
+				alert('프로필 정보가 수정되었어요. 재로그인 후 반영됩니다.');
 				goto('/mypage');
 			} else {
 				// 프로필 수정 불가 팝업 렌더링 구현 필요
@@ -71,6 +72,10 @@
 		<h1 class="text-3xl font-semibold text-center text-purple-700">회원정보 변경</h1>
 		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 			<div class="form-control w-full">
+				<label class="label" for="username">
+					<span class="text-base label-text">아이디</span>
+				</label>
+				<p class="ml-1 mb-3">{username}</p>
 				<label class="label" for="nickname">
 					<span class="text-base label-text">닉네임</span>
 				</label>

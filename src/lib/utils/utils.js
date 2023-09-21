@@ -17,6 +17,13 @@ export function formatDate(isoDate) {
 	return `${year}-${month}-${day}`;
 }
 
+// UTC+9로 변경
+export function convertUTCtoUTC9(utcDateString) {
+	const date = new Date(utcDateString);
+	date.setHours(date.getHours() + 9);
+	return date.toISOString();
+}
+
 // 토큰 유효성 검증 후 새로운 토큰 발급
 export async function returnValidAccessToken() {
 	const accessToken = localStorage.getItem('accessToken');

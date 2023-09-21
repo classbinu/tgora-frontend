@@ -77,7 +77,7 @@
 </script>
 
 <Navbar />
-<div class="relative flex flex-col justify-center h-screen overflow-hidden">
+<div class="relative flex flex-col justify-center overflow-hidden">
 	<div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
 		<h1 class="text-3xl font-semibold text-center text-purple-700">비밀번호 변경</h1>
 		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
@@ -124,4 +124,4 @@
 		</form>
 	</div>
 </div>
-<Footer />
+<!-- <Footer /> -->

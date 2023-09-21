@@ -10,9 +10,10 @@
 		updateFeedFlags,
 		returnValidAccessToken
 	} from '$lib/utils/utils.js';
-	import { USER_ID, API_URL } from '$lib/store';
+	import { USER_ID, API_URL, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -24,7 +25,12 @@
 		API = value;
 	});
 
-	let feed = {};
+	let feed = {
+		createdAt: '',
+		nickname: '',
+		title: '',
+		content: ''
+	};
 	let comments = [];
 	let content = '';
 
@@ -36,14 +42,15 @@
 	let flagsArray = [];
 
 	onMount(async () => {
-		// updateFeedViews($page.params.feedId);
+		updateFeedViews($page.params.feedId);
 		getPage();
+		BEFORE_FEED_ID.set($page.params.feedId);
 	});
 
 	async function getPage() {
 		feed = await getFeed($page.params.feedId);
 		comments = await getComments($page.params.feedId);
-		
+
 		likesCount = feed.likes.length;
 		commentsCount = feed.comments.length;
 		viewsCount = feed.views.length;
