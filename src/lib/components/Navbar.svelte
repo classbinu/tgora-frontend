@@ -26,7 +26,7 @@
 {#if showHomeBanner}
 	<a href="/mypage/invite">
 		<div class="alert bg-yellow-300 flex justify-center font-bold">
-			<span>초대장이 지급되었어요! 📮</span>
+			<span>📮 초대장이 지급되었어요!</span>
 		</div>
 	</a>
 {/if}
