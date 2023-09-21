@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","og_img.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.3c0c5e49.js","app":"_app/immutable/entry/app.44337f8f.js","imports":["_app/immutable/entry/start.3c0c5e49.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.4c48aacb.js","_app/immutable/entry/app.44337f8f.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.77a87a51.js","app":"_app/immutable/entry/app.b1e8529b.js","imports":["_app/immutable/entry/start.77a87a51.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.da59ed66.js","_app/immutable/entry/app.b1e8529b.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -26,7 +26,12 @@ return {
 			__memo(() => import('./nodes/11.js')),
 			__memo(() => import('./nodes/12.js')),
 			__memo(() => import('./nodes/13.js')),
-			__memo(() => import('./nodes/14.js'))
+			__memo(() => import('./nodes/14.js')),
+			__memo(() => import('./nodes/15.js')),
+			__memo(() => import('./nodes/16.js')),
+			__memo(() => import('./nodes/17.js')),
+			__memo(() => import('./nodes/18.js')),
+			__memo(() => import('./nodes/19.js'))
 		],
 		routes: [
 			{
@@ -65,59 +70,94 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/agora/create",
+				pattern: /^\/agora\/create\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
+				endpoint: null
+			},
+			{
+				id: "/agora/[feedId]",
+				pattern: /^\/agora\/([^/]+?)\/?$/,
+				params: [{"name":"feedId","optional":false,"rest":false,"chained":false}],
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				endpoint: null
+			},
+			{
+				id: "/agora/[feedId]/edit",
+				pattern: /^\/agora\/([^/]+?)\/edit\/?$/,
+				params: [{"name":"feedId","optional":false,"rest":false,"chained":false}],
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				endpoint: null
+			},
+			{
+				id: "/agora/[feedId]/[commentId]/edit",
+				pattern: /^\/agora\/([^/]+?)\/([^/]+?)\/edit\/?$/,
+				params: [{"name":"feedId","optional":false,"rest":false,"chained":false},{"name":"commentId","optional":false,"rest":false,"chained":false}],
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				endpoint: null
+			},
+			{
 				id: "/issues/closed",
 				pattern: /^\/issues\/closed\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				page: { layouts: [0,], errors: [1,], leaf: 11 },
 				endpoint: null
 			},
 			{
 				id: "/login",
 				pattern: /^\/login\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				page: { layouts: [0,], errors: [1,], leaf: 12 },
 				endpoint: null
 			},
 			{
 				id: "/mypage",
 				pattern: /^\/mypage\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				page: { layouts: [0,], errors: [1,], leaf: 13 },
 				endpoint: null
 			},
 			{
 				id: "/mypage/invite",
 				pattern: /^\/mypage\/invite\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 10 },
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			},
 			{
 				id: "/mypage/password",
 				pattern: /^\/mypage\/password\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 11 },
+				page: { layouts: [0,], errors: [1,], leaf: 15 },
 				endpoint: null
 			},
 			{
 				id: "/mypage/profile",
 				pattern: /^\/mypage\/profile\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 12 },
+				page: { layouts: [0,], errors: [1,], leaf: 16 },
 				endpoint: null
 			},
 			{
 				id: "/notice",
 				pattern: /^\/notice\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				page: { layouts: [0,], errors: [1,], leaf: 17 },
+				endpoint: null
+			},
+			{
+				id: "/notice/signup",
+				pattern: /^\/notice\/signup\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 18 },
 				endpoint: null
 			},
 			{
 				id: "/signup",
 				pattern: /^\/signup\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 14 },
+				page: { layouts: [0,], errors: [1,], leaf: 19 },
 				endpoint: null
 			}
 		],

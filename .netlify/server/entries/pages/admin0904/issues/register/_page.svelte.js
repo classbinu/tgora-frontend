@@ -1,5 +1,6 @@
 import { c as create_ssr_component, v as validate_component, b as add_attribute, e as escape } from "../../../../../chunks/ssr.js";
-import { N as Navbar, F as Footer } from "../../../../../chunks/Navbar.js";
+import { F as Footer } from "../../../../../chunks/Footer.js";
+import { N as Navbar } from "../../../../../chunks/Navbar.js";
 import { A as API_URL } from "../../../../../chunks/store.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let title = "";

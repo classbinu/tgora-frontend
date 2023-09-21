@@ -1,15 +1,15 @@
 import { c as create_ssr_component, v as validate_component, a as each, e as escape, b as add_attribute } from "../../chunks/ssr.js";
 import { C as Carousel, I as IssueCard } from "../../chunks/IssueCard.js";
-import { N as Navbar, F as Footer } from "../../chunks/Navbar.js";
+import { F as Footer } from "../../chunks/Footer.js";
+import { N as Navbar } from "../../chunks/Navbar.js";
 import { f as formatDate } from "../../chunks/utils.js";
 const ShareButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<button id="shareButton" class="btn btn-circle bg-yellow-300 hover:bg-yellow-400" data-svelte-h="svelte-jwasfv"><span class="material-symbols-outlined">share</span></button>`;
 });
-const DAYS = 2;
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   const issues = data.issues;
-  const issuesRecently = [];
+  let issuesRecently = [];
   const issuesAgree = [];
   const issuesDisagree = [];
   const issuesPetition = [];
@@ -34,14 +34,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       issuesOther.push(issue);
     }
   }
-  const recentIssuesBaselineDate = /* @__PURE__ */ new Date();
-  recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
-  for (const issue of issues) {
-    const createdAtDate = new Date(issue.createdAt);
-    if (createdAtDate >= recentIssuesBaselineDate) {
-      issuesRecently.push(issue);
-    }
-  }
+  const sortedIssues = data.issues.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  issuesRecently = sortedIssues.slice(0, 4);
   const fire = { bgColor: "bg-yellow-100", textColor: "" };
   const agree = { bgColor: "bg-green-100", textColor: "" };
   const disagree = { bgColor: "bg-red-100", textColor: "" };
@@ -52,7 +46,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const other = { bgColor: "bg-indigo-100", textColor: "" };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"><h1 class="text-xl font-bold my-5 text-center text-success m-3" data-svelte-h="svelte-1x0x1fe">권리 위에 잠자는 자는 보호받지 못합니다<br>T-아고라를 주변 선생님에게 공유해 주세요 🙇</h1> <div class="text-center">${validate_component(ShareButton, "ShareButton").$$render($$result, {}, {}, {})}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-rbg1qc">🔥 화력집중 (최근 등록 이슈)</h1> <div class="flex flex-wrap">${each(issuesRecently, (issue) => {
+  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} ${validate_component(Carousel, "Carousel").$$render($$result, {}, {}, {})} <main class="container mx-auto"><h1 class="text-xl font-bold my-5 text-center text-success m-3" data-svelte-h="svelte-1z8mbb">권리 위에 잠자는 자는 보호받지 못합니다<br>T-아고라를 주변 선생님에게 공유해 주세요 🙇</h1> <div class="text-center">${validate_component(ShareButton, "ShareButton").$$render($$result, {}, {}, {})}</div> <h1 class="text-3xl font-bold mt-20 mx-3" data-svelte-h="svelte-rbg1qc">🔥 화력집중 (최근 등록 이슈)</h1> <div class="flex flex-wrap">${each(issuesRecently, (issue) => {
     return `${validate_component(IssueCard, "IssueCard").$$render(
       $$result,
       {

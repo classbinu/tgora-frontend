@@ -8,6 +8,12 @@ function formatDate(isoDate) {
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+function convertUTCtoUTC9(utcDateString) {
+  const date = new Date(utcDateString);
+  date.setHours(date.getHours() + 9);
+  return date.toISOString();
+}
 export {
+  convertUTCtoUTC9 as c,
   formatDate as f
 };

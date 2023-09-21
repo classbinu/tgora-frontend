@@ -1,17 +1,17 @@
-import { c as create_ssr_component } from "./ssr.js";
 import { s as subscribe } from "./utils2.js";
+import { c as create_ssr_component } from "./ssr.js";
 import { i as isLoggedIn } from "./store.js";
 import "./utils.js";
-const Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-60" data-svelte-h="svelte-sjnjn1"><nav class="grid grid-flow-col gap-4"><a class="link link-hover" onclick="my_modal_1.showModal()">Contact</a> <dialog id="my_modal_1" class="modal"><div class="modal-box"><h3 class="font-bold text-lg text-left">Contact</h3> <p class="py-4 text-left">tgoraofficial@gmail.com</p> <div class="modal-action"><form method="dialog"> <button class="btn">Close</button></form></div></div></dialog></nav>  <aside><p>Copyright © 2023 - All right reserved by T-Agora</p></aside></footer>`;
-});
 const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $isLoggedIn, $$unsubscribe_isLoggedIn;
   $$unsubscribe_isLoggedIn = subscribe(isLoggedIn, (value) => $isLoggedIn = value);
+  let showHomeBanner;
+  isLoggedIn.subscribe((value) => {
+    showHomeBanner = value;
+  });
   $$unsubscribe_isLoggedIn();
-  return `<nav class="container mx-auto"><div class="navbar bg-base-100"><div class="flex-1" data-svelte-h="svelte-1hc0fyh"><a href="/" class="btn btn-ghost normal-case text-xl">T-아고라</a></div> <div class="flex-none"><ul class="menu menu-horizontal px-1"><li><a data-svelte-h="svelte-trpi63">이슈관리</a></li> <li data-svelte-h="svelte-1aj90tk"><a href="/agora">속닥속닥</a></li>  ${$isLoggedIn ? `<li data-svelte-h="svelte-f6iobd"><a href="/mypage">마이페이지</a></li> <li><a data-svelte-h="svelte-1wf0jb8">로그아웃</a></li>` : `<li data-svelte-h="svelte-z0fgil"><a href="/notice">회원가입</a></li> <li data-svelte-h="svelte-1d2gz4d"><a href="/login">로그인</a></li>`}</ul></div></div></nav>`;
+  return `${showHomeBanner ? `<a href="/mypage/invite" data-svelte-h="svelte-6d4pbn"><div class="alert bg-yellow-300 flex justify-center font-bold"><span>📮 초대장이 지급되었어요!</span></div></a>` : ``} <nav class="container mx-auto"><div class="navbar bg-base-100"><div class="flex-1" data-svelte-h="svelte-1hc0fyh"><a href="/" class="btn btn-ghost normal-case text-xl">T-아고라</a></div> <div class="flex-none"><ul class="menu menu-horizontal px-1">  ${$isLoggedIn ? `<li data-svelte-h="svelte-1aj90tk"><a href="/agora">속닥속닥</a></li> <li data-svelte-h="svelte-f6iobd"><a href="/mypage">마이페이지</a></li> <li><a data-svelte-h="svelte-1wf0jb8">로그아웃</a></li>` : `<li data-svelte-h="svelte-9tvltn"><a href="/login">속닥속닥</a></li> <li data-svelte-h="svelte-e05jgu"><a href="/notice/signup">회원가입</a></li> <li data-svelte-h="svelte-1d2gz4d"><a href="/login">로그인</a></li>`}</ul></div></div></nav>`;
 });
 export {
-  Footer as F,
   Navbar as N
 };

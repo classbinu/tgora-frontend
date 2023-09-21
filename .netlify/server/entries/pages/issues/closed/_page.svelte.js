@@ -1,6 +1,7 @@
 import { c as create_ssr_component, v as validate_component, a as each, e as escape, b as add_attribute } from "../../../../chunks/ssr.js";
 import { C as Carousel, I as IssueCard } from "../../../../chunks/IssueCard.js";
-import { N as Navbar, F as Footer } from "../../../../chunks/Navbar.js";
+import { F as Footer } from "../../../../chunks/Footer.js";
+import { N as Navbar } from "../../../../chunks/Navbar.js";
 import { f as formatDate } from "../../../../chunks/utils.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
