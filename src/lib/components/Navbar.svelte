@@ -1,5 +1,5 @@
 <script>
-	import { isLoggedIn } from '$lib/store';
+	import { isLoggedIn, USER_ID } from '$lib/store';
 	import { logout } from '$lib/utils/utils';
 	import { goto } from '$app/navigation';
 
@@ -11,13 +11,25 @@
 		return alert('지금은 회원가입 기간이 아닙니다.');
 	}
 
-
 	function logoutAndGotoHome() {
 		logout();
 		isLoggedIn.set(false);
 		goto('/');
 	}
+
+	let showHomeBanner;
+	isLoggedIn.subscribe((value) => {
+		showHomeBanner = value;
+	});
 </script>
+
+{#if showHomeBanner}
+	<a href="/mypage/invite">
+		<div class="alert bg-yellow-300 flex justify-center font-bold">
+			<span>초대장이 지급되었어요! 📮</span>
+		</div>
+	</a>
+{/if}
 
 <nav class="container mx-auto">
 	<div class="navbar bg-base-100">

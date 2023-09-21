@@ -19,7 +19,7 @@
 		Swal.fire({
 			title: '🔐 로그인 정보를 암호화하고 있어요.. ',
 			html: 'I will close in <b></b> milliseconds.',
-			timer: 5000,
+			timer: 4000,
 			timerProgressBar: true,
 			didOpen: () => {
 				Swal.showLoading();
