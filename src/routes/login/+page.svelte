@@ -14,6 +14,31 @@
 		return alert('입력하신 개인정보가 없어 비밀번호를 찾을 수 없습니다.');
 	}
 
+	function loginLoadingAlert() {
+		let timerInterval;
+		Swal.fire({
+			title: '🔐 로그인 정보를 암호화하고 있어요.. ',
+			html: 'I will close in <b></b> milliseconds.',
+			timer: 5000,
+			timerProgressBar: true,
+			didOpen: () => {
+				Swal.showLoading();
+				const b = Swal.getHtmlContainer().querySelector('b');
+				timerInterval = setInterval(() => {
+					b.textContent = Swal.getTimerLeft();
+				}, 100);
+			},
+			willClose: () => {
+				clearInterval(timerInterval);
+			}
+		}).then((result) => {
+			/* Read more about handling dismissals below */
+			if (result.dismiss === Swal.DismissReason.timer) {
+				console.log('Login Success!');
+			}
+		});
+	}
+
 	const handleSubmit = async () => {
 		const user = {
 			username,
@@ -26,6 +51,8 @@
 		if (passwordValidator(password)) {
 			return;
 		}
+
+		loginLoadingAlert();
 
 		try {
 			const url = `${API}/auth/signin`;
