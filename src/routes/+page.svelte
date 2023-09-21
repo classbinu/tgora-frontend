@@ -123,10 +123,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
@@ -140,7 +140,7 @@
 			</div>
 		{/each}
 	</div>
-
+ 
 	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
 	<div class="flex flex-wrap">
 		{#each issuesDisagree as issue (issue._id)}
@@ -152,10 +152,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									참여완료
 								{:else}
 									미참여
@@ -181,10 +181,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
@@ -210,10 +210,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
@@ -239,10 +239,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
@@ -268,10 +268,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
@@ -297,10 +297,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
@@ -326,10 +326,10 @@
 						<div class="flex justify-between my-5">
 							<button
 								on:click={() => clickDoneButton(issue._id)}
-								class="btn btn-circle {issue['participants'].includes(userId)
+								class="btn btn-circle {issue['participants']?.includes(userId)
 									? 'btn-success'
 									: 'btn-error'}"
-								>{#if issue['participants'].includes(userId)}
+								>{#if issue['participants']?.includes(userId)}
 									완료
 								{:else}
 									미참여
