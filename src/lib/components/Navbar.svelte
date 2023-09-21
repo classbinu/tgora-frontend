@@ -11,9 +11,6 @@
 		return alert('지금은 회원가입 기간이 아닙니다.');
 	}
 
-	function isDeveloping() {
-		return alert('개발 중인 기능입니다.');
-	}
 
 	function logoutAndGotoHome() {
 		logout();

@@ -402,7 +402,7 @@ export async function deleteComment(id) {
 
 // 좋아요
 export async function clickFeedLike(feedId) {
-	const accessToken = returnValidAccessToken();
+	const accessToken = await returnValidAccessToken();
 	if (!accessToken) return;
 
 	const requestUrl = `${API}/feeds/${feedId}/likes`;

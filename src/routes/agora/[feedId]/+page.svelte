@@ -139,11 +139,11 @@
 					{likesCount}
 				</span>
 			</button>
-			<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
+			<button class="w-1/3 join-item text-gray-400"
 				><span class="material-symbols-outlined"> chat_bubble </span><span>{commentsCount}</span
 				></button
 			>
-			<button class="w-1/3 join-item text-gray-400" on:click={isDeveloping}
+			<button class="w-1/3 join-item text-gray-400"
 				><span class="material-symbols-outlined"> visibility </span><span>{viewsCount}</span
 				></button
 			>
@@ -174,9 +174,9 @@
 							><span class="material-symbols-outlined"> edit </span></a
 						>
 					{:else}
-						<button class="text-error text-right"
+						<!-- <button class="text-error text-right"
 							><span class="material-symbols-outlined" on:click={isDeveloping}> flag </span></button
-						>
+						> -->
 					{/if}
 				</div>
 				<div class="divider" />

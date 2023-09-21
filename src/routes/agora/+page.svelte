@@ -26,10 +26,6 @@
 		feeds = await getAllFeeds();
 	}
 
-	function isDeveloping() {
-		return alert('개발 중인 기능입니다.');
-	}
-
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
 		getPage();
