@@ -3,7 +3,24 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import IssueCard from '$lib/components/IssueCard.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate } from '$lib/utils/utils.js';
+	import { formatDate, checkIssueDone } from '$lib/utils/utils.js';
+	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
+
+	let userId;
+	USER_ID.subscribe((value) => {
+		userId = value;
+	});
+
+	let API;
+	API_URL.subscribe((value) => {
+		API = value;
+	});
+
+	let isLoggedInCheck;
+	isLoggedIn.subscribe((value) => {
+		isLoggedInCheck = value;
+	});
+
 	export let data;
 
 	const issues = data.issues;
@@ -65,96 +82,224 @@
 		bgColor: 'bg-indigo-100',
 		textColor: ''
 	};
+
+	async function clickDoneButton(issueId) {
+		if (isLoggedInCheck) {
+			await checkIssueDone(issueId);
+			location.reload();
+		} else {
+			return alert('로그인을 하면 참여 여부를 관리할 수 있어요.');
+		}
+	}
 </script>
 
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
 	<h1 class="text-3xl font-bold my-10 text-center text-error">마감된 이슈입니다 🙇</h1>
-		<div class="text-center">
+	<div class="text-center">
 		<a href="/" class="link link-success">진행 중인 이슈 보기</a>
 	</div>
 	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
 	<div class="flex flex-wrap">
 		{#each issuesDisagree as issue (issue._id)}
-		<IssueCard key={issue._id} bgColor={disagree.bgColor} textColor={disagree.textColor}>
-			<span slot="title">{issue.title}</span>
-			<span slot="summary">{issue.summary}</span>
-			<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-			<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-		</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">✅ 입법 찬성</h1>
 	<div class="flex flex-wrap">
 		{#each issuesAgree as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={agree.bgColor} textColor={agree.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
-	
+
 	<h1 class="text-3xl font-bold mt-20 mx-3">🙆 국민동의청원</h1>
 	<div class="flex flex-wrap">
 		{#each issuesPetition as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={petition.bgColor} textColor={petition.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">🎤 설문</h1>
 	<div class="flex flex-wrap">
 		{#each issuesSurvey as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={survey.bgColor} textColor={survey.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">📑 서명</h1>
 	<div class="flex flex-wrap">
 		{#each issuesSignature as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={signature.bgColor} textColor={signature.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">📰 언론</h1>
 	<div class="flex flex-wrap">
 		{#each issuesPress as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={press.bgColor} textColor={press.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">🎸 기타</h1>
 	<div class="flex flex-wrap">
 		{#each issuesOther as issue (issue._id)}
-			<IssueCard key={issue._id} bgColor={other.bgColor} textColor={other.textColor}>
-				<span slot="title">{issue.title}</span>
-				<span slot="summary">{issue.summary}</span>
-				<a slot="button" href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
-				<span slot="dueDate" class="text-xs">{formatDate(issue.dueDate)}</span>
-			</IssueCard>
+			<div class="p-2 w-full lg:w-96">
+				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+					<div class="card-body">
+						<h2 class="card-title">{issue.title}</h2>
+						<p>{issue.summary}</p>
+						<div class="flex justify-between my-5">
+							<button
+								on:click={() => clickDoneButton(issue._id)}
+								class="btn btn-circle {issue['participants']?.includes(userId)
+									? 'btn-success'
+									: 'btn-error'}"
+								>{#if issue['participants']?.includes(userId)}
+									완료
+								{:else}
+									미참여
+								{/if}</button
+							>
+							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+						</div>
+						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+					</div>
+				</div>
+			</div>
 		{/each}
 	</div>
 	<div class="text-center mt-20">
