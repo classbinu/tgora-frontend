@@ -69,7 +69,7 @@
 					bind:value={content}
 					placeholder="보이지 않아도 모두 같은 동료 교사입니다. 상대방을 존중해 주세요."
 					required
-					rows="5"
+					rows="3"
 				/>
 			</div>
 			<button class="btn btn-success mt-5 w-full">저장</button>
