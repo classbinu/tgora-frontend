@@ -16,6 +16,31 @@
 	const inviteCode = $page.url.searchParams.get('invite');
 	mentor = inviteCode;
 
+	function authLoadingAlert() {
+		let timerInterval;
+		Swal.fire({
+			title: '🔐 회원 정보를 암호화하고 있어요 ',
+			html: 'I will close in <b></b> milliseconds.',
+			timer: 4000,
+			timerProgressBar: true,
+			didOpen: () => {
+				Swal.showLoading();
+				const b = Swal.getHtmlContainer().querySelector('b');
+				timerInterval = setInterval(() => {
+					b.textContent = Swal.getTimerLeft();
+				}, 100);
+			},
+			willClose: () => {
+				clearInterval(timerInterval);
+			}
+		}).then((result) => {
+			/* Read more about handling dismissals below */
+			if (result.dismiss === Swal.DismissReason.timer) {
+				console.log('Login Success!');
+			}
+		});
+	}
+
 	const handleSubmit = async () => {
 		if (!username || !password || !password2) {
 			return alert('누락된 항목이 있어요.');
@@ -23,6 +48,10 @@
 
 		if (!mentor) {
 			return alert('회원가입은 초대장이 필요합니다.');
+		}
+
+		if (password !== password2) {
+			return alert('비밀번호가 일치하지 않습니다.');
 		}
 
 		if (usernameValidator(username)) {
@@ -38,6 +67,8 @@
 			password,
 			mentor
 		};
+
+		authLoadingAlert();
 
 		try {
 			const url = `${API}/auth/signup`;

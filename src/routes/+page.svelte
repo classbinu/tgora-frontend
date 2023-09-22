@@ -4,7 +4,7 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
 	import { formatDate, checkIssueDone } from '$lib/utils/utils.js';
-	import { USER_ID, API_URL } from '$lib/store';
+	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -14,6 +14,11 @@
 	let API;
 	API_URL.subscribe((value) => {
 		API = value;
+	});
+
+	let isLoggedInCheck;
+	isLoggedIn.subscribe((value) => {
+		isLoggedInCheck = value;
 	});
 
 	export let data;
@@ -94,7 +99,7 @@
 	};
 
 	async function clickDoneButton(issueId) {
-		if (userId) {
+		if (isLoggedInCheck) {
 			await checkIssueDone(issueId);
 			location.reload();
 		} else {
