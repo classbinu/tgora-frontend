@@ -21,6 +21,7 @@
 					<th>마감일</th>
 					<th>관리자 메모</th>
 					<th>생성일</th>
+					<th>상태</th>
 					<th>수정</th>
 				</tr>
 			</thead>
@@ -35,6 +36,7 @@
 						<td>{formatDate(issue.dueDate)}</td>
 						<td>{issue.adminMemo}</td>
 						<td>{issue.createdAt}</td>
+						<td>{issue.isPublic}</td>
 						<td><a href="issues/{issue._id}" class="btn btn-primary btn-xs">수정</a></td>
 					</tr>
 				{/each}

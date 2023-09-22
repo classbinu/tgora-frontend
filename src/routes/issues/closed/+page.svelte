@@ -133,7 +133,7 @@
 	<div class="flex flex-wrap">
 		{#each issuesAgree as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
-				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+				<div class="card {agree.bgColor} {agree.textColor} shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
@@ -162,7 +162,7 @@
 	<div class="flex flex-wrap">
 		{#each issuesPetition as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
-				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+				<div class="card {petition.bgColor} {petition.textColor} shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
@@ -191,7 +191,7 @@
 	<div class="flex flex-wrap">
 		{#each issuesSurvey as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
-				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+				<div class="card {survey.bgColor} {survey.textColor} shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
@@ -220,7 +220,7 @@
 	<div class="flex flex-wrap">
 		{#each issuesSignature as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
-				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+				<div class="card {signature.bgColor} {signature.textColor} shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
@@ -249,7 +249,7 @@
 	<div class="flex flex-wrap">
 		{#each issuesPress as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
-				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+				<div class="card {press.bgColor} {press.textColor} shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
@@ -278,7 +278,7 @@
 	<div class="flex flex-wrap">
 		{#each issuesOther as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
-				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
+				<div class="card {other.bgColor} {other.textColor} shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
