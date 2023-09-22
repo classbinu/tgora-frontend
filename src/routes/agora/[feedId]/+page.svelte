@@ -178,7 +178,7 @@
 			<div class="mt-3">
 				<div>
 					<span class="text-sm">{comment.nickname}</span>
-					<span class="text-xs text-gray-300">{comment.createdAt}</span>
+					<span class="text-xs text-gray-300">{convertUTCtoUTC9(comment.createdAt)}</span>
 				</div>
 				<div class="mt-1 flex">
 					<p>{comment.content}</p>

@@ -5,7 +5,7 @@
 
 <Navbar />
 <div class="container mx-auto mx-auto p-3">
-	<h1 class="text-center text-3xl font-bold my-20 text-success">
+	<h1 class="text-center text-3xl font-bold mb-20 text-success">
 		초대 링크를 통해서만 가입할 수 있어요 😅
 	</h1>
 	<h2 class="text-2xl font-bold text-error">🔥 꼭 읽어주세요</h2>
@@ -36,6 +36,7 @@
 	<p class="my-3">
 		5️⃣ 가입 대상이 아닌 사람이 가입한 경우 계정은 영구 삭제되며, 초대한 사람의 계정은 접속 정지 후 소명 자료를 제출하여야 해제됩니다.
 	</p>
+	<div class="my-20"></div>
 </div>
 
 <!-- <Footer /> -->
