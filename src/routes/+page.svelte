@@ -162,7 +162,7 @@
 									? 'btn-success'
 									: 'btn-error'}"
 								>{#if issue['participants']?.includes(userId)}
-									참여완료
+									완료
 								{:else}
 									미참여
 								{/if}</button
