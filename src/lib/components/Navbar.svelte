@@ -68,14 +68,17 @@
 		<div class="flex-1">
 			<a href="/" class="btn btn-ghost normal-case text-xl">T-아고라</a>
 		</div>
-		<div class="flex-none hidden md:block">
+		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
 				{#if $isLoggedIn}
-					<li><a href="/agora">속닥속닥</a></li>
-					<li><a href="/mypage">마이페이지</a></li>
-					<li><a on:click={logoutAndGotoHome}>로그아웃</a></li>
+					<li class=""><a href="/agora">속닥속닥</a></li>
+					<li class="hidden md:block"><a href="/mypage">마이페이지</a></li>
+					<li class="hidden md:block"><a on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}
-					<li><a href="/login">속닥속닥</a></li>
+					<li class="hidden md:block"><a href="/login">속닥속닥</a></li>
+				{/if}
+
+				{#if $isLoggedIn === false}
 					<li><a href="/notice/signup">회원가입</a></li>
 					<li><a href="/login">로그인</a></li>
 				{/if}
