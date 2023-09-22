@@ -55,13 +55,13 @@
 				class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 			>
 				{#if $isLoggedIn}
-					<li><a href="/agora">속닥속닥</a></li>
-					<li><a href="/mypage">마이페이지</a></li>
-					<li><a on:click={logoutAndGotoHome}>로그아웃</a></li>
+					<li><a class="py-5" href="/agora">속닥속닥</a></li>
+					<li><a class="py-5" href="/mypage">마이페이지</a></li>
+					<li><a class="py-5" on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}
-					<li><a href="/login">속닥속닥</a></li>
-					<li><a href="/notice/signup">회원가입</a></li>
-					<li><a href="/login">로그인</a></li>
+					<li><a class="py-5" href="/login">속닥속닥</a></li>
+					<li><a class="py-5" href="/notice/signup">회원가입</a></li>
+					<li><a class="py-5" href="/login">로그인</a></li>
 				{/if}
 			</ul>
 		</div>
