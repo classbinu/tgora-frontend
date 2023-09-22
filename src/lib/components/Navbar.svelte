@@ -34,21 +34,42 @@
 
 <nav class="container mx-auto">
 	<div class="navbar bg-base-100">
+		<div class="dropdown block md:hidden">
+			<label tabindex="0" class="btn btn-ghost btn-circle">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-5 w-5"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 6h16M4 12h16M4 18h7"
+					/></svg
+				>
+			</label>
+			<ul
+				tabindex="0"
+				class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+			>
+				{#if $isLoggedIn}
+					<li><a href="/agora">속닥속닥</a></li>
+					<li><a href="/mypage">마이페이지</a></li>
+					<li><a on:click={logoutAndGotoHome}>로그아웃</a></li>
+				{:else}
+					<li><a href="/login">속닥속닥</a></li>
+					<li><a href="/notice/signup">회원가입</a></li>
+					<li><a href="/login">로그인</a></li>
+				{/if}
+			</ul>
+		</div>
 		<div class="flex-1">
 			<a href="/" class="btn btn-ghost normal-case text-xl">T-아고라</a>
 		</div>
-		<div class="flex-none">
+		<div class="flex-none hidden md:block">
 			<ul class="menu menu-horizontal px-1">
-				<!-- <li><a on:click={isDeveloping}>이슈관리</a></li> -->
-				<!-- <li>
-					<details>
-						<summary> 교사 공간 </summary>
-						<ul class="p-2 bg-base-100">
-							<li><a>Link 1</a></li>
-							<li><a>Link 2</a></li>
-						</ul>
-					</details>
-				</li> -->
 				{#if $isLoggedIn}
 					<li><a href="/agora">속닥속닥</a></li>
 					<li><a href="/mypage">마이페이지</a></li>
