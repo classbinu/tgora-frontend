@@ -23,6 +23,8 @@
 		feedId = value;
 	});
 
+	let nowFeedType = 'all';
+
 	let feeds = [];
 
 	onMount(async () => {
@@ -65,6 +67,13 @@
 	>
 		<span class="material-symbols-outlined"> edit </span>
 	</a>
+	<div class="p-1 w-full lg:w-1/2 mx-auto text-right">
+		<!-- {#if nowFeedType === 'all'}
+			<button class="btn btn-sm btn-success">작성한 피드</button>
+		{:else}
+			<button class="btn btn-sm btn-primary">전체 피드</button>
+		{/if} -->
+	</div>
 	<FeedSecretWarning />
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>

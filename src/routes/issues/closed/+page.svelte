@@ -120,7 +120,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
@@ -149,7 +149,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
@@ -178,7 +178,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
@@ -207,7 +207,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
@@ -236,7 +236,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
@@ -265,7 +265,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
@@ -294,7 +294,7 @@
 									미참여
 								{/if}</button
 							>
-							<a href={issue.link} target="_blank" class="btn bg-white">참여하기</a>
+							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
 						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
 					</div>
