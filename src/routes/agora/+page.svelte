@@ -11,6 +11,7 @@
 	import { USER_ID, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount, tick } from 'svelte';
 	import WaterMark from '$lib/components/WaterMark.svelte';
+	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -57,18 +58,14 @@
 	<WaterMark>
 		<span slot="userId">{userId}</span>
 	</WaterMark>
+
 	<a
 		href="/agora/create"
 		class="btn btn-circle btn-success btn-lg fixed bottom-10 right-10 text-white shadow-lg text-2xl font-bold z-10"
 	>
 		<span class="material-symbols-outlined"> edit </span>
 	</a>
-	<div class="px-1">
-		<p class="text-error font-bold text-sm">피드를 캡처해서 외부로 유출하지 말아주세요 🙅</p>
-		<p class="text-sm text-gray-400">
-			모든 피드는 조회 UUID가 기록되며, 워터마크 등 보안 코드가 작동 중입니다 🔐
-		</p>
-	</div>
+	<FeedSecretWarning />
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
