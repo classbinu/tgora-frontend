@@ -15,6 +15,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import WaterMark from '$lib/components/WaterMark.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -123,6 +124,15 @@
 
 <Navbar />
 <main class="container mx-auto">
+	<WaterMark>
+		<span slot="userId">{userId}</span>
+	</WaterMark>
+	<div class="px-1">
+		<p class="text-error font-bold text-sm">피드를 캡처해서 외부로 유출하지 말아주세요 🙅</p>
+		<p class="text-sm text-gray-400">
+			모든 피드는 조회 UUID가 기록되며, 워터마크 등 보안 코드가 작동 중입니다 🔐
+		</p>
+	</div>
 	<div class="card-body w-full lg:w-1/2 mx-auto">
 		{#if feed.userId === userId}
 			<a href="/agora/{feed._id}/edit" class="text-success text-right"

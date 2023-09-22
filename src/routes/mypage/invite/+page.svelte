@@ -72,7 +72,7 @@
 	<p class="my-3">5️⃣ 접근이 자유로운 공개된 공간에 초대장 링크를 공유하지 마세요.</p>
 </div>
 
-<div class="text-center mt-20">
+<div class="text-center my-20">
 	{#if countMentees < 5}
 		<p class="text-sm text-success font-bold mb-3">남은 초대장은 {5 - countMentees}장입니다.</p>
 		<button id="shareButton" class="btn btn-lg bg-yellow-300 hover:bg-yellow-400 mb-40" on:click={invite}
