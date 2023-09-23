@@ -19,7 +19,7 @@
 					<th>분류</th>
 					<th>제목</th>
 					<th>마감일</th>
-					<th>관리자 메모</th>
+					<th>참여인원</th>
 					<th>생성일</th>
 					<th>상태</th>
 					<th>공지</th>
@@ -35,8 +35,8 @@
 							<a href={issue.link} target="_blank" class="link link-primary">{issue.title}</a>
 						</td>
 						<td>{formatDate(issue.dueDate)}</td>
-						<td>{issue.adminMemo}</td>
-						<td>{issue.createdAt}</td>
+						<td>{issue.participants.length.toLocaleString()}</td>
+						<td>{formatDate(issue.createdAt)}</td>
 						<td>{issue.isPublic}</td>
 						<td>{issue.isNotice ? '🔥' : ''}</td>
 						<td><a href="issues/{issue._id}" class="btn btn-primary btn-xs">수정</a></td>
