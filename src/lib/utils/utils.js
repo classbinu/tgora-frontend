@@ -258,7 +258,7 @@ export async function getMentees() {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('로그아웃 중 오류 발생:', error);
@@ -282,7 +282,7 @@ export async function getAllFeeds() {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('로그아웃 중 오류 발생:', error);
@@ -306,7 +306,7 @@ export async function getFeed(id) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('오류 발생:', error);
@@ -330,7 +330,7 @@ export async function getComments(feedId) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('오류 발생:', error);
@@ -354,7 +354,7 @@ export async function getComment(commentId) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('오류 발생:', error);
@@ -378,7 +378,7 @@ export async function deleteFeed(id) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('피드삭제 중 오류 발생:', error);
@@ -402,7 +402,7 @@ export async function deleteComment(id) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('댓글 삭제 중 오류 발생:', error);
@@ -427,7 +427,7 @@ export async function clickFeedLike(feedId) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('좋아요 오류 발생:', error);
@@ -452,7 +452,7 @@ export async function updateFeedViews(feedId) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('좋아요 오류 발생:', error);
@@ -477,7 +477,7 @@ export async function updateFeedFlags(feedId) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('신고 오류 발생:', error);
@@ -502,7 +502,7 @@ export async function checkIssueDone(issueId) {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('좋아요 오류 발생:', error);
@@ -520,7 +520,7 @@ export async function getAllIssues() {
 		if (response.ok) {
 			return await response.json();
 		} else {
-			alert('뭔가 문제가 발생했어요. 관리자에게 문의해 주세요.');
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
 		}
 	} catch (error) {
 		console.error('이슈 로드 중 오류 발생:', error);

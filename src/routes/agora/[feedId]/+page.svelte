@@ -114,7 +114,7 @@
 				content = '';
 				await getPage();
 			} else {
-				alert('댓글 등록에 실패했어요. 관리자에게 문의해 주세요.');
+				alert('댓글 등록에 실패했어요. 새로고침 후 재로그인을 해 주세요.');
 			}
 		} catch (error) {
 			alert(`뭔가 문제가 생겼어요. 관리자에게 문의해 주세요. error: ${error}`);
@@ -195,6 +195,7 @@
 				<div class="divider" />
 			</div>
 		{/each}
+		<div class="my-60" />
 	</div>
 </main>
 <!-- <Footer /> -->

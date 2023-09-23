@@ -23,7 +23,7 @@
 
 	export let data;
 	const issues = data.issues;
-	let issuesRecently = [];
+	let isNotice = [];
 	const issuesAgree = [];
 	const issuesDisagree = [];
 	const issuesPetition = [];
@@ -50,6 +50,7 @@
 		}
 	}
 
+	// 공지: 등록일 기준
 	// const DAYS = 3;
 	// const recentIssuesBaselineDate = new Date();
 	// recentIssuesBaselineDate.setDate(recentIssuesBaselineDate.getDate() - DAYS);
@@ -58,12 +59,20 @@
 	// 	const createdAtDate = new Date(issue.createdAt);
 
 	// 	if (createdAtDate >= recentIssuesBaselineDate) {
-	// 		issuesRecently.push(issue);
+	// 		isNotice.push(issue);
 	// 	}
 	// }
 
-	const sortedIssues = data.issues.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-	issuesRecently = sortedIssues.slice(0, 4);
+	// 공지: 마감일 기준
+	// const sortedIssues = data.issues.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+	// isNotice = sortedIssues.slice(0, 4);
+
+	// 공지: 공지 체크 기준
+	for (const issue of issues) {
+		if (issue.isNotice) {
+			isNotice.push(issue);
+		}
+	}
 
 	const fire = {
 		bgColor: 'bg-yellow-100',
@@ -117,10 +126,12 @@
 	<div class="text-center">
 		<ShareButton />
 	</div>
-	<h1 class="text-xl font-bold text-primary mt-20 mx-3">'미참여'를 눌러 참여 여부를 관리할 수 있어요 🎉</h1>
-	<h1 class="text-3xl font-bold mx-3">🔥 화력집중 (최근 등록 이슈)</h1>
+	<h1 class="text-xl font-bold text-primary mt-20 mx-3">
+		'미참여'를 눌러 참여 여부를 관리할 수 있어요 🎉
+	</h1>
+	<h1 class="text-3xl font-bold mx-3">🔥 화력집중(긴급)</h1>
 	<div class="flex flex-wrap">
-		{#each issuesRecently as issue (issue._id)}
+		{#each isNotice as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {fire.bgColor} {fire.textColor} shadow-xl">
 					<div class="card-body">
@@ -146,7 +157,7 @@
 			</div>
 		{/each}
 	</div>
- 
+
 	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
 	<div class="flex flex-wrap">
 		{#each issuesDisagree as issue (issue._id)}

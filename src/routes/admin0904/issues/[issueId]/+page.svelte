@@ -20,6 +20,7 @@
 	let dueDate = formatDate(issue.dueDate);
 	let { summary } = issue;
 	let { isPublic } = issue;
+	let { isNotice } = issue;
 	let { adminMemo } = issue;
 
 	const handleCategoryChange = (event) => {
@@ -40,6 +41,7 @@
 			dueDate,
 			summary,
 			isPublic,
+			isNotice,
 			adminMemo
 		};
 		try {
@@ -189,6 +191,12 @@
 					<option>공개</option>
 					<option>비공개</option>
 				</select>
+			</div>
+			<div class="form-control my-3">
+				<label class="cursor-pointer label">
+					<span class="label-text">공지 지정(화력 집중)</span>
+					<input type="checkbox" bind:checked={isNotice} class="checkbox checkbox-secondary" />
+				</label>
 			</div>
 			<div class="form-control w-full">
 				<label class="label" for="adminMemo">

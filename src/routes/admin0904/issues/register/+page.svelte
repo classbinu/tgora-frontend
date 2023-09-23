@@ -10,6 +10,7 @@
 	let dueDate = '';
 	let summary = '';
 	let isPublic = '공개';
+	let isNotice = false;
 	let adminMemo = '';
 
 	let API;
@@ -35,6 +36,7 @@
 			dueDate,
 			summary,
 			isPublic,
+			isNotice,
 			adminMemo
 		};
 		try {
@@ -152,6 +154,16 @@
 					<option>공개</option>
 					<option>비공개</option>
 				</select>
+			</div>
+			<div class="form-control my-3">
+				<label class="cursor-pointer label">
+					<span class="label-text">공지 지정(화력 집중)</span>
+					<input
+						type="checkbox"
+						bind:checked={isNotice}
+						class="checkbox checkbox-secondary"
+					/>
+				</label>
 			</div>
 			<div class="form-control w-full">
 				<label class="label" for="adminMemo">
