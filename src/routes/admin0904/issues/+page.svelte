@@ -15,20 +15,21 @@
 		<table class="table table-zebra text-center">
 			<thead>
 				<tr>
-					<th>_id</th>
+					<!-- <th>_id</th> -->
 					<th>분류</th>
 					<th>제목</th>
 					<th>마감일</th>
 					<th>관리자 메모</th>
 					<th>생성일</th>
 					<th>상태</th>
+					<th>공지</th>
 					<th>수정</th>
 				</tr>
 			</thead>
 			<tbody>
 				{#each data.issues as issue (issue._id)}
 					<tr>
-						<td>{issue._id}</td>
+						<!-- <td>{issue._id}</td> -->
 						<td>{issue.category}</td>
 						<td>
 							<a href={issue.link} target="_blank" class="link link-primary">{issue.title}</a>
@@ -37,6 +38,7 @@
 						<td>{issue.adminMemo}</td>
 						<td>{issue.createdAt}</td>
 						<td>{issue.isPublic}</td>
+						<td>{issue.isNotice ? '🔥' : ''}</td>
 						<td><a href="issues/{issue._id}" class="btn btn-primary btn-xs">수정</a></td>
 					</tr>
 				{/each}
