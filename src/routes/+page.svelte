@@ -137,13 +137,16 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<h1 class="text-2xl font-bold mx-1 my-5 text-center text-primary">
-		T-아고라를 통해 {participants.toLocaleString()}건의 이슈가 참여되었습니다.
+	<h1 class="text-3xl font-bold mx-1 my-5 text-center text-gray-500">
+		T-아고라를 통해 참여 완료된 이슈
 	</h1>
+	<p class="text-center text-6xl text-primary font-bold">
+		{participants.toLocaleString()}
+	</p>
 	<div class="text-center">
 		<ShareButton />
 	</div>
-	<h1 class="text-xl font-bold text-primary mt-20 mx-3">
+	<h1 class="text-center text-xl font-bold text-primary mt-20 mx-3">
 		'미참여'를 눌러 참여 여부를 관리할 수 있어요 🎉
 	</h1>
 	<h1 class="text-3xl font-bold mx-3">🔥 화력집중(중요)</h1>
