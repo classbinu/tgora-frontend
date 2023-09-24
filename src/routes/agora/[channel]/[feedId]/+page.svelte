@@ -166,7 +166,7 @@
 					? child.badgeColor
 					: feed.channel === '특수'
 					? special.badgeColor
-					: ''}">{feed.channel ? feed.channel : '일반'}</span
+					: ''}">{feed.channel ? feed.channel : '전체'}</span
 			>
 			<span class="text-sm">{feed.nickname}</span>
 			<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
