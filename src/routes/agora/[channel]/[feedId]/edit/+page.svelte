@@ -60,9 +60,9 @@
 
 			const response = await fetch(url, options);
 			if (response.ok) {
-				goto(`/agora/${_id}`);
+				goto(`/agora/${$page.params.channel}/${_id}`);
 			} else {
-				alert('피드 등록에 실패했어요. 개발자에게 문의해 주세요.');
+				alert('피드 수정에 실패했어요. 개발자에게 문의해 주세요.');
 			}
 		} catch (error) {
 			alert(`뭔가 문제가 생겼어요. 개발자에게 문의해 주세요. error: ${error}`);
@@ -74,7 +74,7 @@
 		const result = confirm('피드를 정말 삭제하시겠어요?');
 		if (result) {
 			await deleteFeed(_id);
-			goto('/agora');
+			goto(`/agora/${$page.params.channel}`);
 		} else {
 			return alert('취소되었습니다.');
 		}
@@ -94,7 +94,7 @@
 						<span class="label-text">채널</span>
 					</label> -->
 					<select class="select select-bordered" id="channel" bind:value={channel}>
-						<option>일반</option>
+						<option>전체</option>
 						<option>초등</option>
 						<option>중등</option>
 						<option>유치원</option>

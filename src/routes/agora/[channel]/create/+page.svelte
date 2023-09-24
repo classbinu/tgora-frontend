@@ -3,9 +3,19 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { API_URL } from '$lib/store';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import { returnValidAccessToken } from '$lib/utils/utils';
 
-	let channel = '일반';
+	const channels = {
+		my: '전체',
+		every: '전체',
+		elementary: '초등',
+		middle: '중등',
+		child: '유치원',
+		special: '특수'
+	};
+
+	let channel = channels[$page.params.channel];
 	let title = '';
 	let content = '';
 
@@ -36,7 +46,7 @@
 
 			const response = await fetch(url, options);
 			if (response.ok) {
-				goto('/agora');
+				goto(`/agora/${$page.params.channel}`);
 			} else {
 				alert('피드 등록에 실패했어요. 개발자에게 문의해 주세요.');
 			}
@@ -60,7 +70,7 @@
 						<span class="label-text">채널</span>
 					</label> -->
 					<select class="select select-bordered" id="channel" bind:value={channel}>
-						<option>일반</option>
+						<option>전체</option>
 						<option>초등</option>
 						<option>중등</option>
 						<option>유치원</option>

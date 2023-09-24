@@ -10,8 +10,12 @@
 	} from '$lib/utils/utils.js';
 	import { USER_ID, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount, tick } from 'svelte';
+	import { page } from '$app/stores';
 	import WaterMark from '$lib/components/WaterMark.svelte';
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
+	import { goto } from '$app/navigation';
+
+	// $page.params.channel
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -36,7 +40,7 @@
 		textColor: ''
 	};
 	const special = {
-		badgeColor: 'badge-neutral',
+		badgeColor: 'badge-success',
 		textColor: ''
 	};
 
@@ -45,17 +49,18 @@
 	let feeds = [];
 
 	onMount(async () => {
-		getPage();
+		getPage($page.params.channel);
 		setTimeout(() => scrollToElement(feedId), 500);
 	});
 
-	async function getPage() {
-		feeds = await getAllFeeds();
+	async function getPage(channel) {
+		goto(`/agora/${channel}`);
+		feeds = await getAllFeeds(channel);
 	}
 
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
-		getPage();
+		getPage($page.params.channel);
 	}
 
 	function goToFeed(feedId) {
@@ -79,23 +84,24 @@
 	</WaterMark>
 
 	<a
-		href="/agora/create"
+		href="/agora/{$page.params.channel}/create"
 		class="btn btn-circle btn-success btn-lg fixed bottom-10 right-10 text-white shadow-lg text-2xl font-bold z-10"
 	>
 		<span class="material-symbols-outlined"> edit </span>
 	</a>
 	<div class="p-1 w-full lg:w-1/2 mx-auto text-right">
-		<!-- {#if nowFeedType === 'all'}
-			<button class="btn btn-sm btn-success">작성한 피드</button>
-		{:else}
-			<button class="btn btn-sm btn-primary">전체 피드</button>
-		{/if} -->
+		<button on:click={() => getPage('every')} class="btn btn btn-outline btn-neutral">전체</button>
+		<button on:click={() => getPage('elementary')} class="btn btn-outline btn-primary">초등</button>
+		<button on:click={() => getPage('middle')} class="btn btn-outline btn-secondary">중등</button>
+		<button on:click={() => getPage('child')} class="btn btn-outline btn-accent">유치원</button>
+		<button on:click={() => getPage('special')} class="btn btn-outline btn-success">특수</button>
+		<!-- <button on:click={() => getPage('my')} class="btn btn-sm btn-success">내 피드</button> -->
 	</div>
 	<FeedSecretWarning />
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
-				<a href="/agora/{feed._id}">
+				<a href="/agora/{$page.params.channel}/{feed._id}">
 					<div class="card-body">
 						<div>
 							<span
@@ -107,7 +113,7 @@
 									? child.badgeColor
 									: feed.channel === '특수'
 									? special.badgeColor
-									: ''}">{feed.channel ? feed.channel : '일반'}</span
+									: ''}">{feed.channel ? feed.channel : '전체'}</span
 							>
 							<span class="text-sm">{feed.nickname}</span>
 							<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>

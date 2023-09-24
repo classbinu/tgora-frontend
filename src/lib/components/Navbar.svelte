@@ -55,7 +55,7 @@
 				class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 			>
 				{#if $isLoggedIn}
-					<li><a class="py-5" href="/agora">속닥속닥</a></li>
+					<li><a class="py-5" href="/agora/every">속닥속닥</a></li>
 					<li><a class="py-5" href="/mypage">마이페이지</a></li>
 					<li><a class="py-5" on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}
@@ -71,7 +71,7 @@
 		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
 				{#if $isLoggedIn}
-					<li class=""><a href="/agora">속닥속닥</a></li>
+					<li class=""><a href="/agora/every">속닥속닥</a></li>
 					<li class="hidden md:block"><a href="/mypage">마이페이지</a></li>
 					<li class="hidden md:block"><a on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}

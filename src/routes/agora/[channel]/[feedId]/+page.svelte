@@ -148,7 +148,7 @@
 	<FeedSecretWarning />
 	<div class="card-body w-full lg:w-1/2 mx-auto">
 		{#if feed.userId === userId}
-			<a href="/agora/{feed._id}/edit" class="text-success text-right"
+			<a href="/agora/{$page.params.channel}/{feed._id}/edit" class="text-success text-right"
 				><span class="material-symbols-outlined"> edit </span></a
 			>
 		{:else}

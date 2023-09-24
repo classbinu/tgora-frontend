@@ -265,11 +265,11 @@ export async function getMentees() {
 	}
 }
 
-export async function getAllFeeds() {
+export async function getAllFeeds(channel) {
 	const accessToken = await await returnValidAccessToken();
 	if (!accessToken) return;
 
-	const requestUrl = `${API}/feeds`;
+	const requestUrl = `${API}/feeds?channel=${channel}`;
 	const requestOptions = {
 		method: 'GET',
 		headers: {
