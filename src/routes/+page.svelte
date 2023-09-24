@@ -137,7 +137,7 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<h1 class="text-2xl font-bold my-5 text-center text-primary">
+	<h1 class="text-2xl font-bold mx-1 my-5 text-center text-primary">
 		T-아고라를 통해 {participants.toLocaleString()}건의 이슈가 참여되었습니다.
 	</h1>
 	<div class="text-center">
