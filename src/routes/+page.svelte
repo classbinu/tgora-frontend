@@ -137,7 +137,7 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<h1 class="text-3xl font-bold my-5 text-center text-primary m-3">
+	<h1 class="text-2xl font-bold my-5 text-center text-primary">
 		T-아고라를 통해 {participants.toLocaleString()}건의 이슈가 참여되었습니다.
 	</h1>
 	<div class="text-center">
@@ -146,7 +146,7 @@
 	<h1 class="text-xl font-bold text-primary mt-20 mx-3">
 		'미참여'를 눌러 참여 여부를 관리할 수 있어요 🎉
 	</h1>
-	<h1 class="text-3xl font-bold mx-3">🔥 화력집중(긴급)</h1>
+	<h1 class="text-3xl font-bold mx-3">🔥 화력집중(중요)</h1>
 	<div class="flex flex-wrap">
 		{#each isNotice as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
