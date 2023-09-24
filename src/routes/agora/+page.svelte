@@ -81,6 +81,7 @@
 				<a href="/agora/{feed._id}">
 					<div class="card-body">
 						<div>
+							<span class="badge">{feed.channel ? feed.channel : "일반"}</span>
 							<span class="text-sm">{feed.nickname}</span>
 							<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
 						</div>

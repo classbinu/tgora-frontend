@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { returnValidAccessToken } from '$lib/utils/utils';
 
+	let channel = '일반';
 	let title = '';
 	let content = '';
 
@@ -15,6 +16,7 @@
 
 	const handleSubmit = async () => {
 		const feed = {
+			channel,
 			title,
 			content
 		};
@@ -50,15 +52,32 @@
 	<div class="w-full lg:w-1/2 mx-auto p-1">
 		<form on:submit|preventDefault={handleSubmit}>
 			<label class="label" for="title">
-				<span id="title" class="label-text">제목</span>
+				<span id="title" class="label-text">채널 / 제목</span>
 			</label>
-			<input
-				type="text"
-				placeholder="제목을 입력해주세요."
-				class="input input-bordered w-full"
-				bind:value={title}
-				required
-			/>
+			<div class="flex">
+				<div class="form-control">
+					<!-- <label class="label" for="channel">
+						<span class="label-text">채널</span>
+					</label> -->
+					<select class="select select-bordered" id="channel" bind:value={channel}>
+						<option>일반</option>
+						<option>초등</option>
+						<option>중등</option>
+						<option>유치원</option>
+						<option>특수</option>
+					</select>
+				</div>
+				<!-- <label class="label" for="title">
+					<span id="title" class="label-text">제목</span>
+				</label> -->
+				<input
+					type="text"
+					placeholder="제목을 입력해주세요."
+					class="input input-bordered w-full"
+					bind:value={title}
+					required
+				/>
+			</div>
 			<div class="form-control">
 				<label class="label" for="content">
 					<span class="label-text">내용</span>
