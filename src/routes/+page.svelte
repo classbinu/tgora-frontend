@@ -137,7 +137,7 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<h1 class="text-3xl font-bold mx-1 my-5 text-center text-gray-500">
+	<h1 class="text-xl font-bold mx-1 my-5 text-center text-gray-500">
 		T-아고라를 통해 참여 완료된 이슈
 	</h1>
 	<p class="text-center text-6xl text-primary font-bold">
