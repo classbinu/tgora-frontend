@@ -44,6 +44,23 @@
 	let likesArray = [];
 	let flagsArray = [];
 
+	const elementary = {
+		badgeColor: 'badge-primary',
+		textColor: ''
+	};
+	const middle = {
+		badgeColor: 'badge-secondary',
+		textColor: ''
+	};
+	const child = {
+		badgeColor: 'badge-accent',
+		textColor: ''
+	};
+	const special = {
+		badgeColor: 'badge-neutral',
+		textColor: ''
+	};
+
 	onMount(async () => {
 		updateFeedViews($page.params.feedId);
 		getPage();
@@ -140,7 +157,17 @@
 			>
 		{/if}
 		<div>
-			<span class="badge">{feed.channel ? feed.channel : '일반'}</span>
+			<span
+				class="badge badge-outline {feed.channel === '초등'
+					? elementary.badgeColor
+					: feed.channel === '중등'
+					? middle.badgeColor
+					: feed.channel === '유치원'
+					? child.badgeColor
+					: feed.channel === '특수'
+					? special.badgeColor
+					: ''}">{feed.channel ? feed.channel : '일반'}</span
+			>
 			<span class="text-sm">{feed.nickname}</span>
 			<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
 		</div>
