@@ -211,7 +211,7 @@
 				<div class="mt-1 flex">
 					<p>{comment.content}</p>
 					{#if comment.userId === userId}
-						<a href="/agora/{comment.feedId}/{comment._id}/edit" class="text-success text-right"
+						<a href="/agora/{$page.params.channel}/{comment.feedId}/{comment._id}/edit" class="text-success text-right"
 							><span class="material-symbols-outlined"> edit </span></a
 						>
 					{:else}

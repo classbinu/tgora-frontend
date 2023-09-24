@@ -16,12 +16,17 @@
 </script>
 
 <Navbar />
-<div class="flex justify-center h-screen mt-20">
-	<div>
-		<a href="/mypage/password" class="btn btn-info m-3">비밀번호 변경</a>
-		<a href="/mypage/profile" class="btn btn-success m-3">회원정보 변경</a>
-		<a href="/mypage/invite" class="btn btn-warning m-3">초대하기</a>
-		<button on:click={confirmDelete} class="btn btn-error m-3">회원탈퇴</button>
+<div class="mt-20 w-full lg:w-1/2 mx-auto">
+	<div class="px-1">
+		<!-- <a href="/mypage/feeds" class="btn btn-success my-1 w-full">내가 쓴 피드</a>
+		<a href="/mypage/comments" class="btn btn-warning my-1 w-full">내가 쓴 댓글</a>
+		<div class="divider"></div> -->
+		<a href="/mypage/password" class="btn btn-primary btn-outline my-1 w-full">비밀번호 변경</a>
+		<a href="/mypage/profile" class="btn btn-primary btn-outline my-1 w-full">회원정보 변경</a>
+		<a href="/mypage/invite" class="btn btn-primary btn-outline my-1 w-full">초대하기</a>
+		<div class="divider"></div>
+		<button on:click={confirmDelete} class="btn btn-outline btn-error my-1 w-full">회원탈퇴</button>
 	</div>
 </div>
-<Footer />
+
+<!-- <Footer /> -->
