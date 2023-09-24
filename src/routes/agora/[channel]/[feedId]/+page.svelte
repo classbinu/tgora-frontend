@@ -197,6 +197,7 @@
 					placeholder="착한 댓글을 달아 주세요."
 					class="textarea textarea-bordered w-full"
 					rows="1"
+					required
 				/>
 				<button class="btn btn-success">작성</button>
 			</div>
