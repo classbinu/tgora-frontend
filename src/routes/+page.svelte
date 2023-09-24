@@ -31,6 +31,7 @@
 	const increaseCount = () => {
 		participants += 23;
 		if (participants >= targetCount) {
+			participants = targetCount;
 			clearInterval(animationInterval);
 		}
 	};
@@ -155,7 +156,6 @@
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {fire.bgColor} {fire.textColor} shadow-xl">
 					<div class="card-body">
-						
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">

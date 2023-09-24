@@ -7,7 +7,7 @@ export const load = async () => {
 	});
 	const issues = await fetch(`${API}/issues?state=open&isPublic=public`);
 	const participants = await fetch(`${API}/issues/participants`);
-	
+
 	const data = {
 		issues: await issues.json(),
 		participants: await participants.json()
