@@ -60,7 +60,7 @@
 
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
-		getPage($page.params.channel);
+		feeds = await getAllFeeds($page.params.channel);
 	}
 
 	function goToFeed(feedId) {
