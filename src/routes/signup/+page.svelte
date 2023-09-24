@@ -3,6 +3,7 @@
 	import { isLoggedIn, API_URL } from '$lib/store';
 	import { page } from '$app/stores';
 	import { usernameValidator, passwordValidator } from '$lib/utils/utils';
+	import { onMount } from 'svelte';
 
 	let username = '';
 	let password = '';
@@ -15,6 +16,15 @@
 
 	const inviteCode = $page.url.searchParams.get('invite');
 	mentor = inviteCode;
+
+	onMount(() => {
+		const result = confirm(
+			"T-아고라는 유치원, 초등, 중등, 특수 교사만 가입 가능합니다. 가입 조건이 안 되시는 분은 '취소'를 눌러 주세요."
+		);
+		if (!result) {
+			goto('/notice/signup');
+		}
+	});
 
 	function authLoadingAlert() {
 		let timerInterval;
