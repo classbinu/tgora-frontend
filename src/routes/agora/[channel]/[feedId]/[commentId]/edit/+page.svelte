@@ -31,7 +31,7 @@
 
 		if (comment.userId !== userId) {
 			alert('접근 권한이 없습니다.');
-			goto(`/agora/${$page.params.feedId}`);
+			goto(`/agora/${$page.params.channel}/${$page.params.feedId}`);
 		}
 	});
 
@@ -55,7 +55,7 @@
 
 			const response = await fetch(url, options);
 			if (response.ok) {
-				goto(`/agora/${$page.params.feedId}`);
+				goto(`/agora/${$page.params.channel}/${$page.params.feedId}`);
 			} else {
 				alert('댓글 등록에 실패했어요. 개발자에게 문의해 주세요.');
 			}
