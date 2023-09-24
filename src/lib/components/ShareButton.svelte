@@ -17,6 +17,6 @@
 	};
 </script>
 
-<button id="shareButton" class="btn btn-circle bg-yellow-300 hover:bg-yellow-400" on:click={share}
+<button id="shareButton" class="btn btn-circle bg-yellow-300 hover:bg-yellow-400 btn-lg fixed bottom-10 right-10 shadow-lg text-2xl font-bold z-10" on:click={share}
 	><span class="material-symbols-outlined"> share </span></button
 >

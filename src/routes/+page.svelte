@@ -5,6 +5,7 @@
 	import ShareButton from '$lib/components/ShareButton.svelte';
 	import { formatDate, checkIssueDone } from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
+	import { onMount } from 'svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -22,6 +23,22 @@
 	});
 
 	export let data;
+
+	let participants = 0;
+	const targetCount = data.participants;
+	let animationInterval;
+
+	const increaseCount = () => {
+		participants += 23;
+		if (participants >= targetCount) {
+			clearInterval(animationInterval);
+		}
+	};
+
+	onMount(() => {
+		animationInterval = setInterval(increaseCount, 20);
+	});
+
 	const issues = data.issues;
 	let isNotice = [];
 	const issuesAgree = [];
@@ -120,8 +137,8 @@
 <Navbar />
 <Carousel />
 <main class="container mx-auto">
-	<h1 class="text-xl font-bold my-5 text-center text-success m-3">
-		권리 위에 잠자는 자는 보호받지 못합니다<br />T-아고라를 주변 선생님에게 공유해 주세요 🙇
+	<h1 class="text-3xl font-bold my-5 text-center text-primary m-3">
+		T-아고라를 통해 {participants.toLocaleString()}건의 이슈가 참여되었습니다.
 	</h1>
 	<div class="text-center">
 		<ShareButton />
