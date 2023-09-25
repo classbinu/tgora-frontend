@@ -67,7 +67,7 @@
 	}
 
 	async function copyMyRank() {
-		const message = `교육 이슈 쉽게 참여하기 tgora.kr 🚀
+		const message = `교육 이슈 쉽게 참여하기 tgora.kr 🔥
 
 선생님께서 참여하신 이슈는 ${participatedIssuesCount}건으로
 T-아고라 상위 ${myRank}%입니다.⭐️`;
@@ -190,7 +190,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 				<br />
 				T-아고라 상위 {myRank}%입니다.
 			</p>
-			<button class="btn bg-yellow-300 mt-3" on:click={copyMyRank}>내 활동 공유하기 🎉</button>
+			<button class="btn bg-yellow-300 mt-3" on:click={copyMyRank}>내 활동 공유하기 🔥</button>
 		{:else}
 			<p>
 				로그인 후 참여한 이슈만 집계됩니다.
