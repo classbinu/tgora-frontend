@@ -15,6 +15,7 @@
 	import WaterMark from '$lib/components/WaterMark.svelte';
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
 	import { goto } from '$app/navigation';
+	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
 
 	// $page.params.channel
 
@@ -78,6 +79,7 @@
 	}
 </script>
 
+<InviteBanner />
 <Navbar />
 <main class="container mx-auto">
 	<WaterMark>

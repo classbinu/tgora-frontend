@@ -6,6 +6,7 @@
 	import { formatDate, checkIssueDone } from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
 	import { onMount } from 'svelte';
+	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -135,6 +136,7 @@
 	}
 </script>
 
+<InviteBanner />
 <Navbar />
 <Carousel />
 <main class="container mx-auto">

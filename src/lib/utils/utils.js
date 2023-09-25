@@ -265,6 +265,12 @@ export async function getMentees() {
 	}
 }
 
+export async function getOpenIssues() {
+	const response = await fetch(`${API}/issues?state=open&isPublic=public`);
+	const issues = await response.json();
+	return issues;
+}
+
 export async function getAllFeeds(channel) {
 	const accessToken = await await returnValidAccessToken();
 	if (!accessToken) return;
