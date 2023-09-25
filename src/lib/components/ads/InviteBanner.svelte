@@ -17,7 +17,7 @@
 {:else}
 	<a href="/notice/signup">
 		<div class="alert bg-success flex justify-center font-bold">
-			<span>🙋 어떻게 가입하나요?</span>
+			<span>🙋 T-아고라는 교사 익명 커뮤니티입니다</span>
 		</div>
 	</a>
 {/if}
