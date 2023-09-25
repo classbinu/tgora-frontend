@@ -14,4 +14,10 @@
 			<span>📮 초대장이 지급되었어요!</span>
 		</div>
 	</a>
+{:else}
+	<a href="/notice/signup">
+		<div class="alert bg-success flex justify-center font-bold">
+			<span>🙋 어떻게 가입하나요?</span>
+		</div>
+	</a>
 {/if}

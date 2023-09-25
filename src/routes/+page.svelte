@@ -60,7 +60,7 @@
 	}
 
 	function calculateRank(total, count) {
-		const adjustment = 0.1;
+		const adjustment = 0.2;
 		const result = (100 - (count / total) * 100) * adjustment;
 		myRank = result.toFixed(2);
 		return myRank;
@@ -184,19 +184,22 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 		{participants.toLocaleString()}
 	</p>
 	<div class="text-center mt-5 text-secondary font-bold">
-			{#if isLoggedInCheck}
+		{#if isLoggedInCheck}
 			<p>
 				선생님께서 참여하신 이슈는 {participatedIssuesCount}건으로
 				<br />
 				T-아고라 상위 {myRank}%입니다.
 			</p>
 			<button class="btn bg-yellow-300 mt-3" on:click={copyMyRank}>내 활동 공유하기 🎉</button>
-			{:else}
+		{:else}
 			<p>
 				로그인 후 참여한 이슈만 집계됩니다.
+				<br />
+				<br />
 			</p>
-			{/if}
-		</div>
+			<button class="btn bg-yellow-300 mt-3" disabled="disabled" on:click={() => alert("로그인을 하면 내 활동을 공유할 수 있어요.")}>내 활동 공유하기 🎉</button>
+		{/if}
+	</div>
 	<h1 class="text-center text-xl font-bold text-primary mt-20 mx-3">
 		'미참여'를 눌러 참여 여부를 관리할 수 있어요
 	</h1>
