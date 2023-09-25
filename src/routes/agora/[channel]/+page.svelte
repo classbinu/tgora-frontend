@@ -10,7 +10,7 @@
 		formatRelativeTime
 	} from '$lib/utils/utils.js';
 	import { USER_ID, BEFORE_FEED_ID } from '$lib/store';
-	import { onMount, tick } from 'svelte';
+	import { onMount, onDestroy, tick } from 'svelte';
 	import { page } from '$app/stores';
 	import WaterMark from '$lib/components/WaterMark.svelte';
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
@@ -51,8 +51,8 @@
 	let feeds = [];
 
 	onMount(async () => {
-		getPage($page.params.channel);
-		setTimeout(() => scrollToElement(feedId), 500);
+		await getPage($page.params.channel);
+		scrollToElement(feedId);
 	});
 
 	async function getPage(channel) {
