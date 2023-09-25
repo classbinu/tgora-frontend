@@ -38,7 +38,7 @@
 					</td>
 					<td>{feed.likes.length.toLocaleString()}</td>
 					<td>{feed.comments.length.toLocaleString()}</td>
-					<td>{(convertUTCtoUTC9(feed.createdAt))}</td>
+					<td>{convertUTCtoUTC9(feed.createdAt)}</td>
 				</tr>
 			{/each}
 		</tbody>
