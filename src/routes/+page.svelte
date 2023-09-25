@@ -183,16 +183,20 @@ T-아고라 상위 ${myRank}%에 해당합니다.⭐️`;
 	<p class="text-center text-6xl text-primary font-bold">
 		{participants.toLocaleString()}
 	</p>
-	{#if isLoggedInCheck}
-		<div class="text-center mt-5 text-secondary font-bold">
+	<div class="text-center mt-5 text-secondary font-bold">
+			{#if isLoggedInCheck}
 			<p>
 				선생님께서 참여하신 이슈는 {participatedIssuesCount}건으로
 				<br />
 				T-아고라 상위 {myRank}%에 해당합니다.
 			</p>
 			<button class="btn bg-yellow-300 mt-3" on:click={copyMyRank}>내 활동 공유하기 🎉</button>
+			{:else}
+			<p>
+				로그인 후 참여한 이슈만 집계됩니다.
+			</p>
+			{/if}
 		</div>
-	{/if}
 	<h1 class="text-center text-xl font-bold text-primary mt-20 mx-3">
 		'미참여'를 눌러 참여 여부를 관리할 수 있어요
 	</h1>
