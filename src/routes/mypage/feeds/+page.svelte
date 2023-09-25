@@ -1,7 +1,7 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { getMyFeeds, convertUTCtoUTC9, formatDate } from '$lib/utils/utils.js';
+	import { getMyFeeds, convertUTCtoUTC9, formatDate, formatRelativeTime } from '$lib/utils/utils.js';
 	import { onMount } from 'svelte';
 
 	let feeds = [];
@@ -38,7 +38,7 @@
 					</td>
 					<td>{feed.likes.length.toLocaleString()}</td>
 					<td>{feed.comments.length.toLocaleString()}</td>
-					<td>{convertUTCtoUTC9(feed.createdAt)}</td>
+					<td>{formatRelativeTime(feed.createdAt)}</td>
 				</tr>
 			{/each}
 		</tbody>

@@ -1,7 +1,7 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { getMyComments, convertUTCtoUTC9, formatDate } from '$lib/utils/utils.js';
+	import { getMyComments, convertUTCtoUTC9, formatDate, formatRelativeTime } from '$lib/utils/utils.js';
 	import { onMount } from 'svelte';
 
 	let comments = [];
@@ -41,7 +41,7 @@
 					<td>
 						<a href="/agora/my/{comment.feedId._id}" class="link link-primary">{limitContentLength(comment.content, maxLength)}</a>
 					</td>
-					<td>{convertUTCtoUTC9(comment.createdAt)}</td>
+					<td>{formatRelativeTime(comment.createdAt)}</td>
 				</tr>
 			{/each}
 		</tbody>
