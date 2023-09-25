@@ -9,7 +9,8 @@
 		updateFeedViews,
 		updateFeedFlags,
 		returnValidAccessToken,
-		convertUTCtoUTC9
+		convertUTCtoUTC9,
+		formatRelativeTime
 	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount } from 'svelte';
@@ -172,8 +173,8 @@
 					? special.badgeColor
 					: ''}">{feed.channel ? feed.channel : '전체'}</span
 			>
-			<span class="text-sm">{feed.nickname}</span>
-			<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
+			<span class="text-sm text-gray-400">{feed.nickname}</span>
+			<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
 		</div>
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
 		<p class="whitespace-pre-line">{feed.content}</p>
@@ -210,8 +211,8 @@
 		{#each comments as comment (comment._id)}
 			<div class="mt-3">
 				<div>
-					<span class="text-sm">{comment.nickname}</span>
-					<span class="text-xs text-gray-300">{convertUTCtoUTC9(comment.createdAt)}</span>
+					<span class="text-sm text-gray-400">{comment.nickname}</span>
+					<span class="text-xs text-gray-500">{formatRelativeTime(comment.createdAt)}</span>
 				</div>
 				<div class="mt-1 flex">
 					<p>{comment.content}</p>
