@@ -199,7 +199,7 @@
 				<textarea
 					type="text"
 					bind:value={content}
-					placeholder="착한 댓글을 달아 주세요."
+					placeholder="공감과 지지의 댓글을 달아 주세요."
 					class="textarea textarea-bordered w-full"
 					rows="1"
 					required

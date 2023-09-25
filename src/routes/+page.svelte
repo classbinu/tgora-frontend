@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
-	import { formatDate, checkIssueDone } from '$lib/utils/utils.js';
+	import { formatDate, checkIssueDone, getMyParticipatedIssuesCount } from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
 	import { onMount } from 'svelte';
 	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
@@ -30,16 +30,39 @@
 	let animationInterval;
 
 	const increaseCount = () => {
-		participants += 23;
+		participants += 37;
 		if (participants >= targetCount) {
 			participants = targetCount;
 			clearInterval(animationInterval);
 		}
 	};
 
-	onMount(() => {
+	let totalIssueCount = 0;
+	let participatedIssuesCount = 0;
+	let myRank = 0;
+	onMount(async () => {
 		animationInterval = setInterval(increaseCount, 20);
+		const data = await getMyParticipatedIssuesCount();
+		totalIssueCount = data.totalIssueCount;
+		participatedIssuesCount = data.participatedIssuesCount;
+		myRank = calculateRank(totalIssueCount, participatedIssuesCount);
 	});
+
+	function calculateRank(total, count) {
+		const adjustment = 0.1;
+		const result = (100 - (count / total) * 100) * adjustment;
+		myRank = result.toFixed(2);
+		return myRank;
+	}
+
+	async function copyMyRank() {
+		const message = `교육 이슈 쉽게 참여하기 tgora.kr 🚀
+
+선생님께서 참여하신 이슈는 ${participatedIssuesCount}건으로
+T-아고라 상위 ${myRank}%에 해당합니다.⭐️`;
+		await navigator.clipboard.writeText(message);
+		return alert(`활동이 클립보드에 복사되었어요.`);
+	}
 
 	const issues = data.issues;
 	let isNotice = [];
@@ -139,6 +162,9 @@
 <InviteBanner />
 <Navbar />
 <Carousel />
+<div class="text-center">
+	<ShareButton />
+</div>
 <main class="container mx-auto">
 	<h1 class="text-xl font-bold mx-1 my-5 text-center text-gray-500">
 		T-아고라를 통해 참여 완료된 이슈
@@ -146,9 +172,16 @@
 	<p class="text-center text-6xl text-primary font-bold">
 		{participants.toLocaleString()}
 	</p>
-	<div class="text-center">
-		<ShareButton />
-	</div>
+	{#if isLoggedIn}
+		<div class="text-center mt-5 text-secondary font-bold">
+			<p>
+				선생님께서 참여하신 이슈는 {participatedIssuesCount}건으로
+				<br />
+				T-아고라 상위 {myRank}%에 해당합니다.
+			</p>
+			<button class="btn bg-yellow-300 mt-3" on:click={copyMyRank}>내 활동 공유하기 🎉</button>
+		</div>
+	{/if}
 	<h1 class="text-center text-xl font-bold text-primary mt-20 mx-3">
 		'미참여'를 눌러 참여 여부를 관리할 수 있어요
 	</h1>

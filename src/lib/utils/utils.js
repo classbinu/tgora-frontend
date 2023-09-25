@@ -565,6 +565,31 @@ export async function checkIssueDone(issueId) {
 	}
 }
 
+// 참여 이슈 개수 카운트
+export async function getMyParticipatedIssuesCount() {
+	const accessToken = await returnValidAccessToken();
+	if (!accessToken) return;
+
+	const requestUrl = `${API}/issues/participatedCount`;
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}
+	};
+
+	try {
+		const response = await fetch(requestUrl, requestOptions);
+		if (response.ok) {
+			return await response.json();
+		} else {
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
+		}
+	} catch (error) {
+		console.error('이슈 확인 중 오류 발생:', error);
+	}
+}
+
 export async function getAllIssues() {
 	const requestUrl = `${API}/issues`;
 	const requestOptions = {
