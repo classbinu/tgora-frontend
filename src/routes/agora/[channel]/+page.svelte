@@ -116,8 +116,8 @@
 									? special.badgeColor
 									: ''}">{feed.channel ? feed.channel : '전체'}</span
 							>
-							<span class="text-sm">{feed.nickname}</span>
-							<span class="text-xs text-gray-300">{formatRelativeTime(feed.createdAt)}</span>
+							<span class="text-sm text-gray-400">{feed.nickname}</span>
+							<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
 						</div>
 						<h2 class="text-lg font-bold mt-5">{feed.title}</h2>
 						<p class="truncate">{feed.content}</p>
