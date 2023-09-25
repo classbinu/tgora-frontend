@@ -209,6 +209,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {fire.bgColor} {fire.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge badge-outline badge-error">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
