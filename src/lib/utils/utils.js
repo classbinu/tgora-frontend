@@ -576,3 +576,26 @@ export async function getAllIssues() {
 		console.error('이슈 로드 중 오류 발생:', error);
 	}
 }
+
+// 피드 작성글 표시
+export function formatRelativeTime(ISODate) {
+	const now = new Date();
+	const diffMilliseconds = now - new Date(ISODate);
+	const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
+	const diffHours = Math.floor(diffMinutes / 60);
+
+	if (diffHours >= 24) {
+		// 24시간 이상이면 날짜 그대로 반환
+		const options = { year: 'numeric', month: 'long', day: 'numeric' };
+		return new Date(ISODate).toLocaleDateString(undefined, options);
+	} else if (diffHours >= 1) {
+		// 1시간 이상이면 시간 단위로 표현
+		return `${diffHours}시간 전`;
+	} else if (diffMinutes >= 1) {
+		// 1분 이상이면 분 단위로 표현
+		return `${diffMinutes}분 전`;
+	} else {
+		// 1분 미만이면 "방금 전"으로 표현
+		return '방금 전';
+	}
+}

@@ -6,7 +6,8 @@
 		getAllFeeds,
 		clickFeedLike,
 		returnValidAccessToken,
-		convertUTCtoUTC9
+		convertUTCtoUTC9,
+		formatRelativeTime
 	} from '$lib/utils/utils.js';
 	import { USER_ID, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount, tick } from 'svelte';
@@ -116,7 +117,7 @@
 									: ''}">{feed.channel ? feed.channel : '전체'}</span
 							>
 							<span class="text-sm">{feed.nickname}</span>
-							<span class="text-xs text-gray-300">{convertUTCtoUTC9(feed.createdAt)}</span>
+							<span class="text-xs text-gray-300">{formatRelativeTime(feed.createdAt)}</span>
 						</div>
 						<h2 class="text-lg font-bold mt-5">{feed.title}</h2>
 						<p class="truncate">{feed.content}</p>
@@ -131,12 +132,16 @@
 							{feed.likes.length}
 						</span>
 					</button>
-					<a href="/agora/{$page.params.channel}/{feed._id}" class="w-1/3 join-item text-gray-400 text-center"
+					<a
+						href="/agora/{$page.params.channel}/{feed._id}"
+						class="w-1/3 join-item text-gray-400 text-center"
 						><span class="material-symbols-outlined"> chat_bubble </span><span
 							>{feed.comments.length}</span
 						></a
 					>
-					<a href="/agora/{$page.params.channel}/{feed._id}" class="w-1/3 join-item text-gray-400 text-center"
+					<a
+						href="/agora/{$page.params.channel}/{feed._id}"
+						class="w-1/3 join-item text-gray-400 text-center"
 						><span class="material-symbols-outlined"> visibility </span><span />
 					</a>
 				</div>
