@@ -3,7 +3,12 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
-	import { formatDate, checkIssueDone, getMyParticipatedIssuesCount } from '$lib/utils/utils.js';
+	import {
+		formatDate,
+		checkIssueDone,
+		getMyParticipatedIssuesCount,
+		isLoggedInByAccessToken
+	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
 	import { onMount } from 'svelte';
 	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
@@ -42,11 +47,17 @@
 	let myRank = 0;
 	onMount(async () => {
 		animationInterval = setInterval(increaseCount, 20);
-		const data = await getMyParticipatedIssuesCount();
-		totalIssueCount = data.totalIssueCount;
-		participatedIssuesCount = data.participatedIssuesCount;
-		myRank = calculateRank(totalIssueCount, participatedIssuesCount);
+		getPage();
 	});
+
+	async function getPage() {
+		if (await isLoggedInByAccessToken()) {
+			const data = await getMyParticipatedIssuesCount();
+			totalIssueCount = data.totalIssueCount;
+			participatedIssuesCount = data.participatedIssuesCount;
+			myRank = calculateRank(totalIssueCount, participatedIssuesCount);
+		}
+	}
 
 	function calculateRank(total, count) {
 		const adjustment = 0.1;
@@ -172,7 +183,7 @@ T-아고라 상위 ${myRank}%에 해당합니다.⭐️`;
 	<p class="text-center text-6xl text-primary font-bold">
 		{participants.toLocaleString()}
 	</p>
-	{#if isLoggedIn}
+	{#if isLoggedInCheck}
 		<div class="text-center mt-5 text-secondary font-bold">
 			<p>
 				선생님께서 참여하신 이슈는 {participatedIssuesCount}건으로
