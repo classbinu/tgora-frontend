@@ -131,12 +131,12 @@
 							{feed.likes.length}
 						</span>
 					</button>
-					<a href="/agora/{feed._id}" class="w-1/3 join-item text-gray-400 text-center"
+					<a href="/agora/{$page.params.channel}/{feed._id}" class="w-1/3 join-item text-gray-400 text-center"
 						><span class="material-symbols-outlined"> chat_bubble </span><span
 							>{feed.comments.length}</span
 						></a
 					>
-					<a href="/agora/{feed._id}" class="w-1/3 join-item text-gray-400 text-center"
+					<a href="/agora/{$page.params.channel}/{feed._id}" class="w-1/3 join-item text-gray-400 text-center"
 						><span class="material-symbols-outlined"> visibility </span><span />
 					</a>
 				</div>
