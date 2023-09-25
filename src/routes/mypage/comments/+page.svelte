@@ -13,6 +13,15 @@
 	async function getPage() {
 		comments = await getMyComments();
 	}
+
+	const maxLength = 20;
+	function limitContentLength(text, maxLength) {
+		if (text.length > maxLength) {
+			return text.slice(0, maxLength) + '...';
+		}
+		return text;
+	}
+
 </script>
 
 <Navbar />
@@ -20,21 +29,19 @@
 	<table class="table table-zebra text-center">
 		<thead>
 			<tr>
-				<!-- <th>_id</th> -->
 				<th>채널</th>
-				<th>제목</th>
+				<th>내용</th>
 				<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each comments as comment (comment._id)}
 				<tr>
-					<!-- <td>{issue._id}</td> -->
-					<td>{feed.channel}</td>
+					<td>{comment.feedId.channel}</td>
 					<td>
-						<a href="/agora/my/{feed._id}" class="link link-primary">{feed.title}</a>
+						<a href="/agora/my/{comment.feedId._id}" class="link link-primary">{limitContentLength(comment.content, maxLength)}</a>
 					</td>
-					<td>{(convertUTCtoUTC9(feed.createdAt))}</td>
+					<td>{convertUTCtoUTC9(comment.createdAt)}</td>
 				</tr>
 			{/each}
 		</tbody>
