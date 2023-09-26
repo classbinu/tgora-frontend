@@ -1,4 +1,4 @@
-import { API_URL, IP, USER_ID, isLoggedIn } from '$lib/store';
+import { API_URL, USER_ID, isLoggedIn } from '$lib/store';
 
 import { goto } from '$app/navigation';
 
