@@ -10,7 +10,7 @@
 	</h1>
 	<h2 class="text-2xl font-bold text-error">🔥 꼭 읽어주세요</h2>
 	<br />
-	<h3 class="text-xl font-bold">T-아고라는 교사 전용 익명 커뮤니티입니다.</h3>
+	<h3 class="text-xl font-bold">T-아고라는 교사 익명 커뮤니티입니다.</h3>
 	<p class="my-3">
 		1️⃣ 현직 교사만 가입할 수 있습니다.
 		<br />

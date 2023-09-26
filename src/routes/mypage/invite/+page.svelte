@@ -29,7 +29,7 @@
 			if (navigator.share) {
 				await navigator.share({
 					title: 'T-아고라',
-					text: '교사 전용 익명 커뮤니티 초대장이 도착했어요.',
+					text: '교사 익명 커뮤니티 초대장이 도착했어요.',
 					url: `https://tgora.kr/signup?invite=${inviteCode}`
 				});
 			} else {
@@ -49,7 +49,7 @@
 	</h1>
 	<h2 class="text-2xl font-bold text-error">🔥 꼭 읽어주세요</h2>
 	<br />
-	<h3 class="text-xl font-bold">T-아고라는 교사 전용 익명 커뮤니티입니다.</h3>
+	<h3 class="text-xl font-bold">T-아고라는 교사 익명 커뮤니티입니다.</h3>
 	<p class="my-3">
 		1️⃣ 현직 교사만 가입할 수 있습니다. 초대장은 반드시 가입 대상에게 보내주세요.
 		<br />
@@ -69,7 +69,7 @@
 		없습니다.
 	</p>
 	<p class="my-3">4️⃣ 가입 대상이 아닌 사람에게 초대장을 발송한 경우에는 접속 정지 후 소명 자료를 제출하여야 해제됩니다.</p>
-	<p class="my-3">5️⃣ 교사 전용 익명 커뮤니티의 가치를 지키기 위해 약속은 꼭 지켜 주세요.</p>
+	<p class="my-3">5️⃣ 교사 익명 커뮤니티의 가치를 지키기 위해 약속은 꼭 지켜 주세요.</p>
 </div>
 
 <div class="text-center my-20">
