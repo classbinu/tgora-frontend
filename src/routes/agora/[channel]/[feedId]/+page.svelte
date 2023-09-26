@@ -151,7 +151,7 @@
 <Navbar />
 <main class="container mx-auto">
 	<WaterMark>
-		<span slot="userId">{userId} {ipAddress}</span>
+		<span slot="userId">{userId}<br />{ipAddress}</span>
 	</WaterMark>
 	<FeedSecretWarning />
 	<div class="card-body w-full lg:w-1/2 mx-auto">

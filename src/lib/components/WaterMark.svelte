@@ -1,4 +1,4 @@
-<div>
+<div class="text-center">
 	<div
 		class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 opacity-50 text-gray-300 text-xs"
 	>

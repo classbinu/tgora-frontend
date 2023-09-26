@@ -85,7 +85,7 @@
 <Navbar />
 <main class="container mx-auto">
 	<WaterMark>
-		<span slot="userId">{userId} {ipAddress}</span>
+		<span slot="userId">{userId}<br />{ipAddress}</span>
 	</WaterMark>
 
 	<a
