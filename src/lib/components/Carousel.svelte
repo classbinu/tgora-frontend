@@ -5,11 +5,11 @@
 			class="w-full h-96 object-cover filter grayscale"
 			alt=""
 		/>
-		<div class="absolute top-0 left-0 w-full h-full bg-black opacity-50">
+		<div class="absolute top-0 left-0 w-full h-full bg-black opacity-70">
 			<!-- 검정색 덮기 -->
 		</div>
 		<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-			<p class="text-white text-xl md:text-3xl font-bold">선생님, 오늘은 무사하십니까?</p>
+			<p class="text-white text-3xl font-bold whitespace-nowrap">선생님, 오늘은 무사하십니까?</p>
 		</div>
 	</div>
 	<!-- <div id="item2" class="carousel-item w-full">
