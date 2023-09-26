@@ -50,7 +50,7 @@
 	let nowFeedType = 'all';
 
 	let feeds = [];
-	let ipAddress = '';
+	let ipAddress = '000.000.000.000';
 	onMount(async () => {
 		await getPage($page.params.channel);
 		scrollToElement(feedId);

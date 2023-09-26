@@ -63,7 +63,7 @@
 		textColor: ''
 	};
 
-	let ipAddress = '';
+	let ipAddress = '000.000.000.000';
 	onMount(async () => {
 		updateFeedViews($page.params.feedId);
 		getPage();
