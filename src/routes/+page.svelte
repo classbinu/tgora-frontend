@@ -201,7 +201,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 				class="btn bg-yellow-300 mt-3"
 				disabled="disabled"
 				on:click={() => alert('로그인을 하면 내 활동을 공유할 수 있어요.')}
-				>내 활동 공유하기 🎉</button
+				>내 활동 공유하기 🔥</button
 			>
 		{/if}
 	</div>
