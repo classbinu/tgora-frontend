@@ -1,5 +1,5 @@
 <script>
-	import { isLoggedIn, USER_ID } from '$lib/store';
+	import { isLoggedIn, USER_ID, IP } from '$lib/store';
 	import { logout } from '$lib/utils/utils';
 	import { goto } from '$app/navigation';
 
@@ -15,6 +15,7 @@
 		logout();
 		isLoggedIn.set(false);
 		USER_ID.set(undefined);
+		IP.set(undefined);
 		goto('/');
 	}
 </script>

@@ -10,7 +10,7 @@
 		formatRelativeTime,
 		getIpAddress
 	} from '$lib/utils/utils.js';
-	import { USER_ID, BEFORE_FEED_ID } from '$lib/store';
+	import { USER_ID, BEFORE_FEED_ID, IP } from '$lib/store';
 	import { onMount, onDestroy, tick } from 'svelte';
 	import { page } from '$app/stores';
 	import WaterMark from '$lib/components/WaterMark.svelte';
@@ -28,6 +28,11 @@
 	let feedId;
 	BEFORE_FEED_ID.subscribe((value) => {
 		feedId = value;
+	});
+
+	let ipAddress;
+	IP.subscribe((value) => {
+		ipAddress = value;
 	});
 
 	const elementary = {
@@ -50,7 +55,6 @@
 	let nowFeedType = 'all';
 
 	let feeds = [];
-	let ipAddress = '000.000.000.000';
 	onMount(async () => {
 		await getPage($page.params.channel);
 		scrollToElement(feedId);

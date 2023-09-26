@@ -70,6 +70,7 @@
 				localStorage.setItem('accessToken', data.accessToken);
 				localStorage.setItem('refreshToken', data.refreshToken);
 				USER_ID.set(getSubFromAccessToken(data.accessToken));
+				IP.set(await getIpAddress());
 				isLoggedIn.set(true);
 				goto('/');
 			} else {

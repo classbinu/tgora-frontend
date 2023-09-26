@@ -1,4 +1,4 @@
-import { API_URL, USER_ID, isLoggedIn } from '$lib/store';
+import { API_URL, IP, USER_ID, isLoggedIn } from '$lib/store';
 
 import { goto } from '$app/navigation';
 
@@ -39,6 +39,7 @@ export async function returnValidAccessToken() {
 
 		if (tokenData.exp > currentTime) {
 			USER_ID.set(getSubFromAccessToken(accessToken));
+			IP.set(await getIpAddress());
 			return accessToken;
 		} else {
 			const tokens = await issueTokensWithRefreshToken();
@@ -81,7 +82,7 @@ async function issueTokensWithRefreshToken() {
 }
 
 // 단순 로그인 여부만 체크
-export function isLoggedInByAccessToken() {
+export async function isLoggedInByAccessToken() {
 	const accessToken = localStorage.getItem('accessToken');
 
 	if (accessToken) {
@@ -91,6 +92,7 @@ export function isLoggedInByAccessToken() {
 
 		if (tokenData.exp > currentTime) {
 			USER_ID.set(getSubFromAccessToken(accessToken));
+			IP.set(await getIpAddress());
 			return true;
 		}
 	}
@@ -635,8 +637,8 @@ export function formatRelativeTime(ISODate) {
 export async function getIpAddress() {
 	try {
 		const response = await fetch('https://geolocation-db.com/json/');
-		const data = await response.json()
-		const ip = data.IPv4
+		const data = await response.json();
+		const ip = data.IPv4;
 		if (response.ok) {
 			return ip;
 		} else {

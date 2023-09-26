@@ -13,7 +13,7 @@
 		formatRelativeTime,
 		getIpAddress
 	} from '$lib/utils/utils.js';
-	import { USER_ID, API_URL, BEFORE_FEED_ID } from '$lib/store';
+	import { USER_ID, API_URL, IP, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -28,6 +28,11 @@
 	let API;
 	API_URL.subscribe((value) => {
 		API = value;
+	});
+
+	let ipAddress;
+	IP.subscribe((value) => {
+		ipAddress = value;
 	});
 
 	let feed = {
@@ -63,11 +68,9 @@
 		textColor: ''
 	};
 
-	let ipAddress = '000.000.000.000';
 	onMount(async () => {
 		updateFeedViews($page.params.feedId);
 		getPage();
-		ipAddress = await getIpAddress();
 		if ($page.params.channel === 'my') {
 			BEFORE_FEED_ID.set(undefined);
 		} else {
