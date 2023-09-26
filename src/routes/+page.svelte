@@ -163,6 +163,12 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 	async function clickDoneButton(issueId) {
 		if (isLoggedInCheck) {
 			await checkIssueDone(issueId);
+			Swal.fire({
+				icon: 'success',
+				title: '이슈 참여 상태를 변경하고 있어요',
+				showConfirmButton: false,
+				timer: 5000
+			});
 			location.reload();
 		} else {
 			return alert('로그인을 하면 참여 여부를 관리할 수 있어요.');
