@@ -58,6 +58,12 @@
 	onMount(async () => {
 		await getPage($page.params.channel);
 		scrollToElement(feedId);
+
+		document.addEventListener('visibilitychange', function () {
+			if (document.hidden) {
+				alert('캡처 테스트');
+			}
+		});
 	});
 
 	async function getPage(channel) {
