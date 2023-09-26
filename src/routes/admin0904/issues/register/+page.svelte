@@ -158,11 +158,7 @@
 			<div class="form-control my-3">
 				<label class="cursor-pointer label">
 					<span class="label-text">공지 지정(화력 집중)</span>
-					<input
-						type="checkbox"
-						bind:checked={isNotice}
-						class="checkbox checkbox-secondary"
-					/>
+					<input type="checkbox" bind:checked={isNotice} class="checkbox checkbox-secondary" />
 				</label>
 			</div>
 			<div class="form-control w-full">

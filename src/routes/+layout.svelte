@@ -1,11 +1,12 @@
 <script>
 	import { onMount } from 'svelte';
-	import { isLoggedInByAccessToken } from '$lib/utils/utils';
-	import { isLoggedIn } from '$lib/store';
+	import { isLoggedInByAccessToken, getIpAddress } from '$lib/utils/utils';
+	import { isLoggedIn, IP } from '$lib/store';
 
-	onMount(() => {
+	onMount(async () => {
 		const result = isLoggedInByAccessToken();
 		isLoggedIn.set(result);
+		IP.set(await getIpAddress());
 	});
 </script>
 

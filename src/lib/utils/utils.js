@@ -33,13 +33,12 @@ export async function returnValidAccessToken() {
 	const refreshToken = localStorage.getItem('refreshToken');
 
 	if (accessToken && refreshToken) {
-		// 서버 통신으로 토큰 유효성 검증 체크 필요?
+		// 서버 통신으로 토큰 유효성 검증 체크 필요? No, 그럼 속도 느려질 듯
 		const tokenData = parseAccessToken(accessToken);
 		const currentTime = Date.now() / 1000;
 
 		if (tokenData.exp > currentTime) {
 			USER_ID.set(getSubFromAccessToken(accessToken));
-			IP.set(await getIpAddress());
 			return accessToken;
 		} else {
 			const tokens = await issueTokensWithRefreshToken();
@@ -92,7 +91,6 @@ export async function isLoggedInByAccessToken() {
 
 		if (tokenData.exp > currentTime) {
 			USER_ID.set(getSubFromAccessToken(accessToken));
-			IP.set(await getIpAddress());
 			return true;
 		}
 	}
