@@ -630,3 +630,19 @@ export function formatRelativeTime(ISODate) {
 		return '방금 전';
 	}
 }
+
+// IP주소
+export async function getIpAddress() {
+	try {
+		const response = await fetch('https://geolocation-db.com/json/');
+		const data = await response.json()
+		const ip = data.IPv4
+		if (response.ok) {
+			return ip;
+		} else {
+			alert('뭔가 문제가 발생했어요. 새로고침 후 재로그인을 해 주세요.');
+		}
+	} catch (error) {
+		console.error('IP주소 인식 중 오류 발생:', error);
+	}
+}

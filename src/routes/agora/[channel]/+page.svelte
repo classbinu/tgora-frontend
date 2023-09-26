@@ -7,7 +7,8 @@
 		clickFeedLike,
 		returnValidAccessToken,
 		convertUTCtoUTC9,
-		formatRelativeTime
+		formatRelativeTime,
+		getIpAddress
 	} from '$lib/utils/utils.js';
 	import { USER_ID, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount, onDestroy, tick } from 'svelte';
@@ -49,10 +50,11 @@
 	let nowFeedType = 'all';
 
 	let feeds = [];
-
+	let ipAddress = '';
 	onMount(async () => {
 		await getPage($page.params.channel);
 		scrollToElement(feedId);
+		ipAddress = await getIpAddress();
 	});
 
 	async function getPage(channel) {
@@ -83,7 +85,7 @@
 <Navbar />
 <main class="container mx-auto">
 	<WaterMark>
-		<span slot="userId">{userId}</span>
+		<span slot="userId">{userId} {ipAddress}</span>
 	</WaterMark>
 
 	<a

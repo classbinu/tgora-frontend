@@ -10,7 +10,8 @@
 		updateFeedFlags,
 		returnValidAccessToken,
 		convertUTCtoUTC9,
-		formatRelativeTime
+		formatRelativeTime,
+		getIpAddress
 	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, BEFORE_FEED_ID } from '$lib/store';
 	import { onMount } from 'svelte';
@@ -62,9 +63,11 @@
 		textColor: ''
 	};
 
+	let ipAddress = '';
 	onMount(async () => {
 		updateFeedViews($page.params.feedId);
 		getPage();
+		ipAddress = await getIpAddress();
 		if ($page.params.channel === 'my') {
 			BEFORE_FEED_ID.set(undefined);
 		} else {
@@ -148,7 +151,7 @@
 <Navbar />
 <main class="container mx-auto">
 	<WaterMark>
-		<span slot="userId">{userId}</span>
+		<span slot="userId">{userId} {ipAddress}</span>
 	</WaterMark>
 	<FeedSecretWarning />
 	<div class="card-body w-full lg:w-1/2 mx-auto">
