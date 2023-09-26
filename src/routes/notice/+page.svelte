@@ -10,7 +10,7 @@
 		<input type="radio" name="my-accordion-2" checked="checked" />
 		<div class="collapse-title text-xl font-medium">초대 링크를 통해서만 가입할 수 있습니다.</div>
 		<div class="collapse-content">
-			<p>T-아고라는 교사 익명 커뮤니티입니다.</p>
+			<p>T-아고라는 현직 교사 커뮤니티입니다.</p>
 			<p class="mt-2">
 				현직 교사만 가입할 수 있으며,
 				<br />
