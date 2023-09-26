@@ -197,7 +197,12 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 				<br />
 				<br />
 			</p>
-			<button class="btn bg-yellow-300 mt-3" disabled="disabled" on:click={() => alert("로그인을 하면 내 활동을 공유할 수 있어요.")}>내 활동 공유하기 🎉</button>
+			<button
+				class="btn bg-yellow-300 mt-3"
+				disabled="disabled"
+				on:click={() => alert('로그인을 하면 내 활동을 공유할 수 있어요.')}
+				>내 활동 공유하기 🎉</button
+			>
 		{/if}
 	</div>
 	<h1 class="text-center text-xl font-bold text-primary mt-20 mx-3">
@@ -209,7 +214,25 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {fire.bgColor} {fire.textColor} shadow-xl">
 					<div class="card-body">
-						<div class="badge badge-outline badge-error">{issue.category}</div>
+						<div
+							class="badge {issue.category === '입법 반대'
+								? 'bg-red-300'
+								: issue.category === '입법 찬성'
+								? 'bg-green-300'
+								: issue.category === '국민동의청원'
+								? 'bg-teal-300'
+								: issue.category === '설문'
+								? 'bg-purple-300'
+								: issue.category === '서명'
+								? 'bg-orange-300'
+								: issue.category === '언론'
+								? 'bg-gray-300'
+								: issue.category === '기타'
+								? 'bg-indigo-300'
+								: ''}"
+						>
+							{issue.category}
+						</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -239,6 +262,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-red-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -268,6 +292,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {agree.bgColor} {agree.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-green-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -297,6 +322,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {petition.bgColor} {petition.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-teal-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -326,6 +352,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {survey.bgColor} {survey.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-purple-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -355,6 +382,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {signature.bgColor} {signature.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-orange-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -384,6 +412,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {press.bgColor} {press.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-gray-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
@@ -413,6 +442,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {other.bgColor} {other.textColor} shadow-xl">
 					<div class="card-body">
+						<div class="badge bg-indigo-300">{issue.category}</div>
 						<h2 class="card-title">{issue.title}</h2>
 						<p>{issue.summary}</p>
 						<div class="flex justify-between my-5">
