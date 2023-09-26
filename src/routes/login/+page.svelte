@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { isLoggedIn, API_URL, USER_ID } from '$lib/store';
-	import { usernameValidator, passwordValidator, getSubFromAccessToken } from '$lib/utils/utils';
+	import { isLoggedIn, API_URL, USER_ID, IP } from '$lib/store';
+	import { usernameValidator, passwordValidator, getSubFromAccessToken, getIpAddress } from '$lib/utils/utils';
 
 	let username = '';
 	let password = '';
