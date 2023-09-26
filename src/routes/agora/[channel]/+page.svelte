@@ -58,7 +58,6 @@
 	onMount(async () => {
 		await getPage($page.params.channel);
 		scrollToElement(feedId);
-		ipAddress = await getIpAddress();
 	});
 
 	async function getPage(channel) {
