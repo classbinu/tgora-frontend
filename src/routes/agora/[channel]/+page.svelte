@@ -103,7 +103,6 @@
 		<button on:click={() => getPage('middle')} class="btn btn-outline btn-secondary">중등</button>
 		<button on:click={() => getPage('child')} class="btn btn-outline btn-accent">유치원</button>
 		<button on:click={() => getPage('special')} class="btn btn-outline btn-success">특수</button>
-		<!-- <button on:click={() => getPage('my')} class="btn btn-sm btn-success">내 피드</button> -->
 	</div>
 	<FeedSecretWarning />
 	{#each feeds as feed (feed._id)}
