@@ -8,12 +8,23 @@ function formatDate(isoDate) {
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
-function convertUTCtoUTC9(utcDateString) {
-  const date = new Date(utcDateString);
-  date.setHours(date.getHours() + 9);
-  return date.toISOString();
+function formatRelativeTime(ISODate) {
+  const now = /* @__PURE__ */ new Date();
+  const diffMilliseconds = now - new Date(ISODate);
+  const diffMinutes = Math.floor(diffMilliseconds / (1e3 * 60));
+  const diffHours = Math.floor(diffMinutes / 60);
+  if (diffHours >= 24) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(ISODate).toLocaleDateString(void 0, options);
+  } else if (diffHours >= 1) {
+    return `${diffHours}시간 전`;
+  } else if (diffMinutes >= 1) {
+    return `${diffMinutes}분 전`;
+  } else {
+    return "방금 전";
+  }
 }
 export {
-  convertUTCtoUTC9 as c,
+  formatRelativeTime as a,
   formatDate as f
 };

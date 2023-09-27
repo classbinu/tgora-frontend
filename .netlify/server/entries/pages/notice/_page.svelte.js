@@ -2,7 +2,7 @@ import { c as create_ssr_component, v as validate_component } from "../../../chu
 import { F as Footer } from "../../../chunks/Footer.js";
 import { N as Navbar } from "../../../chunks/Navbar.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} <main class="container mx-auto" data-svelte-h="svelte-n3y8ir"><h1 class="text-3xl font-bold text-center my-20">공지사항</h1> <div class="collapse collapse-arrow bg-base-200"><input type="radio" name="my-accordion-2" checked="checked"> <div class="collapse-title text-xl font-medium">초대 링크를 통해서만 가입할 수 있습니다.</div> <div class="collapse-content"><p>T-아고라는 교사 전용 익명 커뮤니티입니다.</p> <p class="mt-2">현직 교사만 가입할 수 있으며,
+  return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})} <main class="container mx-auto" data-svelte-h="svelte-rzaf7r"><h1 class="text-3xl font-bold text-center my-20">공지사항</h1> <div class="collapse collapse-arrow bg-base-200"><input type="radio" name="my-accordion-2" checked="checked"> <div class="collapse-title text-xl font-medium">초대 링크를 통해서만 가입할 수 있습니다.</div> <div class="collapse-content"><p>T-아고라는 현직 교사 커뮤니티입니다.</p> <p class="mt-2">현직 교사만 가입할 수 있으며,
 				<br>
 				유치원, 초등, 중등, 특수 등 교과 교사에 한하여 가입을 받고 있습니다.
 				<br>

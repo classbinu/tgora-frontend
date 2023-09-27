@@ -4,7 +4,7 @@
 	import { isLoggedIn, IP } from '$lib/store';
 
 	onMount(async () => {
-		const result = isLoggedInByAccessToken();
+		const result = await isLoggedInByAccessToken();
 		isLoggedIn.set(result);
 		IP.set(await getIpAddress());
 	});

@@ -27,6 +27,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { form } = $$props;
   let { data_0 = null } = $$props;
   let { data_1 = null } = $$props;
+  let { data_2 = null } = $$props;
   {
     setContext("__svelte__", stores);
   }
@@ -45,6 +46,8 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.data_0(data_0);
   if ($$props.data_1 === void 0 && $$bindings.data_1 && data_1 !== void 0)
     $$bindings.data_1(data_1);
+  if ($$props.data_2 === void 0 && $$bindings.data_2 && data_2 !== void 0)
+    $$bindings.data_2(data_2);
   let $$settled;
   let $$rendered;
   do {
@@ -63,7 +66,31 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       },
       {
         default: () => {
-          return `${validate_component(constructors[1] || missing_component, "svelte:component").$$render(
+          return `${constructors[2] ? `${validate_component(constructors[1] || missing_component, "svelte:component").$$render(
+            $$result,
+            { data: data_1, this: components[1] },
+            {
+              this: ($$value) => {
+                components[1] = $$value;
+                $$settled = false;
+              }
+            },
+            {
+              default: () => {
+                return `${validate_component(constructors[2] || missing_component, "svelte:component").$$render(
+                  $$result,
+                  { data: data_2, form, this: components[2] },
+                  {
+                    this: ($$value) => {
+                      components[2] = $$value;
+                      $$settled = false;
+                    }
+                  },
+                  {}
+                )}`;
+              }
+            }
+          )}` : `${validate_component(constructors[1] || missing_component, "svelte:component").$$render(
             $$result,
             { data: data_1, form, this: components[1] },
             {
@@ -73,7 +100,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
               }
             },
             {}
-          )}`;
+          )}`}`;
         }
       }
     )}` : `${validate_component(constructors[0] || missing_component, "svelte:component").$$render(
@@ -104,9 +131,9 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="ko">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		<link\n			href="https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css"\n			rel="stylesheet"\n			type="text/css"\n		/>\n		<script src="https://cdn.tailwindcss.com"><\/script>\n		<link\n			rel="stylesheet"\n			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"\n		/>\n		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"><\/script>\n		<!-- OG -->\n		<meta property="og:url" content="https://tgora.kr" />\n		<meta property="og:type" content="website" />\n		<meta property="og:image" content="' + assets2 + `/og_image.png" />
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="ko">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		<title>T-아고라 | 현직 교사 커뮤니티</title>\n		<link\n			href="https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css"\n			rel="stylesheet"\n			type="text/css"\n		/>\n		<script src="https://cdn.tailwindcss.com"><\/script>\n		<link\n			rel="stylesheet"\n			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"\n		/>\n		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"><\/script>\n		<!-- meta -->\n		<!-- <meta name="title" content="T-아고라 : 현직 교사 커뮤니티" /> -->\n		<!-- og -->\n		<meta property="og:url" content="https://tgora.kr" />\n		<meta property="og:type" content="website" />\n		<meta property="og:image" content="' + assets2 + `/og_image.png" />
 		<meta property="og:title" content="T-아고라" />
-		<meta property="og:description" content="공교육 정상화를 위한 이슈 모음" />
+		<meta property="og:description" content="현직 교사 커뮤니티" />
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7P8NSCZ21"><\/script>
 		<script>
@@ -180,7 +207,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "nm5nzo"
+  version_hash: "zq0w4a"
 };
 function get_hooks() {
   return {};

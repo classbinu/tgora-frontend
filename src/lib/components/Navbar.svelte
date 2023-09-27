@@ -13,9 +13,6 @@
 
 	function logoutAndGotoHome() {
 		logout();
-		isLoggedIn.set(false);
-		USER_ID.set(undefined);
-		IP.set(undefined);
 		goto('/');
 	}
 </script>

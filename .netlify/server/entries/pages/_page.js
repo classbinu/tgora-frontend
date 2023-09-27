@@ -5,7 +5,12 @@ const load = async () => {
     API = value;
   });
   const issues = await fetch(`${API}/issues?state=open&isPublic=public`);
-  return { issues: await issues.json() };
+  const participants = await fetch(`${API}/issues/participants`);
+  const data = {
+    issues: await issues.json(),
+    participants: await participants.json()
+  };
+  return data;
 };
 export {
   load

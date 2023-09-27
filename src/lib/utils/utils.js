@@ -1,4 +1,4 @@
-import { API_URL, USER_ID, isLoggedIn } from '$lib/store';
+import { API_URL, IP, USER_ID, isLoggedIn } from '$lib/store';
 
 import { goto } from '$app/navigation';
 
@@ -51,6 +51,9 @@ export async function returnValidAccessToken() {
 		}
 	}
 
+	isLoggedIn.set(false);
+	USER_ID.set(undefined);
+	IP.set(undefined);
 	localStorage.removeItem('accessToken');
 	localStorage.removeItem('refreshToken');
 	location.href = '/login';
@@ -120,6 +123,11 @@ function parseAccessToken(accessToken) {
 
 export async function logout() {
 	const accessToken = await returnValidAccessToken();
+	isLoggedIn.set(false);
+	USER_ID.set(undefined);
+	IP.set(undefined);
+	localStorage.removeItem('accessToken');
+	localStorage.removeItem('refreshToken');
 	if (!accessToken) return;
 
 	const requestUrl = `${API}/auth/logout`;
@@ -134,14 +142,8 @@ export async function logout() {
 		.then((response) => {
 			if (response.ok) {
 				console.log('로그아웃되었습니다.');
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
-				isLoggedIn.set(false);
 			} else {
 				console.log('로그아웃되었습니다.');
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
-				isLoggedIn.set(false);
 			}
 		})
 		.catch((error) => {
