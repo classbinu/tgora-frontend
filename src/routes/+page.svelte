@@ -60,9 +60,14 @@
 	}
 
 	function calculateRank(total, count) {
-		const adjustment = 0.2;
-		const result = (100 - (count / total) * 100) * adjustment;
-		myRank = result.toFixed(2);
+		const ratio = count / total;
+
+		if (count === 0) {
+			myRank = 100;
+		} else {
+			const result = (100 - (count / total) * 100) * (1 - ratio);
+			myRank = result.toFixed(2);
+		}
 		return myRank;
 	}
 
