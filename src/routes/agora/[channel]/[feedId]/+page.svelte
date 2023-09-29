@@ -177,10 +177,14 @@
 					? child.badgeColor
 					: feed.channel === '특수'
 					? special.badgeColor
-					: ''}">{feed.channel ? feed.channel : '전체'}</span
+					: ''}"
 			>
-			<span class="text-sm text-gray-400">{feed.nickname}</span>
+				{feed.channel ? feed.channel : '전체'}
+			</span>
 			<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
+			<p class="text-xs text-gray-400 m-1">
+				{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
+			</p>
 		</div>
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
 		<p class="whitespace-pre-line">{feed.content}</p>
@@ -217,8 +221,13 @@
 		{#each comments as comment (comment._id)}
 			<div class="mt-3">
 				<div>
-					<span class="text-sm text-gray-400">{comment.nickname}</span>
 					<span class="text-xs text-gray-500">{formatRelativeTime(comment.createdAt)}</span>
+					{#if feed.userId === comment.userId}
+						<div class="badge badge-xs badge-success">작성자</div>
+					{/if}
+					<p class="text-xs text-gray-400">
+						{comment.grade ? comment.grade : '비공개'} · {feed.nickname}
+					</p>
 				</div>
 				<div class="mt-1 flex">
 					<p>{comment.content}</p>

@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 
 	let username = '';
+	let grade = '초등';
 	let password = '';
 	let password2 = '';
 	let mentor = '';
@@ -74,6 +75,7 @@
 
 		const user = {
 			username,
+			grade,
 			password,
 			mentor
 		};
@@ -155,6 +157,18 @@
 					placeholder="비밀번호를 다시 입력해 주세요"
 					class="w-full input input-bordered input-primary"
 				/>
+			</div>
+			<div class="form-control">
+				<label class="label" for="channel">
+					<span class="label-text">학교급</span>
+				</label>
+				<select class="select select-primary" id="channel" bind:value={grade}>
+					<option>초등</option>
+					<option>중등</option>
+					<option>유치원</option>
+					<option>특수</option>
+					<option>비공개</option>
+				</select>
 			</div>
 			<div class="form-control w-full">
 				<label class="label" for="mentor">

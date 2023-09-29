@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 	import { API_URL } from '$lib/store';
 	let userId = '';
+	let grade = '';
 	let username = '';
 	let nickname = '';
 	let email = '';
@@ -18,6 +19,7 @@
 	onMount(async () => {
 		const profile = await getProfile();
 		userId = profile._id;
+		grade = profile.grade;
 		username = profile.username;
 		nickname = profile.nickname.pop();
 		email = profile.email;
@@ -31,6 +33,7 @@
 
 	const handleSubmit = async () => {
 		const profile = {
+			grade,
 			nickname,
 			email,
 			phone
@@ -76,6 +79,18 @@
 					<span class="text-base label-text">아이디</span>
 				</label>
 				<p class="ml-1 mb-3">{username}</p>
+				<div class="form-control">
+					<label class="label" for="grade">
+						<span class="label-text">학교급</span>
+					</label>
+					<select class="select select-primary" id="grade" bind:value={grade}>
+						<option>초등</option>
+						<option>중등</option>
+						<option>유치원</option>
+						<option>특수</option>
+						<option>비공개</option>
+					</select>
+				</div>
 				<label class="label" for="nickname">
 					<span class="text-base label-text">닉네임</span>
 				</label>

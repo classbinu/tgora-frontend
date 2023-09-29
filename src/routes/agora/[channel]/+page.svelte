@@ -120,12 +120,14 @@
 									? child.badgeColor
 									: feed.channel === '특수'
 									? special.badgeColor
-									: ''}">{feed.channel ? feed.channel : '전체'}</span
+									: ''}"
 							>
-							<span class="text-sm text-gray-400">{feed.nickname}</span>
+								{feed.channel ? feed.channel : '전체'}
+							</span>
 							<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
+							<p class="text-xs text-gray-400 m-1">{feed.grade ? feed.grade : '비공개' } · {feed.nickname}</p>
 						</div>
-						<h2 class="text-lg font-bold mt-5">{feed.title}</h2>
+						<h2 class="text-lg font-bold">{feed.title}</h2>
 						<p class="truncate">{feed.content}</p>
 					</div>
 				</a>
