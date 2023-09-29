@@ -35,7 +35,7 @@
 	let animationInterval;
 
 	const increaseCount = () => {
-		participants += 37;
+		participants += parseInt(targetCount / 40);
 		if (participants >= targetCount) {
 			participants = targetCount;
 			clearInterval(animationInterval);
