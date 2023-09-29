@@ -104,7 +104,11 @@
 		<button on:click={() => getPage('child')} class="btn btn-outline btn-accent">유치원</button>
 		<button on:click={() => getPage('special')} class="btn btn-outline btn-success">특수</button>
 	</div>
+	<div class="p-1 w-full lg:w-1/2 mx-auto">
+		<p class="text-primary font-bold text-sm">[업데이트 공지] '마이페이지 > 회원정보변경'에서 학교급을 설정할 수 있어요</p>
+	</div>
 	<FeedSecretWarning />
+
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
@@ -125,7 +129,9 @@
 								{feed.channel ? feed.channel : '전체'}
 							</span>
 							<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
-							<p class="text-xs text-gray-400 m-1">{feed.grade ? feed.grade : '비공개' } · {feed.nickname}</p>
+							<p class="text-xs text-gray-400 m-1">
+								{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
+							</p>
 						</div>
 						<h2 class="text-lg font-bold">{feed.title}</h2>
 						<p class="truncate">{feed.content}</p>

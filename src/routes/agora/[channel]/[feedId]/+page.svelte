@@ -217,7 +217,6 @@
 				<button class="btn btn-success">작성</button>
 			</div>
 		</form>
-
 		{#each comments as comment (comment._id)}
 			<div class="mt-3">
 				<div>
