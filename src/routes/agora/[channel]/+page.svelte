@@ -105,7 +105,9 @@
 		<button on:click={() => getPage('special')} class="btn btn-outline btn-success">특수</button>
 	</div>
 	<div class="p-1 w-full lg:w-1/2 mx-auto">
-		<p class="text-primary font-bold text-sm">[업데이트 공지] '마이페이지 > 회원정보변경'에서 학교급을 설정할 수 있어요</p>
+		<p class="text-primary font-bold text-sm">
+			[업데이트 공지] '마이페이지 > 회원정보변경'에서 학교급을 설정할 수 있어요
+		</p>
 	</div>
 	<FeedSecretWarning />
 
