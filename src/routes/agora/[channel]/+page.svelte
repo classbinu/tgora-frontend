@@ -54,20 +54,33 @@
 
 	let nowFeedType = 'all';
 
-	let feeds = [];
+	let pages = 1;
+
 	onMount(async () => {
-		await getPage($page.params.channel);
+		await getPage($page.params.channel, pages);
 		scrollToElement(feedId);
 	});
 
-	async function getPage(channel) {
+	let feeds = [];
+	async function getPage(channel, pages) {
 		goto(`/agora/${channel}`);
-		feeds = await getAllFeeds(channel);
+		feeds = await getAllFeeds(channel, pages);
 	}
 
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
-		feeds = await getAllFeeds($page.params.channel);
+		const el = document.getElementById(feedId);
+		const heartIcon = el.querySelector('.material-symbols-outlined');
+		const hasTextErrorClass = heartIcon.classList.contains('text-error');
+		const likeCount = el.querySelector('.like-count');
+
+		if (hasTextErrorClass) {
+			heartIcon.classList.remove('text-error');
+			likeCount.textContent = parseInt(likeCount.textContent) - 1;
+		} else {
+			heartIcon.classList.add('text-error');
+			likeCount.textContent = parseInt(likeCount.textContent) + 1;
+		}
 	}
 
 	function goToFeed(feedId) {
@@ -144,7 +157,7 @@
 						<span
 							class="material-symbols-outlined {feed['likes'].includes(userId) ? 'text-error' : ''}"
 							>favorite</span
-						><span>
+						><span class="like-count">
 							{feed.likes.length}
 						</span>
 					</button>

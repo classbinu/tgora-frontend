@@ -273,11 +273,11 @@ export async function getOpenIssues() {
 	return issues;
 }
 
-export async function getAllFeeds(channel) {
+export async function getAllFeeds(channel, page) {
 	const accessToken = await await returnValidAccessToken();
 	if (!accessToken) return;
 
-	const requestUrl = `${API}/feeds?channel=${channel}`;
+	const requestUrl = `${API}/feeds?channel=${channel}&page=${page}`;
 	const requestOptions = {
 		method: 'GET',
 		headers: {
