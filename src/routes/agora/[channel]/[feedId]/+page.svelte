@@ -149,6 +149,15 @@
 			goto('/agora');
 		}
 	};
+
+	function replaceUrls(text) {
+    // 정규 표현식을 사용하여 텍스트 내에서 URL을 감지하고 링크로 변환합니다.
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const textWithLinks = text.replace(urlPattern, '<a href="$1" target="_blank" class="link link-primary">$1</a>');
+    
+    // 감지된 링크를 HTML로 반환합니다.
+    return textWithLinks;
+  }
 </script>
 
 <Navbar />
@@ -187,7 +196,7 @@
 			</p>
 		</div>
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
-		<p class="whitespace-pre-line">{feed.content}</p>
+		<p class="whitespace-pre-line">{@html replaceUrls(feed.content)}</p>
 		<div class="join mt-20 mb-10">
 			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
 				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
@@ -229,7 +238,7 @@
 					</p>
 				</div>
 				<div class="mt-1 flex">
-					<p>{comment.content}</p>
+					<p>{@html replaceUrls(comment.content)}</p>
 					{#if comment.userId === userId}
 						<a
 							href="/agora/{$page.params.channel}/{comment.feedId}/{comment._id}/edit"
