@@ -17,6 +17,7 @@
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
 	import { goto } from '$app/navigation';
 	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
+	import { FEEDS } from '../../../lib/store';
 
 	// $page.params.channel
 
@@ -33,6 +34,11 @@
 	let ipAddress;
 	IP.subscribe((value) => {
 		ipAddress = value;
+	});
+
+	let feeds;
+	FEEDS.subscribe((value) => {
+		feeds = value;
 	});
 
 	const elementary = {
@@ -56,15 +62,31 @@
 
 	let pages = 1;
 
+	const SCROLL_KEY = 'scrollPosition';
+	let scrollPosition = 0;
+
 	onMount(async () => {
-		await getPage($page.params.channel, pages);
-		scrollToElement(feedId);
+		if (feeds.length == 0) {
+			await getPage($page.params.channel, pages);
+		}
+		// scrollToElement(feedId);
+		const savedScrollPosition = sessionStorage.getItem(SCROLL_KEY);
+		if (savedScrollPosition) {
+			scrollPosition = parseInt(savedScrollPosition);
+			window.scrollTo(0, scrollPosition);
+		}
+		sessionStorage.removeItem(SCROLL_KEY);
 	});
 
-	let feeds = [];
+	const saveScrollPosition = () => {
+		scrollPosition = window.scrollY;
+		sessionStorage.setItem(SCROLL_KEY, scrollPosition.toString());
+	};
+
 	async function getPage(channel, pages) {
 		goto(`/agora/${channel}`);
-		feeds = await getAllFeeds(channel, pages);
+		const feeds = await getAllFeeds(channel, pages);
+		FEEDS.set(feeds);
 	}
 
 	async function clickLike(feedId) {
@@ -127,7 +149,7 @@
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
-				<a href="/agora/{$page.params.channel}/{feed._id}">
+				<a href="/agora/{$page.params.channel}/{feed._id}" on:click={() => saveScrollPosition()}>
 					<div class="card-body">
 						<div>
 							<span

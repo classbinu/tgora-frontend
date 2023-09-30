@@ -1,7 +1,7 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { API_URL } from '$lib/store';
+	import { API_URL, FEEDS } from '$lib/store';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { returnValidAccessToken } from '$lib/utils/utils';
@@ -24,6 +24,7 @@
 		API = value;
 	});
 
+	FEEDS.set([]);
 	const handleSubmit = async () => {
 		const feed = {
 			channel,
