@@ -2,7 +2,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { formatDate, getFeed, deleteFeed, returnValidAccessToken } from '$lib/utils/utils.js';
-	import { USER_ID, API_URL } from '$lib/store';
+	import { USER_ID, API_URL, FEEDS } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -74,6 +74,7 @@
 		const result = confirm('피드를 정말 삭제하시겠어요?');
 		if (result) {
 			await deleteFeed(_id);
+			FEEDS.set([]);
 			goto(`/agora/${$page.params.channel}`);
 		} else {
 			return alert('취소되었습니다.');

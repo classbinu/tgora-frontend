@@ -69,7 +69,7 @@
 		const result = confirm('댓글을 정말 삭제하시겠어요?');
 		if (result) {
 			await deleteComment($page.params.commentId);
-			goto(`/agora/${$page.params.feedId}`);
+			goto(`/agora/${$page.params.channel}/${$page.params.feedId}`);
 		} else {
 			return alert('취소되었습니다.');
 		}
