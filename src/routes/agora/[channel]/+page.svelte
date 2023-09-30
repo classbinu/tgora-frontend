@@ -62,26 +62,11 @@
 
 	let pages = 1;
 
-	const SCROLL_KEY = 'scrollPosition';
-	let scrollPosition = 0;
-
 	onMount(async () => {
 		if (feeds.length == 0) {
 			await getPage($page.params.channel, pages);
 		}
-		// scrollToElement(feedId);
-		const savedScrollPosition = sessionStorage.getItem(SCROLL_KEY);
-		if (savedScrollPosition) {
-			scrollPosition = parseInt(savedScrollPosition);
-			window.scrollTo(0, scrollPosition);
-		}
-		sessionStorage.removeItem(SCROLL_KEY);
 	});
-
-	const saveScrollPosition = () => {
-		scrollPosition = window.scrollY;
-		sessionStorage.setItem(SCROLL_KEY, scrollPosition.toString());
-	};
 
 	async function getPage(channel, pages) {
 		goto(`/agora/${channel}`);
@@ -91,6 +76,8 @@
 
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
+		// const feeds = await getAllFeeds($page.params.channel, pages);
+		// FEEDS.set(feeds);
 		const el = document.getElementById(feedId);
 		const heartIcon = el.querySelector('.material-symbols-outlined');
 		const hasTextErrorClass = heartIcon.classList.contains('text-error');
@@ -107,15 +94,6 @@
 
 	function goToFeed(feedId) {
 		location.href = `/agora/${feedId}`;
-	}
-
-	function scrollToElement(feedId) {
-		const el = document.getElementById(feedId);
-		if (el) {
-			el.scrollIntoView({ behavior: 'auto' });
-			el.querySelector('div').classList.add('border-2', 'border-purple-400');
-		}
-		BEFORE_FEED_ID.set(undefined);
 	}
 </script>
 
@@ -149,7 +127,7 @@
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
-				<a href="/agora/{$page.params.channel}/{feed._id}" on:click={() => saveScrollPosition()}>
+				<a href="/agora/{$page.params.channel}/{feed._id}">
 					<div class="card-body">
 						<div>
 							<span
