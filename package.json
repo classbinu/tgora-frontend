@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"browser-image-compression": "^2.0.2",
 		"dotenv": "^16.3.1"
 	}
 }

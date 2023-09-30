@@ -154,9 +154,12 @@
     // 정규 표현식을 사용하여 텍스트 내에서 URL을 감지하고 링크로 변환합니다.
     const urlPattern = /(https?:\/\/[^\s]+)/g;
     const textWithLinks = text.replace(urlPattern, '<a href="$1" target="_blank" class="link link-primary">$1</a>');
+		
+		// 스크립트 태그 삭제
+		const sanitizedText = textWithLinks.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
     
     // 감지된 링크를 HTML로 반환합니다.
-    return textWithLinks;
+    return sanitizedText;
   }
 </script>
 

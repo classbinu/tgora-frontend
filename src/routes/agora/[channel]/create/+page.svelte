@@ -5,6 +5,8 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { returnValidAccessToken } from '$lib/utils/utils';
+	import { onMount } from 'svelte';
+	import imageCompression from 'browser-image-compression';
 
 	const channels = {
 		my: '전체',
@@ -18,18 +20,56 @@
 	let channel = channels[$page.params.channel];
 	let title = '';
 	let content = '';
+	let image = '';
 
 	let API;
 	API_URL.subscribe((value) => {
 		API = value;
 	});
 
+	// 이미지를 base64로 변환
+	const convertBase64 = (file) => {
+		return new Promise((resolve, reject) => {
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(file);
+
+			fileReader.onload = () => {
+				resolve(fileReader.result);
+			};
+
+			fileReader.onerror = (error) => {
+				reject(error);
+			};
+		});
+	};
+
+	const handleFileSelect = async (event) => {
+		const selectedFile = event.target.files[0];
+		if (selectedFile) {
+			try {
+				const options = {
+					maxSizeMB: 1, // 최대 용량 1MB로 제한
+					maxWidthOrHeight: 1024 // 이미지의 최대 가로 또는 세로 크기
+				};
+				const compressedImage = await imageCompression(selectedFile, options);
+				const base64String = await convertBase64(compressedImage);
+
+				image = base64String;
+				console.log(image);
+			} catch (error) {
+				console.error('이미지 처리 중 오류 발생:', error);
+			}
+		}
+	};
+
 	const handleSubmit = async () => {
 		FEEDS.set([]);
+
 		const feed = {
 			channel,
 			title,
-			content
+			content,
+			image
 		};
 		try {
 			const accessToken = await returnValidAccessToken();
@@ -101,6 +141,20 @@
 					required
 					rows="3"
 				/>
+			</div>
+			<div class="form-control">
+				<label class="label" for="image">
+					<span class="label-text">이미지 첨부</span>
+				</label>
+				<input
+					type="file"
+					class="file-input file-input-bordered file-input-success w-full max-w-xs"
+					accept="image/jpeg, image/png, image/gif"
+					on:change={handleFileSelect}
+				/>
+				<label class="label">
+					<span class="label-text-alt">이미지는 1장만 첨부 가능합니다.</span>
+				</label>
 			</div>
 			<button class="btn btn-success mt-5 w-full">저장</button>
 		</form>
