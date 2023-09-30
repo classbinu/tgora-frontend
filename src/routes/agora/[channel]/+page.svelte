@@ -127,7 +127,7 @@
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
-				<a href="/agora/{$page.params.channel}/{feed._id}" target="_blank">
+				<a href="/agora/{$page.params.channel}/{feed._id}">
 					<div class="card-body">
 						<div>
 							<span
