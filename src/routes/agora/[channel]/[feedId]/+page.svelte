@@ -214,7 +214,7 @@
 			>
 		</div>
 		<form on:submit|preventDefault={handleSubmit}>
-			<div class="flex">
+			<div class="flex mb-5">
 				<textarea
 					type="text"
 					bind:value={content}
@@ -227,7 +227,7 @@
 			</div>
 		</form>
 		{#each comments as comment (comment._id)}
-			<div class="mt-3">
+			<div>
 				<div>
 					<span class="text-xs text-gray-500">{formatRelativeTime(comment.createdAt)}</span>
 					{#if feed.userId === comment.userId}
@@ -237,7 +237,7 @@
 						{comment.grade ? comment.grade : '비공개'} · {feed.nickname}
 					</p>
 				</div>
-				<div class="mt-1 flex">
+				<div class="flex">
 					<p>{@html replaceUrls(comment.content)}</p>
 					{#if comment.userId === userId}
 						<a
