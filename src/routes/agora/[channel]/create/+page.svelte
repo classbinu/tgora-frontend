@@ -24,8 +24,8 @@
 		API = value;
 	});
 
-	FEEDS.set([]);
 	const handleSubmit = async () => {
+		FEEDS.set([]);
 		const feed = {
 			channel,
 			title,
