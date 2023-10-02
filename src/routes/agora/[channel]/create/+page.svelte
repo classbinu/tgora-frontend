@@ -4,7 +4,7 @@
 	import { API_URL, FEEDS } from '$lib/store';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { returnValidAccessToken } from '$lib/utils/utils';
+	import { returnValidAccessToken, convertBase64 } from '$lib/utils/utils';
 	import { onMount } from 'svelte';
 	import imageCompression from 'browser-image-compression';
 
@@ -27,22 +27,6 @@
 		API = value;
 	});
 
-	// 이미지를 base64로 변환
-	const convertBase64 = (file) => {
-		return new Promise((resolve, reject) => {
-			const fileReader = new FileReader();
-			fileReader.readAsDataURL(file);
-
-			fileReader.onload = () => {
-				resolve(fileReader.result);
-			};
-
-			fileReader.onerror = (error) => {
-				reject(error);
-			};
-		});
-	};
-
 	const handleFileSelect = async (event) => {
 		const selectedFile = event.target.files[0];
 		if (selectedFile) {
@@ -55,7 +39,6 @@
 				const base64String = await convertBase64(compressedImage);
 
 				image = base64String;
-				console.log(image);
 			} catch (error) {
 				console.error('이미지 처리 중 오류 발생:', error);
 			}

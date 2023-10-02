@@ -148,8 +148,22 @@
 								{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
 							</p>
 						</div>
-						<h2 class="text-lg font-bold">{feed.title}</h2>
-						<p class="truncate">{feed.content}</p>
+						<div class="flex justify-between">
+							<div>
+								<h2 class="text-lg font-bold">{feed.title}</h2>
+								<p class="truncate">{feed.content}</p>
+							</div>
+							<div>
+								{#if feed.image}
+									<img
+										src={feed.image}
+										alt={feed.title}
+										loading="lazy"
+										class="rounded-lg object-cover w-24 h-24"
+									/>
+								{/if}
+							</div>
+						</div>
 					</div>
 				</a>
 				<div class="join my-3">

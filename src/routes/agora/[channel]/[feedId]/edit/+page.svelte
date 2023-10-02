@@ -1,16 +1,24 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { formatDate, getFeed, deleteFeed, returnValidAccessToken } from '$lib/utils/utils.js';
+	import {
+		formatDate,
+		getFeed,
+		deleteFeed,
+		returnValidAccessToken,
+		convertBase64
+	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, FEEDS } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import imageCompression from 'browser-image-compression';
 
 	let _id = '';
 	let channel = '';
 	let title = '';
 	let content = '';
+	let image = '';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -21,6 +29,24 @@
 	API_URL.subscribe((value) => {
 		API = value;
 	});
+
+	const handleFileSelect = async (event) => {
+		const selectedFile = event.target.files[0];
+		if (selectedFile) {
+			try {
+				const options = {
+					maxSizeMB: 1, // 최대 용량 1MB로 제한
+					maxWidthOrHeight: 1024 // 이미지의 최대 가로 또는 세로 크기
+				};
+				const compressedImage = await imageCompression(selectedFile, options);
+				const base64String = await convertBase64(compressedImage);
+
+				image = base64String;
+			} catch (error) {
+				console.error('이미지 처리 중 오류 발생:', error);
+			}
+		}
+	};
 
 	let feed = {};
 	onMount(async () => {
@@ -41,7 +67,8 @@
 			_id,
 			channel,
 			title,
-			content
+			content,
+			image
 		};
 
 		try {
@@ -125,6 +152,20 @@
 					required
 					rows="3"
 				/>
+			</div>
+			<div class="form-control">
+				<label class="label" for="image">
+					<span class="label-text">이미지 첨부(변경)</span>
+				</label>
+				<input
+					type="file"
+					class="file-input file-input-bordered file-input-success w-full max-w-xs"
+					accept="image/jpeg, image/png, image/gif"
+					on:change={handleFileSelect}
+				/>
+				<label class="label">
+					<span class="label-text-alt">이미지는 1장만 첨부 가능합니다.</span>
+				</label>
 			</div>
 			<button class="btn btn-success mt-5 w-full">수정</button>
 			<div class="text-right">

@@ -648,3 +648,19 @@ export async function getIpAddress() {
 		console.error('IP주소 인식 중 오류 발생:', error);
 	}
 }
+
+// 이미지를 base64로 변환
+export const convertBase64 = (file) => {
+	return new Promise((resolve, reject) => {
+		const fileReader = new FileReader();
+		fileReader.readAsDataURL(file);
+
+		fileReader.onload = () => {
+			resolve(fileReader.result);
+		};
+
+		fileReader.onerror = (error) => {
+			reject(error);
+		};
+	});
+};

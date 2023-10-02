@@ -39,7 +39,8 @@
 		createdAt: '',
 		nickname: '',
 		title: '',
-		content: ''
+		content: '',
+		image: ''
 	};
 	let comments = [];
 	let content = '';
@@ -151,16 +152,22 @@
 	};
 
 	function replaceUrls(text) {
-    // 정규 표현식을 사용하여 텍스트 내에서 URL을 감지하고 링크로 변환합니다.
-    const urlPattern = /(https?:\/\/[^\s]+)/g;
-    const textWithLinks = text.replace(urlPattern, '<a href="$1" target="_blank" class="link link-primary">$1</a>');
-		
+		// 정규 표현식을 사용하여 텍스트 내에서 URL을 감지하고 링크로 변환합니다.
+		const urlPattern = /(https?:\/\/[^\s]+)/g;
+		const textWithLinks = text.replace(
+			urlPattern,
+			'<a href="$1" target="_blank" class="link link-primary">$1</a>'
+		);
+
 		// 스크립트 태그 삭제
-		const sanitizedText = textWithLinks.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-    
-    // 감지된 링크를 HTML로 반환합니다.
-    return sanitizedText;
-  }
+		const sanitizedText = textWithLinks.replace(
+			/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+			''
+		);
+
+		// 감지된 링크를 HTML로 반환합니다.
+		return sanitizedText;
+	}
 </script>
 
 <Navbar />
@@ -199,8 +206,11 @@
 			</p>
 		</div>
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
-		<p class="whitespace-pre-line">{@html replaceUrls(feed.content)}</p>
-		<div class="join mt-20 mb-10">
+		<p class="whitespace-pre-line mb-5">{@html replaceUrls(feed.content)}</p>
+		{#if feed.image}
+			<img src={feed.image} alt={feed.title} />
+		{/if}
+		<div class="join mt-10 mb-10">
 			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
 				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
 					favorite
