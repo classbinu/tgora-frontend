@@ -149,7 +149,7 @@
 							</p>
 						</div>
 						<div class="flex justify-between">
-							<div>
+							<div class="overflow-hidden whitespace-no-wrap">
 								<h2 class="text-lg font-bold">{feed.title}</h2>
 								<p class="truncate">{feed.content}</p>
 							</div>
