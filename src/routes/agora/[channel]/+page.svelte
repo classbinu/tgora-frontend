@@ -149,17 +149,17 @@
 							</p>
 						</div>
 						<div class="flex justify-between">
-							<div class="overflow-hidden whitespace-no-wrap">
+							<div class="overflow-hidden whitespace-no-wrap {feed.image ? 'w-3/4' : ''}">
 								<h2 class="text-lg font-bold">{feed.title}</h2>
-								<p class="truncate">{feed.content}</p>
+								<p class="line-clamp-2">{feed.content}</p>
 							</div>
-							<div>
+							<div class="w-24 h-24">
 								{#if feed.image}
 									<img
 										src={feed.image}
 										alt={feed.title}
 										loading="lazy"
-										class="rounded-lg object-cover w-24 h-24"
+										class="rounded-lg object-cover w-full h-full"
 									/>
 								{/if}
 							</div>
