@@ -119,7 +119,7 @@
 	</div>
 	<div class="p-1 w-full lg:w-1/2 mx-auto">
 		<p class="text-primary font-bold text-sm">
-			[업데이트 공지] '마이페이지 > 회원정보변경'에서 학교급을 설정할 수 있어요
+			🤗 '속닥속닥'은 자유롭게 이야기를 나눌 수 있는 공간이에요
 		</p>
 	</div>
 	<FeedSecretWarning />
