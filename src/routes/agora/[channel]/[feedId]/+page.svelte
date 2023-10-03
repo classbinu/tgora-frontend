@@ -20,6 +20,7 @@
 	import WaterMark from '$lib/components/WaterMark.svelte';
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
 	import FeedContentBanner from '$lib/components/ads/FeedContentBanner.svelte';
+	import FeedCommentsBanner from '$lib/components/ads/FeedCommentsBanner.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -176,8 +177,10 @@
 	<WaterMark>
 		<span slot="userId">{userId}<br />{ipAddress}</span>
 	</WaterMark>
-	<div class="card-body w-full lg:w-1/2 mx-auto">
+	<div class="px-5">
 		<FeedSecretWarning />
+	</div>
+	<div class="card-body w-full lg:w-1/2 mx-auto p-5">
 		{#if feed.userId === userId}
 			<a href="/agora/{$page.params.channel}/{feed._id}/edit" class="text-success text-right"
 				><span class="material-symbols-outlined"> edit </span></a
@@ -229,7 +232,7 @@
 			>
 		</div>
 		<form on:submit|preventDefault={handleSubmit}>
-			<div class="flex mb-5">
+			<div class="flex">
 				<textarea
 					type="text"
 					bind:value={content}
@@ -242,7 +245,7 @@
 			</div>
 		</form>
 		{#each comments as comment (comment._id)}
-			<div>
+			<div class="mt-5">
 				<div>
 					<span class="text-xs text-gray-500">{formatRelativeTime(comment.createdAt)}</span>
 					{#if feed.userId === comment.userId}
@@ -269,6 +272,7 @@
 				<div class="divider" />
 			</div>
 		{/each}
+		<FeedCommentsBanner />
 		<div class="my-60" />
 	</div>
 </main>
