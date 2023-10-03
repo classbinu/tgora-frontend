@@ -53,11 +53,11 @@
 		textColor: ''
 	};
 	const child = {
-		badgeColor: 'badge-accent',
+		badgeColor: 'badge-warning',
 		textColor: ''
 	};
 	const special = {
-		badgeColor: 'badge-success',
+		badgeColor: 'badge-accent',
 		textColor: ''
 	};
 
@@ -175,10 +175,10 @@
 		<button on:click={() => getPage('middle')} class="btn btn-sm btn-outline btn-secondary"
 			>중등</button
 		>
-		<button on:click={() => getPage('child')} class="btn btn-sm btn-outline btn-accent"
+		<button on:click={() => getPage('child')} class="btn btn-sm btn-outline btn-warning"
 			>유치원</button
 		>
-		<button on:click={() => getPage('special')} class="btn btn-sm btn-outline btn-success"
+		<button on:click={() => getPage('special')} class="btn btn-sm btn-outline btn-accent"
 			>특수</button
 		>
 	</div>

@@ -63,11 +63,11 @@
 		textColor: ''
 	};
 	const child = {
-		badgeColor: 'badge-accent',
+		badgeColor: 'badge-warning',
 		textColor: ''
 	};
 	const special = {
-		badgeColor: 'badge-neutral',
+		badgeColor: 'badge-accent',
 		textColor: ''
 	};
 
