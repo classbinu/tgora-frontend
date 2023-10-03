@@ -69,7 +69,7 @@
 		}
 
 		if (!getQueryString('q')) {
-			topFeeds = getTopFeeds(feeds, 5);
+			topFeeds = getTopFeeds(feeds, 3);
 			feedInfoMessage = '피드는 최신 200개만 노출됩니다 🤗';
 		} else {
 			q = getQueryString('q');
@@ -95,7 +95,7 @@
 		q = '';
 		const feeds = await getAllFeeds(channel, pages);
 		FEEDS.set(feeds);
-		topFeeds = getTopFeeds(feeds, 5);
+		topFeeds = getTopFeeds(feeds, 3);
 		feedInfoMessage = '피드는 최신 200개만 노출됩니다 🤗';
 	}
 
