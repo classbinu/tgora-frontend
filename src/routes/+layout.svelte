@@ -6,7 +6,8 @@
 	onMount(async () => {
 		const result = await isLoggedInByAccessToken();
 		isLoggedIn.set(result);
-		IP.set(await getIpAddress());
+		const ip = await getIpAddress();
+		IP.set(ip);
 	});
 </script>
 
