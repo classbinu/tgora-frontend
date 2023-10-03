@@ -41,6 +41,8 @@
 		feeds = value;
 	});
 
+	let feedInfoMessage = '피드는 최신 200개만 노출됩니다 🤗';
+
 	const elementary = {
 		badgeColor: 'badge-primary',
 		textColor: ''
@@ -62,13 +64,16 @@
 
 	let topFeeds = [];
 	onMount(async () => {
-		if (feeds.length == 0) {
+		if (feeds.length === 0) {
 			await getPage($page.params.channel, pages);
 		}
+
 		if (!getQueryString('q')) {
 			topFeeds = getTopFeeds(feeds, 5);
+			feedInfoMessage = '피드는 최신 200개만 노출됩니다 🤗';
 		} else {
 			q = getQueryString('q');
+			feedInfoMessage = '';
 		}
 	});
 
@@ -91,6 +96,7 @@
 		const feeds = await getAllFeeds(channel, pages);
 		FEEDS.set(feeds);
 		topFeeds = getTopFeeds(feeds, 5);
+		feedInfoMessage = '피드는 최신 200개만 노출됩니다 🤗';
 	}
 
 	async function clickLike(feedId) {
@@ -126,6 +132,12 @@
 		const feeds = await getSearchFeeds($page.params.channel, q);
 		FEEDS.set(feeds);
 		topFeeds = [];
+
+		if (feeds.length === 0) {
+			feedInfoMessage = '검색된 피드가 없어요 😢';
+		} else {
+			feedInfoMessage = '';
+		}
 	}
 
 	function handleEnterKey(event) {
@@ -159,11 +171,6 @@
 		<button on:click={() => getPage('child')} class="btn btn-outline btn-accent">유치원</button>
 		<button on:click={() => getPage('special')} class="btn btn-outline btn-success">특수</button>
 	</div>
-	<div class="p-1 w-full lg:w-1/2 mx-auto">
-		<p class="text-primary font-bold text-sm">
-			🤗 '속닥속닥'은 자유롭게 이야기를 나눌 수 있는 공간이에요
-		</p>
-	</div>
 	<FeedSecretWarning />
 
 	<div class="flex p-1 w-full lg:w-1/2 mx-auto">
@@ -174,7 +181,14 @@
 			bind:value={q}
 			on:keyup={handleEnterKey}
 		/>
-		<button class="btn join-item btn-sm" on:click={searchFeeds}>🔍</button>
+		<button class="btn join-item btn-sm" on:click={searchFeeds}
+			><span class="material-symbols-outlined"> search </span></button
+		>
+	</div>
+	<div class="p-1 w-full lg:w-1/2 mx-auto">
+		<p class="text-primary font-bold text-sm">
+			🤗 '속닥속닥'은 자유롭게 이야기를 나눌 수 있는 공간이에요
+		</p>
 	</div>
 	{#each topFeeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
@@ -312,7 +326,7 @@
 			</div>
 		</div>
 	{/each}
-	<p class="text-center my-10 text-success">최신 200개의 피드만 노출됩니다 😅</p>
+	<p class="text-center my-10 text-success">{feedInfoMessage}</p>
 	<div class="my-40" />
 </main>
 <!-- <footer /> -->
