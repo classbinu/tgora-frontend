@@ -208,7 +208,7 @@
 				<a href="/agora/{$page.params.channel}/{feed._id}">
 					<div class="card-body">
 						<div>
-							<span class="badge badge-success">🔥인기글</span>
+							<span class="badge badge-success text-white">🔥인기글</span>
 							<span
 								class="badge badge-outline {feed.channel === '초등'
 									? elementary.badgeColor
