@@ -63,7 +63,7 @@
 		textColor: ''
 	};
 	const child = {
-		badgeColor: 'badge-warning',
+		badgeColor: 'badge-error',
 		textColor: ''
 	};
 	const special = {

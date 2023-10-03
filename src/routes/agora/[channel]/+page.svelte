@@ -53,7 +53,7 @@
 		textColor: ''
 	};
 	const child = {
-		badgeColor: 'badge-warning',
+		badgeColor: 'badge-error',
 		textColor: ''
 	};
 	const special = {
@@ -175,7 +175,7 @@
 		<button on:click={() => getPage('middle')} class="btn btn-sm btn-outline btn-secondary"
 			>중등</button
 		>
-		<button on:click={() => getPage('child')} class="btn btn-sm btn-outline btn-warning"
+		<button on:click={() => getPage('child')} class="btn btn-sm btn-outline btn-error"
 			>유치원</button
 		>
 		<button on:click={() => getPage('special')} class="btn btn-sm btn-outline btn-accent"
