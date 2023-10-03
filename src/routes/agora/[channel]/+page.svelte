@@ -119,6 +119,9 @@
 
 	let q = '';
 	async function searchFeeds() {
+		if (q.length < 2) {
+			return alert('검색어는 2글자 이상 입력해 주세요.');
+		}
 		goto(`/agora/${$page.params.channel}?q=${q}`);
 		const feeds = await getSearchFeeds($page.params.channel, q);
 		FEEDS.set(feeds);
@@ -127,7 +130,6 @@
 
 	function handleEnterKey(event) {
 		if (event.key === 'Enter') {
-			console.log(q);
 			searchFeeds();
 		}
 	}
