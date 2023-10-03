@@ -4,6 +4,7 @@
 	import {
 		formatDate,
 		getAllFeeds,
+		getSearchFeeds,
 		clickFeedLike,
 		returnValidAccessToken,
 		convertUTCtoUTC9,
@@ -64,8 +65,18 @@
 		if (feeds.length == 0) {
 			await getPage($page.params.channel, pages);
 		}
-		topFeeds = getTopFeeds(feeds, 5);
+		if (!getQueryString('q')) {
+			topFeeds = getTopFeeds(feeds, 5);
+		} else {
+			q = getQueryString('q');
+		}
 	});
+
+	function getQueryString(key) {
+		const queryString = window.location.search;
+		const queryParams = new URLSearchParams(queryString);
+		return queryParams.get(key);
+	}
 
 	function getTopFeeds(feeds, count) {
 		const sortedFeeds = [...feeds].sort((a, b) => b.likes.length - a.likes.length);
@@ -76,6 +87,7 @@
 	let pages = 1;
 	async function getPage(channel, pages) {
 		goto(`/agora/${channel}`);
+		q = '';
 		const feeds = await getAllFeeds(channel, pages);
 		FEEDS.set(feeds);
 		topFeeds = getTopFeeds(feeds, 5);
@@ -83,8 +95,13 @@
 
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
-		const feeds = await getAllFeeds($page.params.channel, pages);
-		FEEDS.set(feeds);
+		let fetchedFeeds = [];
+		if (getQueryString('q')) {
+			fetchedFeeds = await getSearchFeeds($page.params.channel, q);
+		} else {
+			fetchedFeeds = await getAllFeeds($page.params.channel, pages);
+		}
+		FEEDS.set(fetchedFeeds);
 
 		const el = document.getElementById(feedId);
 		const heartIcon = el.querySelector('.material-symbols-outlined');
@@ -97,6 +114,21 @@
 		} else {
 			heartIcon.classList.add('text-error');
 			likeCount.textContent = parseInt(likeCount.textContent) + 1;
+		}
+	}
+
+	let q = '';
+	async function searchFeeds() {
+		goto(`/agora/${$page.params.channel}?q=${q}`);
+		const feeds = await getSearchFeeds($page.params.channel, q);
+		FEEDS.set(feeds);
+		topFeeds = [];
+	}
+
+	function handleEnterKey(event) {
+		if (event.key === 'Enter') {
+			console.log(q);
+			searchFeeds();
 		}
 	}
 
@@ -132,6 +164,16 @@
 	</div>
 	<FeedSecretWarning />
 
+	<div class="flex p-1 w-full lg:w-1/2 mx-auto">
+		<input
+			type="text"
+			placeholder="피드 검색"
+			class="input input-bordered w-full input-sm"
+			bind:value={q}
+			on:keyup={handleEnterKey}
+		/>
+		<button class="btn join-item btn-sm" on:click={searchFeeds}>🔍</button>
+	</div>
 	{#each topFeeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border-2 border-success">
