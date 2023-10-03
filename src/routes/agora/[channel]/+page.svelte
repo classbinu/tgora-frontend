@@ -153,16 +153,16 @@
 								<h2 class="text-lg font-bold">{feed.title}</h2>
 								<p class="line-clamp-2">{feed.content}</p>
 							</div>
-							<div class="w-24 h-24">
-								{#if feed.image}
+							{#if feed.image}
+								<div class="w-24 h-24">
 									<img
 										src={feed.image}
 										alt={feed.title}
 										loading="lazy"
 										class="rounded-lg object-cover w-full h-full"
 									/>
-								{/if}
-							</div>
+								</div>
+							{/if}
 						</div>
 					</div>
 				</a>
