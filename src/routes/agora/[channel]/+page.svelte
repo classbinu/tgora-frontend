@@ -10,14 +10,13 @@
 		formatRelativeTime,
 		getIpAddress
 	} from '$lib/utils/utils.js';
-	import { USER_ID, BEFORE_FEED_ID, IP } from '$lib/store';
+	import { USER_ID, BEFORE_FEED_ID, IP, FEEDS } from '$lib/store';
 	import { onMount, onDestroy, tick } from 'svelte';
 	import { page } from '$app/stores';
 	import WaterMark from '$lib/components/WaterMark.svelte';
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
 	import { goto } from '$app/navigation';
 	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
-	import { FEEDS } from '../../../lib/store';
 
 	// $page.params.channel
 
@@ -60,14 +59,21 @@
 
 	let nowFeedType = 'all';
 
-	let pages = 1;
-
+	let topFeeds = [];
 	onMount(async () => {
 		if (feeds.length == 0) {
 			await getPage($page.params.channel, pages);
 		}
+		topFeeds = getTopFeeds(feeds, 5);
 	});
 
+	function getTopFeeds(feeds, count) {
+		const sortedFeeds = [...feeds].sort((a, b) => b.likes.length - a.likes.length);
+		const topFeeds = sortedFeeds.slice(0, count);
+		return topFeeds;
+	}
+
+	let pages = 1;
 	async function getPage(channel, pages) {
 		goto(`/agora/${channel}`);
 		const feeds = await getAllFeeds(channel, pages);
@@ -78,7 +84,7 @@
 		await clickFeedLike(feedId);
 		const feeds = await getAllFeeds($page.params.channel, pages);
 		FEEDS.set(feeds);
-		
+
 		const el = document.getElementById(feedId);
 		const heartIcon = el.querySelector('.material-symbols-outlined');
 		const hasTextErrorClass = heartIcon.classList.contains('text-error');
@@ -124,6 +130,75 @@
 		</p>
 	</div>
 	<FeedSecretWarning />
+
+	{#each topFeeds as feed (feed._id)}
+		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
+			<div class="card bg-base-100 border-2 border-success">
+				<a href="/agora/{$page.params.channel}/{feed._id}">
+					<div class="card-body">
+						<div>
+							<span class="badge badge-success">🔥인기글</span>
+							<span
+								class="badge badge-outline {feed.channel === '초등'
+									? elementary.badgeColor
+									: feed.channel === '중등'
+									? middle.badgeColor
+									: feed.channel === '유치원'
+									? child.badgeColor
+									: feed.channel === '특수'
+									? special.badgeColor
+									: ''}"
+							>
+								{feed.channel ? feed.channel : '전체'}
+							</span>
+							<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
+							<p class="text-xs text-gray-400 m-1">
+								{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
+							</p>
+						</div>
+						<div class="flex justify-between">
+							<div class="overflow-hidden whitespace-no-wrap {feed.image ? 'w-3/4' : ''}">
+								<h2 class="text-lg font-bold line-clamp-2">{feed.title}</h2>
+								<p class="line-clamp-2">{feed.content}</p>
+							</div>
+							{#if feed.image}
+								<div class="w-24 h-24">
+									<img
+										src={feed.image}
+										alt={feed.title}
+										loading="lazy"
+										class="rounded-lg object-cover w-full h-full"
+									/>
+								</div>
+							{/if}
+						</div>
+					</div>
+				</a>
+				<div class="join my-3">
+					<button class="w-1/3 join-item text-gray-400" on:click={() => clickLike(feed._id)}>
+						<span
+							class="material-symbols-outlined {feed['likes'].includes(userId) ? 'text-error' : ''}"
+							>favorite</span
+						><span class="like-count">
+							{feed.likes.length}
+						</span>
+					</button>
+					<a
+						href="/agora/{$page.params.channel}/{feed._id}"
+						class="w-1/3 join-item text-gray-400 text-center"
+						><span class="material-symbols-outlined"> chat_bubble </span><span
+							>{feed.comments.length}</span
+						></a
+					>
+					<a
+						href="/agora/{$page.params.channel}/{feed._id}"
+						class="w-1/3 join-item text-gray-400 text-center"
+						><span class="material-symbols-outlined"> visibility </span><span />
+					</a>
+				</div>
+			</div>
+		</div>
+	{/each}
 
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
@@ -192,6 +267,7 @@
 			</div>
 		</div>
 	{/each}
+	<p class="text-center my-10 text-success">최신 200개의 피드만 노출됩니다 😅</p>
 	<div class="my-40" />
 </main>
 <!-- <footer /> -->
