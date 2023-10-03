@@ -76,8 +76,9 @@
 
 	async function clickLike(feedId) {
 		await clickFeedLike(feedId);
-		// const feeds = await getAllFeeds($page.params.channel, pages);
-		// FEEDS.set(feeds);
+		const feeds = await getAllFeeds($page.params.channel, pages);
+		FEEDS.set(feeds);
+		
 		const el = document.getElementById(feedId);
 		const heartIcon = el.querySelector('.material-symbols-outlined');
 		const hasTextErrorClass = heartIcon.classList.contains('text-error');
@@ -150,7 +151,7 @@
 						</div>
 						<div class="flex justify-between">
 							<div class="overflow-hidden whitespace-no-wrap {feed.image ? 'w-3/4' : ''}">
-								<h2 class="text-lg font-bold">{feed.title}</h2>
+								<h2 class="text-lg font-bold line-clamp-2">{feed.title}</h2>
 								<p class="line-clamp-2">{feed.content}</p>
 							</div>
 							{#if feed.image}
