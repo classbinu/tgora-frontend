@@ -176,8 +176,8 @@
 	<WaterMark>
 		<span slot="userId">{userId}<br />{ipAddress}</span>
 	</WaterMark>
-	<FeedSecretWarning />
 	<div class="card-body w-full lg:w-1/2 mx-auto">
+		<FeedSecretWarning />
 		{#if feed.userId === userId}
 			<a href="/agora/{$page.params.channel}/{feed._id}/edit" class="text-success text-right"
 				><span class="material-symbols-outlined"> edit </span></a
