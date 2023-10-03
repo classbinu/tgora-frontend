@@ -7,10 +7,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png","og_image.png"]),
+	assets: new Set(["favicon.png","kftu_banner.png","og_image.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.bc57f7fa.js","app":"_app/immutable/entry/app.9bcc6a64.js","imports":["_app/immutable/entry/start.bc57f7fa.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/singletons.f20a3d92.js","_app/immutable/entry/app.9bcc6a64.js","_app/immutable/chunks/scheduler.b95eede2.js","_app/immutable/chunks/index.a03fbbfc.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.c6e2de2c.js","app":"_app/immutable/entry/app.89401ddd.js","imports":["_app/immutable/entry/start.c6e2de2c.js","_app/immutable/chunks/scheduler.e9b79cf6.js","_app/immutable/chunks/singletons.36eeada4.js","_app/immutable/entry/app.89401ddd.js","_app/immutable/chunks/scheduler.e9b79cf6.js","_app/immutable/chunks/index.d9c6d75c.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),

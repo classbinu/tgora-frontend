@@ -131,7 +131,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="ko">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		<title>T-아고라 | 현직 교사 커뮤니티</title>\n		<link\n			href="https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css"\n			rel="stylesheet"\n			type="text/css"\n		/>\n		<script src="https://cdn.tailwindcss.com"><\/script>\n		<link\n			rel="stylesheet"\n			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"\n		/>\n		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"><\/script>\n		<!-- meta -->\n		<!-- <meta name="title" content="T-아고라 : 현직 교사 커뮤니티" /> -->\n		<!-- og -->\n		<meta property="og:url" content="https://tgora.kr" />\n		<meta property="og:type" content="website" />\n		<meta property="og:image" content="' + assets2 + `/og_image.png" />
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="ko">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		<title>T-아고라 | 현직 교사 커뮤니티</title>\n		<link\n			href="https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css"\n			rel="stylesheet"\n			type="text/css"\n		/>\n		<script src="https://cdn.tailwindcss.com"><\/script>\n		<link\n			rel="stylesheet"\n			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"\n		/>\n		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"><\/script>\n		<!-- meta -->\n		<meta name="title" content="T-아고라 : 공교육 정상화 이슈 모음" />\n		<meta\n			name="description"\n			content="공교육 정상화를 위한 이슈를 쉽게 살펴볼 수 있어요. 선생님의 참여가 꼭 필요합니다."\n		/>\n		<!-- og -->\n		<meta property="og:url" content="https://tgora.kr" />\n		<meta property="og:type" content="website" />\n		<meta property="og:image" content="' + assets2 + `/og_image.png" />
 		<meta property="og:title" content="T-아고라" />
 		<meta property="og:description" content="현직 교사 커뮤니티" />
 		<!-- Google tag (gtag.js) -->
@@ -207,7 +207,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "zq0w4a"
+  version_hash: "cr6piu"
 };
 function get_hooks() {
   return {};
