@@ -19,6 +19,7 @@
 	import { goto } from '$app/navigation';
 	import WaterMark from '$lib/components/WaterMark.svelte';
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
+	import FeedContentBanner from '$lib/components/ads/FeedContentBanner.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -210,6 +211,7 @@
 		{#if feed.image}
 			<img src={feed.image} alt={feed.title} />
 		{/if}
+		<FeedContentBanner />
 		<div class="join mt-10 mb-10">
 			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
 				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
