@@ -37,6 +37,17 @@
 		5️⃣ 가입 대상이 아닌 사람이 가입한 경우 계정은 영구 삭제되며, 초대한 사람의 계정은 접속 정지 후
 		소명 자료를 제출하여야 해제됩니다.
 	</p>
+	<p class="my-3">
+		<span class="text-error font-bold"
+			>⭐️ 초등교사인 경우 아래 게시글에 초대장 링크를 확인하실 수 있습니다.</span
+		>
+		<br />
+		<a
+			href="https://indischool.com/boards/square/37354885"
+			target="_blank"
+			class="link link-primary">초대장 링크 확인하기 (초등교사 전용)</a
+		>
+	</p>
 	<div class="my-20" />
 </div>
 
