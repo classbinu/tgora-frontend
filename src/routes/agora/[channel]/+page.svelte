@@ -166,11 +166,11 @@
 		<span class="material-symbols-outlined"> edit </span>
 	</a>
 	<div class="p-1 w-full lg:w-1/2 mx-auto text-right">
-		<button on:click={() => getPage('every')} class="btn btn btn-outline btn-neutral">전체</button>
-		<button on:click={() => getPage('elementary')} class="btn btn-outline btn-primary">초등</button>
-		<button on:click={() => getPage('middle')} class="btn btn-outline btn-secondary">중등</button>
-		<button on:click={() => getPage('child')} class="btn btn-outline btn-accent">유치원</button>
-		<button on:click={() => getPage('special')} class="btn btn-outline btn-success">특수</button>
+		<button on:click={() => getPage('every')} class="btn btn-sm btn-outline btn-neutral">전체</button>
+		<button on:click={() => getPage('elementary')} class="btn btn-sm btn-outline btn-primary">초등</button>
+		<button on:click={() => getPage('middle')} class="btn btn-sm btn-outline btn-secondary">중등</button>
+		<button on:click={() => getPage('child')} class="btn btn-sm btn-outline btn-accent">유치원</button>
+		<button on:click={() => getPage('special')} class="btn btn-sm btn-outline btn-success">특수</button>
 	</div>
 	<FeedSecretWarning />
 
