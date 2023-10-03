@@ -78,6 +78,7 @@
 		goto(`/agora/${channel}`);
 		const feeds = await getAllFeeds(channel, pages);
 		FEEDS.set(feeds);
+		topFeeds = getTopFeeds(feeds, 5);
 	}
 
 	async function clickLike(feedId) {
