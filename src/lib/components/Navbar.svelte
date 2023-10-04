@@ -41,6 +41,7 @@
 			>
 				{#if $isLoggedIn}
 					<li><a class="py-5" href="/agora/every">속닥속닥</a></li>
+					<li><a class="py-5" href="/mypage/invite">초대하기</a></li>
 					<li><a class="py-5" href="/mypage">마이페이지</a></li>
 					<li><a class="py-5" on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}
@@ -57,6 +58,7 @@
 			<ul class="menu menu-horizontal px-1">
 				{#if $isLoggedIn}
 					<li class=""><a href="/agora/every">속닥속닥</a></li>
+					<li class=""><a href="/mypage/invite">초대하기</a></li>
 					<li class="hidden md:block"><a href="/mypage">마이페이지</a></li>
 					<li class="hidden md:block"><a on:click={logoutAndGotoHome}>로그아웃</a></li>
 				{:else}
