@@ -480,7 +480,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 		<a href="/issues/closed" class="link link-error">마감된 이슈 보기</a>
 	</div>
 	<p class="text-center text-gray-400 mt-10">
-		Magened By <span class="font-bold">익명의 선생님</span>
+		Magened by <span class="font-bold">익명의 선생님</span>
 	</p>
 </main>
 <Footer />
