@@ -181,7 +181,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 	}
 </script>
 
-<InviteBanner />
+<!-- <InviteBanner /> -->
 <Navbar />
 <Carousel />
 <div class="text-center">

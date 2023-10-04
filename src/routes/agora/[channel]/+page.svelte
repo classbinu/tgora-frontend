@@ -152,7 +152,7 @@
 	}
 </script>
 
-<InviteBanner />
+<!-- <InviteBanner /> -->
 <Navbar />
 <main class="container mx-auto">
 	<WaterMark>
