@@ -226,12 +226,12 @@
 				{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
 			</p>
 		</div>
+		<FeedContentBanner />
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
 		<p class="whitespace-pre-line mb-5">{@html replaceUrls(feed.content)}</p>
 		{#if feed.image}
 			<img src={feed.image} alt={feed.title} />
 		{/if}
-		<FeedContentBanner />
 		<div class="join mt-10 mb-10">
 			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
 				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
