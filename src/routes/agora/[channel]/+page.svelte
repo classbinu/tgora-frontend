@@ -257,9 +257,13 @@
 					<a
 						href="/agora/{$page.params.channel}/{feed._id}"
 						class="w-1/3 join-item text-gray-400 text-center"
-						><span class="material-symbols-outlined {feed['comments'].includes(userId) ? 'text-success' : ''}"> chat_bubble </span><span
-							>{feed.comments.length}</span
-						></a
+						><span
+							class="material-symbols-outlined {feed['comments'].includes(userId)
+								? 'text-success'
+								: ''}"
+						>
+							chat_bubble
+						</span><span>{feed.comments.length}</span></a
 					>
 					<a
 						href="/agora/{$page.params.channel}/{feed._id}"
@@ -274,7 +278,7 @@
 	{#each feeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border">
-				<a href="/agora/{$page.params.channel}/{feed._id}">
+				<a href="/agora/{$page.params.channel}/{feed._id}?q={q}">
 					<div class="card-body">
 						<div>
 							<span

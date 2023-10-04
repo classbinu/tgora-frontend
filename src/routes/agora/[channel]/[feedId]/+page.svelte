@@ -12,7 +12,8 @@
 		convertUTCtoUTC9,
 		formatRelativeTime,
 		getIpAddress,
-		getAllFeeds
+		getAllFeeds,
+		getSearchFeeds
 	} from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, IP, BEFORE_FEED_ID, FEEDS } from '$lib/store';
 	import { onMount } from 'svelte';
@@ -95,9 +96,22 @@
 		return console.log('getPage');
 	}
 
+	function getQueryString(key) {
+		const queryString = window.location.search;
+		const queryParams = new URLSearchParams(queryString);
+		return queryParams.get(key);
+	}
+
 	async function clickLike() {
 		await clickFeedLike($page.params.feedId);
-		const fetchedFeeds = await getAllFeeds($page.params.channel, 1);
+		let fetchedFeeds = [];
+		let q = getQueryString('q');
+		if (q) {
+			fetchedFeeds = await getSearchFeeds($page.params.channel, q);
+		} else {
+			fetchedFeeds = await getAllFeeds($page.params.channel, 1);
+		}
+
 		FEEDS.set(fetchedFeeds);
 		await getPage();
 	}
