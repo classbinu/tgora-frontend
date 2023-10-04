@@ -11,9 +11,10 @@
 		returnValidAccessToken,
 		convertUTCtoUTC9,
 		formatRelativeTime,
-		getIpAddress
+		getIpAddress,
+		getAllFeeds
 	} from '$lib/utils/utils.js';
-	import { USER_ID, API_URL, IP, BEFORE_FEED_ID } from '$lib/store';
+	import { USER_ID, API_URL, IP, BEFORE_FEED_ID, FEEDS } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -96,6 +97,8 @@
 
 	async function clickLike() {
 		await clickFeedLike($page.params.feedId);
+		const fetchedFeeds = await getAllFeeds($page.params.channel, 1);
+		FEEDS.set(fetchedFeeds);
 		await getPage();
 	}
 
