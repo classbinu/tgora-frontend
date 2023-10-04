@@ -306,7 +306,7 @@
 		<a href="/" class="link link-success">진행 중인 이슈 보기</a>
 	</div>
 	<p class="text-center text-gray-400 mt-10">
-		Magened By <span class="font-bold">익명의 선생님</span>
+		Magened by <span class="font-bold">익명의 선생님</span>
 	</p>
 </main>
 <Footer />
