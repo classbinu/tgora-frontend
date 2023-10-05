@@ -202,7 +202,7 @@
 			🤗 '속닥속닥'은 자유롭게 이야기를 나눌 수 있는 공간이에요
 		</p>
 	</div>
-	<div class="p-1">
+	<div class="p-1 lg:w-1/2 mx-auto">
 		<CommonBanner />
 	</div>
 	{#each topFeeds as feed (feed._id)}

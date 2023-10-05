@@ -21,7 +21,7 @@
 	const selectedBanner = bannerList[randomIndex];
 </script>
 
-<div class="lg:w-1/2 mx-auto">
+<div>
 	<a href={selectedBanner.url} target="_blank">
 		<img src={selectedBanner.img} alt={selectedBanner.alt} class="card" />
 	</a>

@@ -231,7 +231,6 @@
 		</div>
 
 		<CommonBanner />
-
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
 		<p class="whitespace-pre-line mb-5">{@html replaceUrls(feed.content)}</p>
 		{#if feed.image}
