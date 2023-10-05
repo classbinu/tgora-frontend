@@ -23,6 +23,7 @@
 	import FeedSecretWarning from '$lib/components/FeedSecretWarning.svelte';
 	import FeedContentBanner from '$lib/components/ads/FeedContentBanner.svelte';
 	import FeedCommentsBanner from '$lib/components/ads/FeedCommentsBanner.svelte';
+	import CommonBanner from '$lib/components/ads/CommonBanner.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -194,39 +195,43 @@
 	<WaterMark>
 		<span slot="userId">{userId}<br />{ipAddress}</span>
 	</WaterMark>
-	<div class="px-5">
-		<FeedSecretWarning />
-	</div>
-	<div class="card-body w-full lg:w-1/2 mx-auto p-5">
-		{#if feed.userId === userId}
-			<a href="/agora/{$page.params.channel}/{feed._id}/edit" class="text-success text-right"
-				><span class="material-symbols-outlined"> edit </span></a
-			>
-		{:else}
-			<button class="text-right {flagsArray.includes(userId) ? 'text-error' : ''}"
-				><span class="material-symbols-outlined" on:click={clickFlag}> flag </span></button
-			>
-		{/if}
-		<div>
-			<span
-				class="badge badge-outline {feed.channel === '초등'
-					? elementary.badgeColor
-					: feed.channel === '중등'
-					? middle.badgeColor
-					: feed.channel === '유치원'
-					? child.badgeColor
-					: feed.channel === '특수'
-					? special.badgeColor
-					: ''}"
-			>
-				{feed.channel ? feed.channel : '전체'}
-			</span>
-			<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
-			<p class="text-xs text-gray-400 m-1">
-				{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
-			</p>
+	<FeedSecretWarning />
+	<div class="card-body w-full lg:w-1/2 mx-auto p-1">
+		<div class="flex justify-between">
+			<div>
+				<span
+					class="badge badge-outline {feed.channel === '초등'
+						? elementary.badgeColor
+						: feed.channel === '중등'
+						? middle.badgeColor
+						: feed.channel === '유치원'
+						? child.badgeColor
+						: feed.channel === '특수'
+						? special.badgeColor
+						: ''}"
+				>
+					{feed.channel ? feed.channel : '전체'}
+				</span>
+				<span class="text-xs text-gray-500">{formatRelativeTime(feed.createdAt)}</span>
+				<p class="text-xs text-gray-400 m-1">
+					{feed.grade ? feed.grade : '비공개'} · {feed.nickname}
+				</p>
+			</div>
+			<div>
+				{#if feed.userId === userId}
+					<a href="/agora/{$page.params.channel}/{feed._id}/edit" class="text-success text-right"
+						><span class="material-symbols-outlined"> edit </span></a
+					>
+				{:else}
+					<button class="text-right {flagsArray.includes(userId) ? 'text-error' : ''}"
+						><span class="material-symbols-outlined" on:click={clickFlag}> flag </span></button
+					>
+				{/if}
+			</div>
 		</div>
-		<FeedContentBanner />
+
+		<CommonBanner />
+
 		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
 		<p class="whitespace-pre-line mb-5">{@html replaceUrls(feed.content)}</p>
 		{#if feed.image}

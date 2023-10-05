@@ -19,6 +19,7 @@
 	import { goto } from '$app/navigation';
 	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
 	import FeedsMainBanner from '$lib/components/ads/FeedsMainBanner.svelte';
+	import CommonBanner from '$lib/components/ads/CommonBanner.svelte';
 
 	// $page.params.channel
 
@@ -201,7 +202,9 @@
 			🤗 '속닥속닥'은 자유롭게 이야기를 나눌 수 있는 공간이에요
 		</p>
 	</div>
-	<FeedsMainBanner />
+	<div class="p-1">
+		<CommonBanner />
+	</div>
 	{#each topFeeds as feed (feed._id)}
 		<div class="p-1 w-full lg:w-1/2 mx-auto" id={feed._id}>
 			<div class="card bg-base-100 border-2 border-success">
