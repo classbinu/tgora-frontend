@@ -1,4 +1,4 @@
-import { API_URL, IP, USER_ID, isLoggedIn } from '$lib/store';
+import { API_URL, FEEDS, IP, USER_ID, isLoggedIn } from '$lib/store';
 
 import { goto } from '$app/navigation';
 
@@ -125,9 +125,10 @@ export async function logout() {
 	const accessToken = await returnValidAccessToken();
 	isLoggedIn.set(false);
 	USER_ID.set(undefined);
-	IP.set(undefined);
+	IP.set('000.000.000.000');
 	localStorage.removeItem('accessToken');
 	localStorage.removeItem('refreshToken');
+	FEEDS.set([]);
 	if (!accessToken) return;
 
 	const requestUrl = `${API}/auth/logout`;

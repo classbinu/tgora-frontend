@@ -23,6 +23,10 @@
 
 <div>
 	<a href={selectedBanner.url} target="_blank">
-		<img src={selectedBanner.img} alt={selectedBanner.alt} class="card" />
+		<img
+			src={selectedBanner.img}
+			alt={selectedBanner.alt}
+			class="card"
+		/>
 	</a>
 </div>
