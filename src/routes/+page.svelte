@@ -12,6 +12,7 @@
 	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
 	import { onMount } from 'svelte';
 	import InviteBanner from '$lib/components/ads/InviteBanner.svelte';
+	import NoIssues from '$lib/components/NoIssues.svelte';
 
 	let userId;
 	USER_ID.subscribe((value) => {
@@ -221,6 +222,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 	</h1>
 	<h1 class="text-3xl font-bold mx-3">🔥 화력집중(중요)</h1>
 	<div class="flex flex-wrap">
+		{#if issuesPress.length === 0}
+			<isNotice />
+		{/if}
 		{#each isNotice as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {fire.bgColor} {fire.textColor} shadow-xl">
@@ -269,6 +273,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">❌ 입법 반대</h1>
 	<div class="flex flex-wrap">
+		{#if issuesDisagree.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesDisagree as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {disagree.bgColor} {disagree.textColor} shadow-xl">
@@ -299,6 +306,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">✅ 입법 찬성</h1>
 	<div class="flex flex-wrap">
+		{#if issuesAgree.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesAgree as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {agree.bgColor} {agree.textColor} shadow-xl">
@@ -329,6 +339,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">🙆 국민동의청원</h1>
 	<div class="flex flex-wrap">
+		{#if issuesPetition.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesPetition as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {petition.bgColor} {petition.textColor} shadow-xl">
@@ -359,6 +372,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">🎤 설문</h1>
 	<div class="flex flex-wrap">
+		{#if issuesSurvey.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesSurvey as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {survey.bgColor} {survey.textColor} shadow-xl">
@@ -389,6 +405,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">📑 서명</h1>
 	<div class="flex flex-wrap">
+		{#if issuesSignature.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesSignature as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {signature.bgColor} {signature.textColor} shadow-xl">
@@ -419,6 +438,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">📰 언론</h1>
 	<div class="flex flex-wrap">
+		{#if issuesPress.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesPress as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {press.bgColor} {press.textColor} shadow-xl">
@@ -449,6 +471,9 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 
 	<h1 class="text-3xl font-bold mt-20 mx-3">🎸 기타</h1>
 	<div class="flex flex-wrap">
+		{#if issuesOther.length === 0}
+			<NoIssues />
+		{/if}
 		{#each issuesOther as issue (issue._id)}
 			<div class="p-2 w-full lg:w-96">
 				<div class="card {other.bgColor} {other.textColor} shadow-xl">
