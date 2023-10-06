@@ -86,7 +86,7 @@
 	}
 
 	function getTopFeeds(feeds, count) {
-		const sortedFeeds = [...feeds].sort((a, b) => b.likes.length - a.likes.length);
+		const sortedFeeds = [...feeds].slice(0, 20).sort((a, b) => b.likes.length - a.likes.length);
 		const topFeeds = sortedFeeds.slice(0, count);
 		return topFeeds;
 	}
