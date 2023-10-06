@@ -273,7 +273,7 @@
 						<div class="badge badge-xs badge-success">작성자</div>
 					{/if}
 					<p class="text-xs text-gray-400">
-						{comment.grade ? comment.grade : '비공개'} · {feed.nickname}
+						{comment.grade ? comment.grade : '비공개'} · {comment.nickname}
 					</p>
 				</div>
 				<div class="flex">
