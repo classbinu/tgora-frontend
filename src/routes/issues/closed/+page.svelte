@@ -6,6 +6,12 @@
 	import { formatDate, checkIssueDone } from '$lib/utils/utils.js';
 	import { USER_ID, API_URL, isLoggedIn } from '$lib/store';
 
+	const ADMIN_ID_LIST = [
+		'650bde9f1dbfaf21e04ee69d', // admin
+		'650eb76ac2d7e7d6bf4889a0', // admin2
+		'650be13ab1691d9dd4a42e31' // classbinu
+	];
+
 	let userId;
 	USER_ID.subscribe((value) => {
 		userId = value;
@@ -122,7 +128,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -151,7 +166,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -180,7 +204,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -209,7 +242,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -238,7 +280,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -267,7 +318,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -296,7 +356,16 @@
 							>
 							<a href={issue.link} target="_blank" class="btn">마감</a>
 						</div>
-						<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+						<div>
+							<span class="text-xs">마감일 {formatDate(issue.dueDate)}</span>
+							{#if ADMIN_ID_LIST.includes(userId)}
+								<a
+									href="/admin0904/issues/{issue._id}"
+									target="_blank"
+									class="text-xs link link-primary">이슈 관리</a
+								>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
