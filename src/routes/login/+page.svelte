@@ -77,7 +77,7 @@
 				USER_ID.set(getSubFromAccessToken(data.accessToken));
 				IP.set(await getIpAddress());
 				isLoggedIn.set(true);
-				goto('/');
+				goto('/agora/every');
 			} else {
 				// 로그인 불가 팝업 렌더링 구현 필요
 				alert(data.message);
