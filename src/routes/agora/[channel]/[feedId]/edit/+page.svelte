@@ -87,7 +87,8 @@
 
 			const response = await fetch(url, options);
 			if (response.ok) {
-				goto(`/agora/${$page.params.channel}/${_id}`);
+				// goto(`/agora/${$page.params.channel}/${_id}`);
+				window.location.href = `/agora/${$page.params.channel}/${_id}`
 			} else {
 				alert('피드 수정에 실패했어요. 개발자에게 문의해 주세요.');
 			}
