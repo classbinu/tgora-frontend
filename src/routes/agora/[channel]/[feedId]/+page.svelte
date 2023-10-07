@@ -231,68 +231,71 @@
 		</div>
 
 		<CommonBanner />
-		<h2 class="text-lg font-bold my-5">{feed.title}</h2>
-		<p class="whitespace-pre-line mb-5">{@html replaceUrls(feed.content)}</p>
-		{#if feed.image}
-			<img src={feed.image} alt={feed.title} />
-		{/if}
-		<div class="join mt-10 mb-10">
-			<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
-				<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
-					favorite
-				</span><span>
-					{likesCount}
-				</span>
-			</button>
-			<button class="w-1/3 join-item text-gray-400"
-				><span class="material-symbols-outlined"> chat_bubble </span><span>{commentsCount}</span
-				></button
-			>
-			<button class="w-1/3 join-item text-gray-400"
-				><span class="material-symbols-outlined"> visibility </span><span /></button
-			>
-		</div>
-		<form on:submit|preventDefault={handleSubmit}>
-			<div class="flex">
-				<textarea
-					type="text"
-					bind:value={content}
-					placeholder="공감과 지지의 댓글을 달아 주세요."
-					class="textarea textarea-bordered w-full"
-					rows="1"
-					required
-				/>
-				<button class="btn btn-success">작성</button>
+		<div class="card px-3">
+			<h2 class="text-lg font-bold my-5">{feed.title}</h2>
+			<p class="whitespace-pre-line mb-5">{@html replaceUrls(feed.content)}</p>
+			{#if feed.image}
+				<img src={feed.image} alt={feed.title} />
+			{/if}
+			<div class="join mt-10 mb-10">
+				<button class="w-1/3 join-item text-gray-400" on:click={clickLike}>
+					<span class="material-symbols-outlined {likesArray.includes(userId) ? 'text-error' : ''}">
+						favorite
+					</span><span>
+						{likesCount}
+					</span>
+				</button>
+				<button class="w-1/3 join-item text-gray-400"
+					><span class="material-symbols-outlined"> chat_bubble </span><span>{commentsCount}</span
+					></button
+				>
+				<button class="w-1/3 join-item text-gray-400"
+					><span class="material-symbols-outlined"> visibility </span><span /></button
+				>
 			</div>
-		</form>
-		{#each comments as comment (comment._id)}
-			<div class="mt-5">
-				<div>
-					<span class="text-xs text-gray-500">{formatRelativeTime(comment.createdAt)}</span>
-					{#if feed.userId === comment.userId}
-						<div class="badge badge-xs badge-success">작성자</div>
-					{/if}
-					<p class="text-xs text-gray-400">
-						{comment.grade ? comment.grade : '비공개'} · {comment.nickname}
-					</p>
-				</div>
+			<form on:submit|preventDefault={handleSubmit}>
 				<div class="flex">
-					<p>{@html replaceUrls(comment.content)}</p>
-					{#if comment.userId === userId}
-						<a
-							href="/agora/{$page.params.channel}/{comment.feedId}/{comment._id}/edit"
-							class="text-success text-right"
-							><span class="material-symbols-outlined"> edit </span></a
-						>
-					{:else}
-						<!-- <button class="text-error text-right"
-							><span class="material-symbols-outlined" on:click={isDeveloping}> flag </span></button
-						> -->
-					{/if}
+					<textarea
+						type="text"
+						bind:value={content}
+						placeholder="공감과 지지의 댓글을 달아 주세요."
+						class="textarea textarea-bordered w-full"
+						rows="1"
+						required
+					/>
+					<button class="btn btn-success">작성</button>
 				</div>
-				<div class="divider" />
-			</div>
-		{/each}
+			</form>
+			{#each comments as comment (comment._id)}
+				<div class="mt-5">
+					<div>
+						<span class="text-xs text-gray-500">{formatRelativeTime(comment.createdAt)}</span>
+						{#if feed.userId === comment.userId}
+							<div class="badge badge-xs badge-success">작성자</div>
+						{/if}
+						<p class="text-xs text-gray-400">
+							{comment.grade ? comment.grade : '비공개'} · {comment.nickname}
+						</p>
+					</div>
+					<div class="flex">
+						<p>{@html replaceUrls(comment.content)}</p>
+						{#if comment.userId === userId}
+							<a
+								href="/agora/{$page.params.channel}/{comment.feedId}/{comment._id}/edit"
+								class="text-success text-right"
+								><span class="material-symbols-outlined"> edit </span></a
+							>
+						{:else}
+							<!-- <button class="text-error text-right"
+								><span class="material-symbols-outlined" on:click={isDeveloping}> flag </span></button
+							> -->
+						{/if}
+					</div>
+					<div class="divider" />
+				</div>
+			{/each}
+		</div>
+
 		<FeedCommentsBanner />
 		<div class="my-60" />
 	</div>

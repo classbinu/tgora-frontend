@@ -1,6 +1,6 @@
 <script>
 	import { isLoggedIn, USER_ID, IP } from '$lib/store';
-	import { logout } from '$lib/utils/utils';
+	import { logout, getAllFeeds } from '$lib/utils/utils';
 	import { goto } from '$app/navigation';
 
 	function alertLogin() {
