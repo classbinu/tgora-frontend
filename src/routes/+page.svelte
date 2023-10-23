@@ -176,7 +176,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 		if (isLoggedInCheck) {
 			Swal.fire({
 				title: '이슈에 참여하셨나요?',
-				html: '이 기능은 참여 여부를 관리하기 위한 용도입니다.<br>이 버튼만으로 이슈에 참여되지 않습니다.<br>참여하기 버튼으로 참여 후 체크해 주세요.',
+				html: '이 버튼만으로 이슈에 참여되지 않아요.<br>참여하기 버튼으로 참여 후 체크해 주세요.',
 				confirmButtonText: '이슈 참여 상태를 변경할게요',
 				showDenyButton: true,
 				denyButtonText: `취소`
@@ -191,14 +191,6 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 						timer: 5000
 					});
 					location.reload();
-				} else if (result.isDenied) {
-					Swal.fire({
-						icon: 'error',
-						title: '이슈 참여 상태 변경이 취소되었어요',
-						html: '아직 이슈에 참여하지 않았다면<br>카드 오른쪽 참여하기 버튼으로<br>이슈에 참여해 주세요.',
-						showConfirmButton: true,
-						// timer: 3000
-					});
 				}
 			});
 		} else {
