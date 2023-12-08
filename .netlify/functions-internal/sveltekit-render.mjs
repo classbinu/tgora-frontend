@@ -9,10 +9,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png","kftu_banner.png","og_image.png"]),
+	assets: new Set(["365_banner.png","favicon.png","kftu_banner.png","og_image.png","save_teachers_banner.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.c6e2de2c.js","app":"_app/immutable/entry/app.89401ddd.js","imports":["_app/immutable/entry/start.c6e2de2c.js","_app/immutable/chunks/scheduler.e9b79cf6.js","_app/immutable/chunks/singletons.36eeada4.js","_app/immutable/entry/app.89401ddd.js","_app/immutable/chunks/scheduler.e9b79cf6.js","_app/immutable/chunks/index.d9c6d75c.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.8a8ce78d.js","app":"_app/immutable/entry/app.ba2a7c1a.js","imports":["_app/immutable/entry/start.8a8ce78d.js","_app/immutable/chunks/scheduler.e9b79cf6.js","_app/immutable/chunks/singletons.b22850ef.js","_app/immutable/entry/app.ba2a7c1a.js","_app/immutable/chunks/scheduler.e9b79cf6.js","_app/immutable/chunks/index.d9c6d75c.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			__memo(() => import('../server/nodes/0.js')),
 			__memo(() => import('../server/nodes/1.js')),
