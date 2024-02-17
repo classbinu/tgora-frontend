@@ -73,7 +73,7 @@
 			<ul class="menu menu-horizontal px-1">
 				{#if $isLoggedIn}
 					{#if ADMIN_ID_LIST.includes(userId)}
-						<li><a class="py-5" href="/admin0904">어드민</a></li>
+						<li><a class="" href="/admin0904">어드민</a></li>
 					{/if}
 					<li class=""><a href="/agora/every">속닥속닥</a></li>
 					<li class=""><a href="/mypage/invite">초대하기</a></li>
