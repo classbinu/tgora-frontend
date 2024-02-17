@@ -137,7 +137,7 @@
 					name="summary"
 					bind:value={summary}
 					class="textarea textarea-bordered h-24"
-					placeholder=""
+					placeholder="간단한 설명을 적어주세요.(200자 이내 권장)"
 				/>
 			</div>
 			<div class="form-control w-full">
