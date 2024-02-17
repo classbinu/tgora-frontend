@@ -17,6 +17,7 @@
 	const ADMIN_ID_LIST = [
 		'650bde9f1dbfaf21e04ee69d', // admin
 		'650eb76ac2d7e7d6bf4889a0', // admin2
+		'65d0c0297390cc7556a4f252', // admin3
 		'650be13ab1691d9dd4a42e31' // classbinu
 	];
 

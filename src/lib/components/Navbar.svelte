@@ -15,6 +15,18 @@
 		logout();
 		goto('/');
 	}
+
+	let userId;
+	USER_ID.subscribe((value) => {
+		userId = value;
+	});
+
+	const ADMIN_ID_LIST = [
+		'650bde9f1dbfaf21e04ee69d', // admin
+		'650eb76ac2d7e7d6bf4889a0', // admin2
+		'65d0c0297390cc7556a4f252', // admin3
+		'650be13ab1691d9dd4a42e31' // classbinu
+	];
 </script>
 
 <nav class="container mx-auto">
@@ -40,6 +52,9 @@
 				class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 			>
 				{#if $isLoggedIn}
+					{#if ADMIN_ID_LIST.includes(userId)}
+						<li><a class="py-5" href="/admin0904">어드민</a></li>
+					{/if}
 					<li><a class="py-5" href="/agora/every">속닥속닥</a></li>
 					<li><a class="py-5" href="/mypage/invite">초대하기</a></li>
 					<li><a class="py-5" href="/mypage">마이페이지</a></li>
@@ -57,6 +72,9 @@
 		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
 				{#if $isLoggedIn}
+					{#if ADMIN_ID_LIST.includes(userId)}
+						<li><a class="py-5" href="/admin0904">어드민</a></li>
+					{/if}
 					<li class=""><a href="/agora/every">속닥속닥</a></li>
 					<li class=""><a href="/mypage/invite">초대하기</a></li>
 					<li class="hidden md:block"><a href="/mypage">마이페이지</a></li>
