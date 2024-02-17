@@ -82,8 +82,7 @@
 	async function copyMyRank() {
 		const message = `교육 이슈 쉽게 참여하기 tgora.kr 🔥
 
-선생님께서 참여하신 이슈는 ${participatedIssuesCount}건으로
-T-아고라 상위 ${myRank}%입니다.⭐️`;
+선생님께서 참여하신 이슈는 ${participatedIssuesCount}건입니다.`;
 		await navigator.clipboard.writeText(message);
 		return alert(`활동이 클립보드에 복사되었어요.`);
 	}
@@ -216,9 +215,7 @@ T-아고라 상위 ${myRank}%입니다.⭐️`;
 	<div class="text-center mt-5 text-secondary font-bold">
 		{#if isLoggedInCheck}
 			<p>
-				선생님께서 참여하신 이슈는 {participatedIssuesCount}건으로
-				<br />
-				T-아고라 상위 {myRank}%입니다.
+				선생님께서 참여하신 이슈는 {participatedIssuesCount}건입니다.
 			</p>
 			<button class="btn bg-yellow-300 mt-3" on:click={copyMyRank}>내 활동 공유하기 🔥</button>
 		{:else}
