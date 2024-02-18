@@ -376,7 +376,7 @@
 		<a href="/" class="link link-success">진행 중인 이슈 보기</a>
 	</div>
 	<p class="text-center text-gray-400 mt-10 text-sm">
-		Managed by <span class="font-bold">검은점 초등교사</span>
+		Managed by <span class="font-bold">공교육정상화 전략기획팀</span>
 	</p>
 </main>
 <Footer />
